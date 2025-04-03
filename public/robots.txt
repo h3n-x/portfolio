@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://h3n.dev/sitemap.xml
