@@ -51,7 +51,7 @@ Un portfolio web personal con estética Matrix, creado con React y Tailwind CSS,
 
 1. Clona este repositorio:
 ```bash
-git clone https://github.com/h3n/portfolio.git
+git clone https://github.com/h3n-x/portfolio.git
 cd portfolio
 ```
 
