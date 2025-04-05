@@ -1,66 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/images/profile.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <link rel="icon" type="image/png" href="/images/profile.avif" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+    <meta name="description" content="Portfolio de h3n - Desarrollador y programador especializado en tecnologías web modernas y Linux" />
+    <meta name="theme-color" content="#0f0f0f" />
     
-    <!-- PWA Support -->
-    <meta name="theme-color" content="#22c55e" />
-    <link rel="manifest" href="/manifest.json" />
-    <link rel="apple-touch-icon" href="/images/profile.svg" />
+    <!-- Precargas para mejorar el rendimiento en móviles -->
+    <link rel="preload" href="/images/profile.avif" as="image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     
-    <!-- SEO Metatags -->
-    <meta name="description" content="Portfolio de Henry Pacheco (H3n) - Desarrollador Backend especializado en Python, Linux y tecnologías de código abierto. Experiencia en desarrollo de APIs, automatización y administración de sistemas." />
-    <meta name="keywords" content="H3n, Henry Pacheco, desarrollador backend, python, linux, arch linux, portfolio, programador, colombia" />
-    <meta name="author" content="Henry Pacheco" />
+    <!-- Fuentes optimizadas -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" as="style" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" />
+    
+    <!-- Font Awesome - Optimizado -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <title>h3n | Programador</title>
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://h3n.dev/" />
-    <meta property="og:title" content="Portfolio de Henry Pacheco (H3n) | Desarrollador Backend" />
-    <meta property="og:description" content="Portfolio de Henry Pacheco (H3n) - Desarrollador Backend especializado en Python, Linux y tecnologías de código abierto." />
-    <meta property="og:image" content="/images/og-image.svg" />
+    <meta property="og:title" content="h3n | Programador" />
+    <meta property="og:description" content="Portfolio de h3n - Desarrollador y programador especializado en tecnologías web modernas y Linux" />
+    <meta property="og:image" content="https://h3n.dev/og-image.jpg" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://h3n.dev/" />
-    <meta property="twitter:title" content="Portfolio de Henry Pacheco (H3n) | Desarrollador Backend" />
-    <meta property="twitter:description" content="Portfolio de Henry Pacheco (H3n) - Desarrollador Backend especializado en Python, Linux y tecnologías de código abierto." />
-    <meta property="twitter:image" content="/images/og-image.svg" />
+    <meta property="twitter:title" content="h3n | Programador" />
+    <meta property="twitter:description" content="Portfolio de h3n - Desarrollador y programador especializado en tecnologías web modernas y Linux" />
+    <meta property="twitter:image" content="https://h3n.dev/og-image.jpg" />
     
     <!-- WhatsApp -->
-    <meta property="og:site_name" content="Portfolio de Henry Pacheco (H3n)">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="h3n | Programador">
     <meta property="og:locale" content="es_ES">
-    
-    <!-- Preload fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome - Optimizado para evitar advertencias de bbox -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <meta property="og:locale:alternate" content="en_US">
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://h3n.dev/" />
     
-    <!-- Preload critical assets -->
-    <link rel="preload" href="/cursors/cursor.svg" as="image" type="image/svg+xml" />
-    <link rel="preload" href="/cursors/pointer.svg" as="image" type="image/svg+xml" />
-    
-    <title>Portfolio de Henry Pacheco | H3n - Desarrollador Backend</title>
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/images/profile.avif">
   </head>
   <body>
     <div id="root"></div>
-    <!-- Fallback para navegadores sin JavaScript -->
     <noscript>
       <div style="text-align: center; padding: 20px; color: white; background-color: black;">
-        <h1>JavaScript está desactivado</h1>
+        <h1 style="font-size: 2rem; margin-block: 1rem;">JavaScript está desactivado</h1>
         <p>Este sitio requiere JavaScript para funcionar correctamente. Por favor, actívalo para continuar.</p>
       </div>
     </noscript>

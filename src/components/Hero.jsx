@@ -50,7 +50,7 @@ const Hero = () => {
           <div className="mb-8 animate-on-scroll">
             <div className="profile-img-container relative w-40 h-40 md:w-48 md:h-48 rounded-full p-1">
               <img 
-                src="/images/profile.png" 
+                src="/images/profile.avif" 
                 alt="Henry Pacheco" 
                 className="rounded-full w-full h-full object-cover"
                 loading="lazy"
@@ -77,8 +77,7 @@ const Hero = () => {
             <a href="#" className="flex items-center justify-center border border-green-500 text-green-500 hover:bg-green-500 hover:text-black px-4 py-2 rounded-md transition-colors btn">
               <i className="fas fa-download mr-2"></i>
               <span>{t('hero.downloadCV')}</span>
-            </a>
-            <a href="#sobre-mí" className="flex items-center justify-center bg-transparent border border-green-500 text-green-500 hover:bg-green-500 hover:text-black px-4 py-2 rounded-md transition-colors btn">
+            </a>            <a href="#sobre-mí" className="flex items-center justify-center bg-transparent border border-green-500 text-green-500 hover:bg-green-500 hover:text-black px-4 py-2 rounded-md transition-colors btn">
               <i className="fas fa-chevron-right mr-2"></i>
               <span>{t('hero.learnMore')}</span>
             </a>

@@ -494,72 +494,84 @@ body {
   }
 }
 
-/* Estilos para el timeline */
-.timeline-item {
-  position: relative;
-  padding-left: 30px;
-  margin-bottom: 30px;
+/* Optimizaciones para móviles */
+@media (max-width: 768px) {
+  /* Reducir tamaño de fuentes para móviles */
+  h1 {
+    font-size: 1.75rem !important;
+  }
+  
+  h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  h3 {
+    font-size: 1.25rem !important;
+  }
+  
+  /* Optimizar animaciones para móviles */
+  .matrix-rain,
+  .matrix-grid {
+    opacity: 0.5; /* Reducir opacidad para mejorar rendimiento */
+  }
+  
+  /* Reducir complejidad visual en móviles */
+  .card-hover:before {
+    display: none; /* Eliminar efectos hover complejos en móviles */
+  }
+  
+  /* Optimizar espaciado para móviles */
+  .py-20 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  
+  .mb-12 {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Reducir tamaño de iconos para móviles */
+  .tech-icon {
+    width: 3rem !important;
+    height: 3rem !important;
+  }
+  
+  /* Optimizar imágenes para móviles */
+  .project-image {
+    height: 12rem !important;
+  }
 }
 
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 2px;
-  height: 100%;
-  background-color: #22c55e;
+/* Cargar contenido crítico primero */
+.hero-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 500px;
 }
 
-.timeline-item::after {
-  content: '';
-  position: absolute;
-  left: -4px;
-  top: 0;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #22c55e;
-  box-shadow: 0 0 10px rgba(34, 197, 94, 0.7);
+/* Reducir el impacto de CLS (Cumulative Layout Shift) */
+img, picture, video {
+  max-width: 100%;
+  display: block;
+  height: auto;
 }
 
-/* Estilos para el footer */
-.footer-glow {
-  position: relative;
+/* Optimizar fuentes para móviles */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px; /* Reducir tamaño base de fuente */
+  }
 }
 
-.footer-glow::before {
-  content: '';
-  position: absolute;
-  top: -20px;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #22c55e, transparent);
-}
-
-/* Botón de cambio de idioma */
-.language-toggle {
-  background-color: transparent;
-  border: 2px solid var(--accent-color);
-  color: var(--accent-color);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px var(--accent-glow);
-  margin-left: 0.5rem;
-}
-
-.language-toggle:hover {
-  background-color: var(--accent-color);
-  color: var(--bg-primary);
+/* Optimizar botones para interacción táctil */
+@media (max-width: 768px) {
+  button, 
+  .btn,
+  .nav-link,
+  .project-button {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.75rem 1rem;
+  }
 }
 
 /* Estilos para la sección */
@@ -833,4 +845,235 @@ img {
 
 .lazy-image.loaded {
   opacity: 1;
+}
+
+/* Efectos para botones de proyectos */
+.project-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  margin-right: 0.75rem;
+  margin-bottom: 0.75rem;
+  color: #22c55e;
+  background-color: rgba(0, 0, 0, 0.8); /* Fondo más oscuro para mejor contraste */
+  border: 1px solid #22c55e;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.project-button:hover {
+  color: #000;
+  background-color: #22c55e;
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.5), 0 0 30px rgba(34, 197, 94, 0.3);
+  transform: translateY(-2px);
+}
+
+.project-button:hover:before {
+  left: 100%;
+}
+
+.project-button i {
+  margin-right: 0.5rem;
+}
+
+/* Efecto de código Matrix para el botón Code */
+.project-button.code-btn:hover {
+  background-color: rgba(34, 197, 94, 0.9);
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='0' y='15' font-family='monospace' font-size='20' fill='rgba(0,0,0,0.3)'%3E01011%3C/text%3E%3C/svg%3E");
+  background-size: 100px;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Efecto de pantalla para el botón Demo */
+.project-button.demo-btn:hover {
+  background-color: rgba(34, 197, 94, 0.9);
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.7), 0 0 30px rgba(34, 197, 94, 0.4);
+}
+
+.project-button.demo-btn:hover:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #22c55e, transparent);
+  animation: scan-line 1.5s linear infinite;
+}
+
+@keyframes scan-line {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+/* Mejorar contraste para accesibilidad */
+.text-gray-400 {
+  color: #a3a3a3; /* Aumentado el contraste desde el valor original */
+}
+
+.text-gray-500 {
+  color: #8c8c8c; /* Aumentado el contraste desde el valor original */
+}
+
+/* Asegurar contraste suficiente en botones */
+.project-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  margin-right: 0.75rem;
+  margin-bottom: 0.75rem;
+  color: #22c55e;
+  background-color: rgba(0, 0, 0, 0.8); /* Fondo más oscuro para mejor contraste */
+  border: 1px solid #22c55e;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.project-button:hover {
+  color: #000;
+  background-color: #22c55e;
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.5), 0 0 30px rgba(34, 197, 94, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Asegurar que los enlaces tengan nombres discernibles */
+a[aria-label] {
+  position: relative;
+}
+
+a:not([aria-label]):not(.project-button):not(.btn):not(.nav-link) {
+  position: relative;
+  color: #22c55e; /* Color verde más brillante para mejor contraste */
+  text-decoration: underline;
+}
+
+/* Mejorar el contraste en los encabezados */
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff;
+}
+
+/* Asegurar que los encabezados sigan un orden secuencial */
+h1 {
+  font-size: 2.5rem;
+  margin-block: 0.67em;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-block: 0.83em;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-block: 1em;
+}
+
+h4 {
+  font-size: 1.25rem;
+  margin-block: 1.33em;
+}
+
+/* Estilos para el timeline */
+.timeline-item {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 30px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background-color: #22c55e;
+}
+
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #22c55e;
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.7);
+}
+
+/* Estilos para el footer */
+.footer-glow {
+  position: relative;
+}
+
+.footer-glow::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #22c55e, transparent);
+}
+
+/* Botón de cambio de idioma */
+.language-toggle {
+  background-color: transparent;
+  border: 2px solid var(--accent-color);
+  color: var(--accent-color);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px var(--accent-glow);
+  margin-left: 0.5rem;
+}
+
+.language-toggle:hover {
+  background-color: var(--accent-color);
+  color: var(--bg-primary);
+}
+
+/* Añadir espacio entre el icono y los títulos de sección */
+h2.code-line::before {
+  content: ">";
+  color: #22c55e;
+  font-weight: bold;
+  margin-right: 0.25rem; /* Espacio mínimo entre el icono y el título */
+  display: inline-block;
+}
+
+/* Ajustar el espacio en títulos de sección */
+section h2 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+/* Asegurar que el icono tenga el espacio correcto en todos los tamaños de pantalla */
+@media (max-width: 768px) {
+  h2.code-line::before {
+    margin-right: 0.25rem; /* Espacio mínimo entre el icono y el título */
+  }
 }

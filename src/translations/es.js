@@ -22,8 +22,8 @@ export const es = {
   // Sobre Mí
   about: {
     title: 'Sobre Mí',
-    description1: 'Soy un desarrollador apasionado por crear soluciones innovadoras y eficientes con experiencia en desarrollo Backend, disfruto enfrentándome a nuevos retos y aprendiendo constantemente.',
-    description2: 'Mi especialidad es trabajar con el lenguaje de programación Python pues este lo combino con el aprendizaje en mi entorno de desarrollo con Arch Linux.'
+    description: 'Soy un desarrollador apasionado por crear soluciones innovadoras y eficientes con experiencia en desarrollo Backend, disfruto enfrentándome a nuevos retos y aprendiendo constantemente.',
+    interests: 'Mi especialidad es trabajar con el lenguaje de programación Python pues este lo combino con el aprendizaje en mi entorno de desarrollo con Arch Linux.'
   },
   
   // Tecnologías
@@ -75,6 +75,18 @@ export const es = {
     featured: 'Destacado',
     demo: 'Demo',
     code: 'Código',
+    details: 'Detalles',
+    technologies: 'Tecnologías',
+    viewDemo: 'Ver Demo',
+    viewCode: 'Ver Código',
+    back: 'Volver',
+    showMore: 'Ver más proyectos',
+    showLess: 'Ver menos proyectos',
+    h3nColors: {
+    title: 'Color Generator',
+    description: 'Una aplicación web moderna para crear, personalizar y evaluar paletas de colores con estilo pastel que cumplen con los estándares de accesibilidad WCAG.',
+    details: 'Esta aplicación permite seleccionar colores mediante un selector visual intuitivo, evaluar su accesibilidad según estándares WCAG, visualizar componentes UI con los colores seleccionados, y exportar paletas en diferentes formatos (Tailwind, CSS, SCSS, JSON). Incluye características como guardado de colores favoritos, atajos de teclado para mayor productividad, y cálculo automático de contraste para garantizar la accesibilidad. Desarrollada con React, Vite y Tailwind CSS, con una interfaz retro y funcionalidades modernas.'
+    },
     hyprDot: {
       title: 'Hypr-Dot',
       description: 'Un entorno Arch Linux altamente personalizado con Hyprland como gestor de ventanas, con esquemas de colores dinámicos que se adaptan a tu fondo de pantalla.',
@@ -89,29 +101,23 @@ export const es = {
       title: 'Reels-Downloader',
       description: 'Es un programa que te permite descargar reels de Instagram de forma fácil y rápida. Solo necesitas introducir el enlace de la publicación que contiene el reel y el programa lo descargará.',
       details: 'Es un programa que te permite descargar reels de Instagram de forma fácil y rápida. Solo necesitas introducir el enlace de la publicación que contiene el reel y el programa lo descargará.'
-    },
-    aiAssistant: {
-      title: 'AI-Assistant',
-      description: 'Este es un programa de asistente de inteligencia artificial que utiliza la API de OpenAI y la biblioteca Pyttsx3 para proporcionar respuestas habladas a las preguntas del usuario.',
-      details: 'Este es un programa de asistente de inteligencia artificial que utiliza la API de OpenAI y la biblioteca Pyttsx3 para proporcionar respuestas habladas a las preguntas del usuario.'
     }
   },
   
   // Formación
   education: {
     title: 'Formación',
-    university: 'Universidad De Investigación y Desarrollo',
-    highSchool: 'I.E.T.A.C - Antonio De Lebrija',
-    higherEd: 'Educación Superior',
-    middleEd: 'Educación Media',
-    universityDesc: 'Actualmente estoy cursando estudios superiores en el campo de la tecnología, donde estoy adquiriendo conocimientos avanzados en desarrollo de software, bases de datos y sistemas operativos.',
-    highSchoolDesc: 'Participé en proyectos de investigación y presentaciones escolares que ampliaron mi capacidad de análisis y comunicación. Esta etapa me preparó para continuar mi camino en el mundo de la tecnología y la programación.',
-    selfTaught: {
-      title: 'Autodidacta',
-      education: 'Aprendizaje Continuo',
-      period: '2020 - Presente',
-      description: 'Aprendizaje constante sobre nuevas tecnologías, lenguajes de programación y bases de datos.',
-      skills: ['Aprendizaje Autónomo', 'Investigación', 'Adaptabilidad']
+    computerScience: {
+      title: 'Ingeniería en Sistemas',
+      description: 'Estudios en desarrollo de software, algoritmos, bases de datos y sistemas operativos. Enfoque en soluciones tecnológicas y programación avanzada.'
+    },
+    autoDidactic: {
+      title: 'Estudio Autodidacta',
+      description: 'Estudio de forma autodidacta donde he adquirido conocimientos de linux, python, bases de datos, bash, git, tambien he fortalecido mis habilidades blandas.'
+    },
+    basic: {
+      title: 'Educacion Básica',
+      description: 'Formacion en el bachillerato, donde adquiri conocimientos, habilidades y experiencia que me permitieron adquirir una buena base para entrar a la universidad.'
     }
   },
   

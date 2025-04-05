@@ -22,8 +22,8 @@ export const en = {
   // About Me
   about: {
     title: 'About Me',
-    description1: 'I am a developer passionate about creating innovative and efficient solutions with experience in Backend development. I enjoy facing new challenges and constantly learning.',
-    description2: 'My specialty is working with the Python programming language, which I combine with my learning in my Arch Linux development environment.'
+    description: 'I am a developer passionate about creating innovative and efficient solutions with experience in Backend development. I enjoy facing new challenges and constantly learning.',
+    interests: 'My specialty is working with the Python programming language as I combine it with learning in my development environment with Arch Linux.'
   },
   
   // Technologies
@@ -75,6 +75,18 @@ export const en = {
     featured: 'Featured',
     demo: 'Demo',
     code: 'Code',
+    details: 'Details',
+    technologies: 'Technologies',
+    viewDemo: 'View Demo',
+    viewCode: 'View Code',
+    back: 'Back',
+    showMore: 'Show more projects',
+    showLess: 'Show fewer projects',
+    h3nColors: {
+      title: 'Color Generator',
+      description: 'A modern web application for creating, customizing, and evaluating pastel-style color palettes that meet WCAG accessibility standards.',
+      details: 'This application allows users to select colors through an intuitive visual picker, evaluate their accessibility based on WCAG standards, preview UI components with selected colors, and export palettes in various formats (Tailwind, CSS, SCSS, JSON). It includes features like saving favorite colors, keyboard shortcuts for enhanced productivity, and automatic contrast calculations to ensure accessibility. Built with React, Vite, and Tailwind CSS, it combines a retro interface with modern functionality.'
+    },
     hyprDot: {
       title: 'Hypr-Dot',
       description: 'A highly customized Arch Linux environment featuring Hyprland as the window manager, with dynamic color schemes that adapt to your wallpaper.',
@@ -89,29 +101,23 @@ export const en = {
       title: 'Reels-Downloader',
       description: 'It is a program that allows you to download Instagram reels easily and quickly. You just need to enter the link of the post that contains the reel and the program will download it.',
       details: 'It is a program that allows you to download Instagram reels easily and quickly. You just need to enter the link of the post that contains the reel and the program will download it.'
-    },
-    aiAssistant: {
-      title: 'AI-Assistant',
-      description: 'This is an artificial intelligence assistant program that uses the OpenAI API and the Pyttsx3 library to provide spoken answers to user questions.',
-      details: 'This is an artificial intelligence assistant program that uses the OpenAI API and the Pyttsx3 library to provide spoken answers to user questions.'
     }
   },
   
   // Education
   education: {
     title: 'Education',
-    university: 'Universidad De Investigación y Desarrollo',
-    highSchool: 'I.E.T.A.C - Antonio De Lebrija',
-    higherEd: 'Higher Education',
-    middleEd: 'Middle Education',
-    universityDesc: 'I am currently pursuing higher education in the field of technology, where I am acquiring advanced knowledge in software development, databases, and operating systems.',
-    highSchoolDesc: 'I participated in research projects and school presentations that expanded my analytical and communication skills. This stage prepared me to continue my path in the world of technology and programming.',
-    selfTaught: {
-      title: 'Self-taught',
-      education: 'Continuous Learning',
-      period: '2020 - Present',
-      description: 'Constant learning about new technologies, programming languages, and databases.',
-      skills: ['Self-learning', 'Research', 'Adaptability']
+    computerScience: {
+      title: 'Computer Science Engineering',
+      description: 'Studies in software development, algorithms, databases, and operating systems. Focus on technological solutions and advanced programming.'
+    },
+    autoDidactic: {
+      title: 'Self-taught Study',
+      description: 'I study in a self-taught manner, where I have acquired knowledge of Linux, Python, databases, Bash, and Git. I have also strengthened my soft skills.'
+    },
+    basic: {
+      title: 'Basic Education',
+      description: 'High school education, where I gained knowledge, skills, and experience that provided me with a strong foundation to enter university.'
     }
   },
   
