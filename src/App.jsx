@@ -143,11 +143,10 @@ const Header = memo(() => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = ['home', 'sobre-mí', 'experiencia', 'proyectos', 'tecnologías', 'formación'];
+  const navItems = ['home', 'sobre-mí', 'proyectos', 'tecnologías', 'formación'];
   const navLabels = {
     'home': t('nav.home'),
     'sobre-mí': t('nav.about'),
-    'experiencia': t('nav.experience'),
     'proyectos': t('nav.projects'),
     'tecnologías': t('nav.technologies'),
     'formación': t('nav.education')
@@ -212,7 +211,7 @@ const SobreMi = memo(() => {
   const { t } = useTranslation(language);
   
   return (
-    <section id="sobre-mi" className="py-20 bg-black">
+    <section id="sobre-mí" className="py-20 bg-black">
       <div className="container">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-white code-line animate-on-scroll">{t('about.title')}</h2>
         <div className="max-w-3xl mx-auto">
@@ -324,7 +323,7 @@ const Tecnologias = memo(() => {
   }, [sortedTecnologias]);
 
   return (
-    <section id="tecnologías" className="py-20 bg-gray-900" ref={sectionRef}>
+    <section id="tecnologías" className="py-20 bg-black" ref={sectionRef}>
       <div className="container">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-white code-line animate-on-scroll">{t('technologies.title')}</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
@@ -455,7 +454,7 @@ const Proyectos = memo(() => {
     {
       titulo: t('projects.hyprDot.title'),
       descripcion: t('projects.hyprDot.description'),
-      tecnologias: ["Arch Linux", "Hyprland", "Dynamic Color Schemes"],
+      tecnologias: ["Python", "Arch Linux", "Hyprland", "Bash"],
       imagen: "/images/hypr-dot.avif",
       detalles: t('projects.hyprDot.details'),
       demoLink: "#",
@@ -660,7 +659,7 @@ const Formacion = memo(() => {
   ];
 
   return (
-    <section id="formacion" className="py-20 bg-black">
+    <section id="formación" className="py-20 bg-black">
       <div className="container">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-white code-line animate-on-scroll">{t('education.title')}</h2>
         
@@ -888,7 +887,8 @@ function App() {
         <main>
           <Hero />
           <SobreMi />
-          <Experiencia />
+          {/* Sección de experiencia oculta temporalmente */}
+          {/* <Experiencia /> */}
           <Proyectos />
           <Tecnologias />
           <Formacion />
