@@ -83,24 +83,24 @@ export const es = {
     showMore: 'Ver más proyectos',
     showLess: 'Ver menos proyectos',
     h3nColors: {
-    title: 'Color Generator',
-    description: 'Una aplicación web moderna para crear, personalizar y evaluar paletas de colores con estilo pastel que cumplen con los estándares de accesibilidad WCAG.',
-    details: 'Esta aplicación permite seleccionar colores mediante un selector visual intuitivo, evaluar su accesibilidad según estándares WCAG, visualizar componentes UI con los colores seleccionados, y exportar paletas en diferentes formatos (Tailwind, CSS, SCSS, JSON). Incluye características como guardado de colores favoritos, atajos de teclado para mayor productividad, y cálculo automático de contraste para garantizar la accesibilidad. Desarrollada con React, Vite y Tailwind CSS, con una interfaz retro y funcionalidades modernas.'
+      title: 'Color Generator',
+      description: 'Una aplicación web moderna para crear, personalizar y evaluar paletas de colores con estilo pastel que cumplen con los estándares de accesibilidad WCAG.',
+      details: 'Esta aplicación permite seleccionar colores mediante un selector visual intuitivo, evaluar su accesibilidad según estándares WCAG, visualizar componentes UI con los colores seleccionados, y exportar paletas en diferentes formatos (Tailwind, CSS, SCSS, JSON). Incluye características como guardado de colores favoritos, atajos de teclado para mayor productividad, y cálculo automático de contraste para garantizar la accesibilidad. Desarrollada con React, Vite y Tailwind CSS, con una interfaz retro y funcionalidades modernas.'
+    },
+    "skyCheck": {
+      "title": "SkyCheck",
+      "description": "Una aplicación moderna de clima con una interfaz visualmente atractiva que proporciona información meteorológica detallada, pronósticos y datos de países.",
+      "details": "Una aplicación moderna de clima desarrollada con React, Vite y Tailwind CSS que ofrece condiciones meteorológicas actuales, pronósticos extendidos, datos astronómicos, información sobre calidad del aire e índice UV. Cuenta con geolocalización automática, búsqueda de ciudades, diseño responsive, animaciones suaves y un esquema de colores pasteles que se adapta según la hora del día."
+    },
+    zenShell: {
+      title: 'ZenShell Bot',
+      description: 'Un bot de Discord altamente personalizado con múltiples módulos de funcionalidad, incluyendo música, moderación, niveles y economía y control en tiempo real.',
+      details: 'Un bot de Discord altamente personalizado con múltiples módulos de funcionalidad, incluyendo música, moderación, niveles y economía, con un panel de control en tiempo real. El bot utiliza tecnologías modernas como Discord.py, Supabase para la base de datos, y un panel de control Flask para administración.'
     },
     hyprDot: {
       title: 'Hypr-Dot',
       description: 'Un entorno Arch Linux altamente personalizado con Hyprland como gestor de ventanas, con esquemas de colores dinámicos que se adaptan a tu fondo de pantalla.',
       details: 'Un entorno Arch Linux altamente personalizado con Hyprland como gestor de ventanas, con esquemas de colores dinámicos que se adaptan a tu fondo de pantalla.'
-    },
-    nekoShell: {
-      title: 'NekoShell',
-      description: 'Un bot de Discord para la gestión de servidores e interacciones divertidas.',
-      details: 'Un bot de Discord para la gestión de servidores e interacciones divertidas.'
-    },
-    reelsDownloader: {
-      title: 'Reels-Downloader',
-      description: 'Es un programa que te permite descargar reels de Instagram de forma fácil y rápida. Solo necesitas introducir el enlace de la publicación que contiene el reel y el programa lo descargará.',
-      details: 'Es un programa que te permite descargar reels de Instagram de forma fácil y rápida. Solo necesitas introducir el enlace de la publicación que contiene el reel y el programa lo descargará.'
     }
   },
   

@@ -452,34 +452,33 @@ const Proyectos = memo(() => {
       destacado: true
     },
     {
+      titulo: t('projects.skyCheck.title'),
+      descripcion: t('projects.skyCheck.description'),
+      tecnologias: ["React", "Vite", "Tailwind CSS"],
+      imagen: "/images/skycheck.avif",
+      detalles: t('projects.skyCheck.details'),
+      demoLink: "https://skyh3n.netlify.app/",
+      codeLink: "https://github.com/h3n-x/Skycheck",
+      destacado: true
+    },
+    {
+      titulo: t('projects.zenShell.title'),
+      descripcion: t('projects.zenShell.description'),
+      tecnologias: ["Python", "Flask", "Supabase"],
+      imagen: "/images/zenShell.avif",
+      detalles: t('projects.zenShell.details'),
+      demoLink: "https://zenshell.netlify.app/",
+      odeLink: "https://github.com/h3n-x/ZenShell.git",
+      destacado: true
+    },
+    {
       titulo: t('projects.hyprDot.title'),
       descripcion: t('projects.hyprDot.description'),
       tecnologias: ["Python", "Arch Linux", "Hyprland", "Bash"],
       imagen: "/images/hypr-dot.avif",
       detalles: t('projects.hyprDot.details'),
-      demoLink: "#",
       codeLink: "https://github.com/h3nr1d3v/hypr-dot",
       destacado: true
-    },
-    {
-      titulo: t('projects.nekoShell.title'),
-      descripcion: t('projects.nekoShell.description'),
-      tecnologias: ["Python", "Discord.py", "Arch Linux"],
-      imagen: "/images/Ne.avif",
-      detalles: t('projects.nekoShell.details'),
-      demoLink: "#",
-      codeLink: "https://github.com/h3nr1d3v/neoshell",
-      destacado: true
-    },
-    {
-      titulo: t('projects.reelsDownloader.title'),
-      descripcion: t('projects.reelsDownloader.description'),
-      tecnologias: ["Python", "Requests", "Arch Linux"],
-      imagen: "/images/Reels-Downloader.avif",
-      detalles: t('projects.reelsDownloader.details'),
-      demoLink: "#",
-      codeLink: "https://github.com/h3nr1d3v/reels-downloader",
-      destacado: false
     }
   ];
 

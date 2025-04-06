@@ -87,20 +87,20 @@ export const en = {
       description: 'A modern web application for creating, customizing, and evaluating pastel-style color palettes that meet WCAG accessibility standards.',
       details: 'This application allows users to select colors through an intuitive visual picker, evaluate their accessibility based on WCAG standards, preview UI components with selected colors, and export palettes in various formats (Tailwind, CSS, SCSS, JSON). It includes features like saving favorite colors, keyboard shortcuts for enhanced productivity, and automatic contrast calculations to ensure accessibility. Built with React, Vite, and Tailwind CSS, it combines a retro interface with modern functionality.'
     },
+    "skyCheck": {
+      "title": "SkyCheck",
+      "description": "A modern weather application with a visually appealing interface that provides detailed weather information, forecasts, and country data.",
+      "details": "A modern weather application built with React, Vite, and Tailwind CSS that offers current weather conditions, extended forecasts, astronomy data, air quality information, and UV index. Features automatic geolocation, city search, responsive design, smooth animations, and a pastel color scheme that adapts to the time of day."
+    },
+    zenShell: {
+      title: 'ZenShell Bot',
+      description: 'A highly customizable Discord bot with multiple functionality modules including music, moderation, leveling and economy, featuring a real-time control panel.',
+      details: 'A highly customizable Discord bot with multiple functionality modules including music, moderation, leveling and economy, featuring a real-time control panel. The bot uses modern technologies like Discord.py, Supabase for database, and a Flask control panel for administration.'
+    },
     hyprDot: {
       title: 'Hypr-Dot',
       description: 'A highly customized Arch Linux environment featuring Hyprland as the window manager, with dynamic color schemes that adapt to your wallpaper.',
       details: 'A highly customized Arch Linux environment featuring Hyprland as the window manager, with dynamic color schemes that adapt to your wallpaper.'
-    },
-    nekoShell: {
-      title: 'NekoShell',
-      description: 'A Discord bot for server management and fun interactions.',
-      details: 'A Discord bot for server management and fun interactions.'
-    },
-    reelsDownloader: {
-      title: 'Reels-Downloader',
-      description: 'It is a program that allows you to download Instagram reels easily and quickly. You just need to enter the link of the post that contains the reel and the program will download it.',
-      details: 'It is a program that allows you to download Instagram reels easily and quickly. You just need to enter the link of the post that contains the reel and the program will download it.'
     }
   },
   
