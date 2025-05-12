@@ -1,92 +1,123 @@
-# Portfolio Personal - H3n
+# Portfolio Personal - Henry Pacheco (H3n)
 
-Un portfolio web personal con estética Matrix, creado con React y Tailwind CSS, optimizado para rendimiento y SEO.
+![Portfolio Preview](public/images/portfolio-preview.png)
 
-![Portfolio Preview](/public/images/og-image.svg)
+## 🚀 Descripción
 
-## Características
+Portfolio personal desarrollado con React + Vite, presentando una interfaz moderna y optimizada con efectos visuales únicos y una estética cyberpunk. El sitio está completamente optimizado para rendimiento y accesibilidad.
 
-- **Estética Matrix**: Diseño inspirado en la película Matrix con efectos visuales como lluvia de código y grid.
-- **Cursor Personalizado**: Cursor con efecto de rastro que sigue el movimiento del ratón.
-- **Totalmente Responsivo**: Se adapta perfectamente a todos los tamaños de pantalla (móvil, tablet, escritorio).
-- **Internacionalización**: Soporte para múltiples idiomas (Español e Inglés).
-- **Animaciones Sutiles**: Microinteracciones y animaciones para mejorar la experiencia del usuario.
-- **Optimizado para SEO**: Estructura semántica y metadatos optimizados para motores de búsqueda.
-- **Optimizado para Compartir**: Metadatos específicos para compartir en redes sociales, incluyendo WhatsApp.
-- **Lazy Loading**: Carga perezosa de componentes e imágenes para mejorar el rendimiento.
-- **PWA Ready**: Configurado como Progressive Web App para instalación en dispositivos móviles.
+## ✨ Características
 
-## Secciones
+- 🎨 Diseño Cyberpunk con efectos visuales personalizados
+- 🌐 Soporte multilenguaje (Español/Inglés)
+- 📱 Diseño totalmente responsivo
+- 🖼️ Sistema de imágenes optimizado (AVIF/WebP/JPG)
+- ⚡ Carga rápida y optimizada
+- 🎭 Animaciones suaves con Framer Motion
+- 🌙 Modo oscuro por defecto
+- 🎯 SEO optimizado
 
-- **Inicio**: Presentación personal con efectos visuales.
-- **Sobre Mí**: Información personal y profesional.
-- **Experiencia**: Historial laboral y proyectos destacados.
-- **Proyectos**: Galería de proyectos personales y profesionales.
-- **Tecnologías**: Listado de tecnologías y herramientas dominadas.
-- **Formación**: Información sobre educación formal y autodidacta.
+## 🛠️ Tecnologías
 
-## Tecnologías Utilizadas
+- **Frontend:** React 18
+- **Build Tool:** Vite
+- **Styling:** TailwindCSS
+- **Animaciones:** Framer Motion
+- **Optimización de Imágenes:** Sharp
+- **Internacionalización:** i18n
+- **Deployment:** Vercel
 
-- **React**: Biblioteca JavaScript para construir interfaces de usuario.
-- **Tailwind CSS**: Framework CSS de utilidades para diseño rápido y responsivo.
-- **Vite**: Herramienta de compilación rápida para desarrollo moderno.
-- **React Context API**: Para gestionar el estado global de la aplicación (idioma).
-- **Font Awesome**: Para iconos y elementos visuales.
+## 📦 Estructura del Proyecto
 
-## Optimizaciones Implementadas
-
-- **Lazy Loading**: Carga diferida de componentes pesados e imágenes.
-- **Code Splitting**: División de código para reducir el tamaño inicial de carga.
-- **Preload de Recursos Críticos**: Precarga de fuentes y recursos esenciales.
-- **Compresión Brotli**: Compresión avanzada para archivos estáticos.
-- **Sitemap y Robots.txt**: Archivos para mejorar la indexación en buscadores.
-- **Open Graph y Twitter Cards**: Metadatos para compartir en redes sociales.
-
-## Requisitos
-
-- Node.js (v23.9.0 o superior)
-- npm (v11.2.0 o superior)
-
-## Instalación
-
-1. Clona este repositorio:
-```bash
-git clone https://github.com/h3n-x/portfolio.git
-cd portfolio
+```
+portfolio/
+├── public/
+│   └── images/
+│       ├── originals/
+│       └── ...
+├── src/
+│   ├── components/
+│   ├── hooks/
+│   ├── translations/
+│   ├── styles/
+│   └── utils/
+├── scripts/
+│   └── generate-images.js
+└── ...
 ```
 
-2. Instala las dependencias:
-```bash
-npm install
-```
+## 🚀 Instalación y Uso
 
-3. Inicia el servidor de desarrollo:
-```bash
-npm run dev
-```
+1. **Clonar el repositorio**
+   ```bash
+   git clone https://github.com/yourusername/portfolio.git
+   cd portfolio
+   ```
 
-4. Abre tu navegador en `http://localhost:5173`
+2. **Instalar dependencias**
+   ```bash
+   npm install
+   ```
 
-## Compilación para Producción
+3. **Generar imágenes optimizadas**
+   ```bash
+   npm run generate-images
+   ```
 
-Para crear una versión optimizada para producción:
+4. **Iniciar en modo desarrollo**
+   ```bash
+   npm run dev
+   ```
 
-```bash
-npm run build
-```
+5. **Construir para producción**
+   ```bash
+   npm run build
+   ```
 
-Los archivos compilados estarán en el directorio `dist/`.
+## 📝 Scripts Disponibles
 
-## Personalización
+- `npm run dev` - Inicia el servidor de desarrollo
+- `npm run build` - Construye la aplicación para producción
+- `npm run preview` - Vista previa de la build de producción
+- `npm run generate-images` - Genera imágenes optimizadas
+- `npm run lint` - Ejecuta el linter
+- `npm run format` - Formatea el código
 
-- Modifica los textos y traducciones en los archivos `src/translations/es.js` y `src/translations/en.js`
-- Ajusta los colores y estilos en `src/App.css`
-- Reemplaza las imágenes en `public/images/` con tus propias imágenes
+## 🎨 Personalización
 
-## Licencia
+### Temas y Estilos
+Los estilos principales se pueden modificar en:
+- `tailwind.config.js` - Configuración de TailwindCSS
+- `src/styles/globals.css` - Estilos globales
 
-MIT
+### Contenido
+El contenido principal se puede editar en:
+- `src/translations/` - Textos en diferentes idiomas
+- `public/images/originals/` - Imágenes originales
 
----
+## 🤝 Contribuir
 
-Creado por Henry Pacheco (H3n) - 2025
+Las contribuciones son bienvenidas. Por favor, abre un issue primero para discutir los cambios que te gustaría hacer.
+
+1. Fork el repositorio
+2. Crea tu rama de características (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
+
+## 📧 Contacto
+
+Henry Pacheco - [@h3n_eth](https://twitter.com/h3n_eth) - h3n.eth@gmail.com
+
+Project Link: [https://github.com/yourusername/portfolio](https://github.com/yourusername/portfolio)
+
+## 🙏 Agradecimientos
+
+- [React](https://reactjs.org/)
+- [Vite](https://vitejs.dev/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Framer Motion](https://www.framer.com/motion/)

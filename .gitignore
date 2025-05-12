@@ -9,26 +9,26 @@ lerna-debug.log*
 
 # Dependencias
 node_modules
-/.pnp
+.pnp
 .pnp.js
 
 # Testing
-/coverage
+coverage
 /cypress/videos/
 /cypress/screenshots/
 
 # Producción
 /dist
-/dist-ssr
 /build
-*.local
 
-# Entorno
+# Misc
+.DS_Store
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+.env*.local
 
 # Caché y archivos temporales
 .cache
@@ -86,3 +86,32 @@ stats.html
 **/*.bak
 **/*~
 **/._*
+
+# Vite
+*.timestamp-*.mjs
+
+# Sistema operativo
+Thumbs.db
+desktop.ini
+.directory
+
+# Optimización de imágenes
+public/images/**/*.webp
+public/images/**/*.avif
+public/images/**/*.jpg
+!public/images/originals/**/*
+
+# Archivos temporales
+*.tmp
+*.temp
+*.bak
+*.swp
+
+# Archivos de bloqueo de paquetes (mantener solo uno)
+yarn.lock
+pnpm-lock.yaml
+# package-lock.json # Descomenta si usas yarn o pnpm
+
+# Archivos de configuración local
+.prettierrc.local
+.eslintrc.local

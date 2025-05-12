@@ -108,24 +108,25 @@ export const en = {
   education: {
     title: 'Education',
     computerScience: {
-      title: 'Computer Science Engineering',
+      title: 'Computer Systems Engineering',
       description: 'Studies in software development, algorithms, databases, and operating systems. Focus on technological solutions and advanced programming.'
     },
     autoDidactic: {
-      title: 'Self-taught Study',
-      description: 'I study in a self-taught manner, where I have acquired knowledge of Linux, Python, databases, Bash, and Git. I have also strengthened my soft skills.'
+      title: 'Self-taught Studies',
+      description: 'Self-taught study where I have acquired knowledge of Linux, Python, databases, Bash, Git, and have also strengthened my soft skills.'
     },
     basic: {
       title: 'Basic Education',
-      description: 'High school education, where I gained knowledge, skills, and experience that provided me with a strong foundation to enter university.'
-    }
+      description: 'High school education, where I acquired knowledge, skills, and experience that allowed me to build a good foundation for entering university.'
+    },
+    viewCertificate: 'View certificate'
   },
   
   // Footer
   footer: {
     contact: 'Contact',
     social: 'Social',
-    rights: 'All rights reserved',
+    rights: ' ',
     quote: 'Programmers are the poets of the digital age.'
   },
   

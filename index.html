@@ -7,57 +7,126 @@
     <meta name="description" content="Portfolio de h3n - Desarrollador y programador especializado en tecnologías web modernas y Linux" />
     <meta name="theme-color" content="#0f0f0f" />
     
-    <!-- Precargas para mejorar el rendimiento en móviles -->
-    <link rel="preload" href="/images/profile.avif" as="image" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- DNS Prefetch y Preconexión para recursos externos -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     
-    <!-- Fuentes optimizadas -->
+    <!-- Precarga de recursos críticos para el LCP (Largest Contentful Paint) -->
+    <link rel="preload" as="image" href="/images/profile.avif" type="image/avif" fetchpriority="high" />
+    <link rel="preload" as="image" href="/images/profile.webp" type="image/webp" fetchpriority="high" />
+    
+    <!-- Precarga de fuentes para evitar FOIT/FOUT -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" as="style" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" />
     
-    <!-- Font Awesome - Optimizado -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Font Awesome optimizado sólo con los iconos necesarios -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Precarga del script principal dividido en chunks -->
+    <link rel="modulepreload" href="/src/main.jsx" as="script" />
     
     <title>h3n | Programador</title>
     
+    <!-- Optimización de SEO y meta tags para redes sociales -->
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://h3n.dev/" />
     <meta property="og:title" content="h3n | Programador" />
     <meta property="og:description" content="Portfolio de h3n - Desarrollador y programador especializado en tecnologías web modernas y Linux" />
     <meta property="og:image" content="https://h3n.dev/og-image.jpg" />
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://h3n.dev/" />
-    <meta property="twitter:title" content="h3n | Programador" />
-    <meta property="twitter:description" content="Portfolio de h3n - Desarrollador y programador especializado en tecnologías web modernas y Linux" />
-    <meta property="twitter:image" content="https://h3n.dev/og-image.jpg" />
-    
-    <!-- WhatsApp -->
+    <meta property="og:image:alt" content="Henry Pacheco - Portfolio de programación" />
     <meta property="og:site_name" content="h3n | Programador">
     <meta property="og:locale" content="es_ES">
     <meta property="og:locale:alternate" content="en_US">
     
-    <!-- Canonical URL -->
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://h3n.dev/" />
+    <meta name="twitter:title" content="h3n | Programador" />
+    <meta name="twitter:description" content="Portfolio de h3n - Desarrollador y programador especializado en tecnologías web modernas y Linux" />
+    <meta name="twitter:image" content="https://h3n.dev/og-image.jpg" />
+    
+    <!-- Canonical URL para prevenir contenido duplicado -->
     <link rel="canonical" href="https://h3n.dev/" />
     
-    <!-- PWA -->
+    <!-- PWA y funcionalidades móviles -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="apple-touch-icon" href="/images/profile.avif">
+    
+    <!-- Carga crítica de CSS inline para evitar bloqueo de renderizado -->
+    <style>
+      /* Estilos críticos para FCP (First Contentful Paint) */
+      :root {
+        color-scheme: dark;
+      }
+      body {
+        margin: 0;
+        background-color: #000;
+        color: #fff;
+        font-family: 'JetBrains Mono', monospace;
+      }
+      .initial-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #000;
+        z-index: 9999;
+      }
+      .spinner {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        border: 0.25rem solid rgba(34, 197, 94, 0.2);
+        border-top-color: #22c55e;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+    </style>
   </head>
   <body>
+    <!-- Loader inicial que se muestra antes de que React se inicialice -->
+    <div id="initial-loader" class="initial-loader">
+      <div class="spinner"></div>
+    </div>
+    
     <div id="root"></div>
+    
     <noscript>
       <div style="text-align: center; padding: 20px; color: white; background-color: black;">
         <h1 style="font-size: 2rem; margin-block: 1rem;">JavaScript está desactivado</h1>
         <p>Este sitio requiere JavaScript para funcionar correctamente. Por favor, actívalo para continuar.</p>
       </div>
     </noscript>
+    
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      // Eliminar el loader inicial cuando la aplicación esté lista
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          const loader = document.getElementById('initial-loader');
+          if (loader) {
+            loader.style.opacity = '0';
+            loader.style.transition = 'opacity 0.5s ease';
+            setTimeout(function() {
+              loader.style.display = 'none';
+            }, 500);
+          }
+        }, 300);
+      });
+    </script>
   </body>
 </html>

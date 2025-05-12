@@ -118,14 +118,15 @@ export const es = {
     basic: {
       title: 'Educacion Básica',
       description: 'Formacion en el bachillerato, donde adquiri conocimientos, habilidades y experiencia que me permitieron adquirir una buena base para entrar a la universidad.'
-    }
+    },
+    viewCertificate: 'Ver certificado'
   },
   
   // Footer
   footer: {
     contact: 'Contacto',
     social: 'Redes',
-    rights: 'Todos los derechos reservados',
+    rights: ' ',
     quote: 'Los programadores son los poetas de la era digital.'
   },
   

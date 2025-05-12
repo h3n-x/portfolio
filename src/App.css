@@ -120,8 +120,8 @@ body {
 }
 
 @keyframes blink {
-  from, to { border-color: transparent }
-  50% { border-color: #22c55e; }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 @keyframes rotate {
@@ -307,16 +307,12 @@ body {
 
 /* Efecto hover para tarjetas */
 .card-hover {
-  transition: all 0.3s ease;
-  border: 1px solid rgba(34, 197, 94, 0.1);
-  position: relative;
-  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .card-hover:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(34, 197, 94, 0.2);
-  border-color: rgba(34, 197, 94, 0.5);
+  transform: translateY(-8px);
+  box-shadow: 0 14px 28px rgba(34, 197, 94, 0.15), 0 10px 10px rgba(34, 197, 94, 0.10);
 }
 
 .card-hover::after {
@@ -338,13 +334,11 @@ body {
 
 /* Efecto de brillo para textos importantes */
 .glow-text {
-  text-shadow: 0 0 5px rgba(34, 197, 94, 0.5), 0 0 10px rgba(34, 197, 94, 0.3);
+  text-shadow: 0 0 8px rgba(34, 197, 94, 0.3);
 }
 
 .glow-text-intense {
-  text-shadow: 0 0 5px rgba(34, 197, 94, 0.7), 
-               0 0 10px rgba(34, 197, 94, 0.5),
-               0 0 15px rgba(34, 197, 94, 0.3);
+  text-shadow: 0 0 10px rgba(34, 197, 94, 0.6), 0 0 20px rgba(34, 197, 94, 0.4);
 }
 
 /* Efecto de línea de código para secciones */
@@ -420,12 +414,26 @@ body {
 
 /* Estilos para iconos de tecnologías */
 .tech-icon {
+  position: relative;
   transition: all 0.3s ease;
 }
 
-.tech-icon:hover {
-  transform: scale(1.1);
-  animation: pulse 1.5s infinite;
+.tech-icon::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.3) 0%, rgba(34, 197, 94, 0) 70%);
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tech-icon:hover::after {
+  opacity: 1;
 }
 
 /* Estilos para secciones */
@@ -677,13 +685,23 @@ img, picture, video {
 }
 
 .timeline-dot {
+  position: relative;
+  z-index: 2;
+}
+
+.timeline-dot::before {
+  content: '';
   position: absolute;
-  left: -2.25rem;
-  width: 1rem;
-  height: 1rem;
-  border-radius: 50%;
-  background-color: var(--accent-color);
-  box-shadow: 0 0 10px var(--accent-glow);
+  width: 3px;
+  background: linear-gradient(to bottom, rgba(34, 197, 94, 0.4), rgba(34, 197, 94, 0.1));
+  top: 40px;
+  bottom: -40px;
+  left: 18.5px;
+  z-index: 1;
+}
+
+.timeline-item:last-child .timeline-dot::before {
+  display: none;
 }
 
 .timeline-content {
@@ -713,31 +731,71 @@ img, picture, video {
   box-shadow: 0 0 10px var(--accent-glow);
 }
 
-/* Variables CSS para temas */
+/* Variables CSS para temas - Solo conservo tema oscuro */
 :root {
-  --bg-primary: #000000;
-  --bg-secondary: #0a0a0a;
-  --text-primary: #ffffff;
-  --text-secondary: #a0a0a0;
-  --accent-color: #22c55e;
-  --accent-hover: #16a34a;
-  --accent-glow: rgba(34, 197, 94, 0.5);
-  --accent-color-10: rgba(34, 197, 94, 0.1);
-  --accent-color-20: rgba(34, 197, 94, 0.2);
-  --accent-color-30: rgba(34, 197, 94, 0.3);
+  /* Variables comunes */
+  --primary-font: 'Courier New', monospace;
+  --animation-duration: 0.3s;
+  --border-radius: 0.375rem;
+  
+  /* Variables para el tema oscuro (default) */
+  --bg-color: #000000;
+  --bg-card: #111111;
+  --bg-section: #0a0a0a;
+  --text-color: #ffffff;
+  --text-muted: #a3a3a3;
+  --primary-color: #22c55e;
+  --primary-dark: #16a34a;
+  --primary-glow: rgba(34, 197, 94, 0.5);
+  --border-color: rgba(34, 197, 94, 0.3);
+  --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
 
-.light-theme {
-  --bg-primary: #f5f5f5;
-  --bg-secondary: #ffffff;
-  --text-primary: #1a1a1a;
-  --text-secondary: #4a4a4a;
-  --accent-color: #16a34a;
-  --accent-hover: #15803d;
-  --accent-glow: rgba(22, 163, 74, 0.3);
-  --accent-color-10: rgba(22, 163, 74, 0.1);
-  --accent-color-20: rgba(22, 163, 74, 0.2);
-  --accent-color-30: rgba(22, 163, 74, 0.3);
+/* Estilos base que se adaptan al tema */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--primary-font);
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Contenedores con color de fondo */
+.bg-section {
+  background-color: var(--bg-section);
+  transition: background-color 0.5s ease;
+}
+
+.bg-card {
+  background-color: var(--bg-card);
+  box-shadow: var(--card-shadow);
+  transition: background-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* Efectos Matrix para tema claro - Eliminar */
+.light-theme .matrix-column,
+.light-theme .matrix-grid,
+.light-theme .text-white,
+.light-theme .text-gray-200,
+.light-theme .text-green-500,
+.light-theme .btn-primary,
+.light-theme .btn-primary:hover,
+.light-theme .btn-outline,
+.light-theme .btn-outline:hover,
+.light-theme .card-hover,
+.light-theme .card-hover:hover,
+.light-theme .glitch,
+.light-theme .glitch::before,
+.light-theme .glitch::after,
+.light-theme .bg-gray-900,
+.light-theme .bg-gray-800,
+.light-theme .border-green-500\/30 {
+  /* Estas reglas ya no se utilizarán, pero las mantenemos vacías para evitar errores */
+  display: none;
+}
+
+/* Transición suave para cambio de tema - Mantener para otras transiciones */
+.App {
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 /* Cursor personalizado */
@@ -755,12 +813,12 @@ a, button, .btn, [role="button"], input[type="submit"], input[type="button"], in
   position: fixed;
   width: 8px;
   height: 8px;
-  background-color: rgba(34, 197, 94, 0.5);
+  background-color: rgba(34, 197, 94, 0.7);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
-  transition: transform 0.1s, opacity 0.5s;
   transform: translate(-50%, -50%);
+  filter: blur(1px);
 }
 
 .cursor-trail.fade {
@@ -1076,4 +1134,370 @@ section h2 {
   h2.code-line::before {
     margin-right: 0.25rem; /* Espacio mínimo entre el icono y el título */
   }
+}
+
+/* Animaciones avanzadas para secciones */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Estilo para el título de código con cursor */
+.code-title {
+  position: relative;
+  display: inline-block;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+}
+
+.code-title::after {
+  content: '';
+  position: absolute;
+  right: -15px;
+  top: 10%;
+  height: 80%;
+  width: 3px;
+  background-color: rgba(34, 197, 94, 0.8);
+  animation: blink 1s step-end infinite;
+}
+
+.code-title .text-green-500 {
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+/* Perspectiva 3D para tarjetas */
+.perspective-500 {
+  perspective: 500px;
+  transform-style: preserve-3d;
+}
+
+/* Efectos para los íconos de tecnologías */
+.tech-icon {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.tech-icon::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.3) 0%, rgba(34, 197, 94, 0) 70%);
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tech-icon:hover::after {
+  opacity: 1;
+}
+
+/* Estilos para la sección de experiencia */
+.experience-section .timeline-line {
+  position: absolute;
+  left: 22px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, rgba(34, 197, 94, 0.6), rgba(34, 197, 94, 0.1));
+}
+
+.experience-section .timeline-circle {
+  position: absolute;
+  left: 16px;
+  top: 25px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #22c55e;
+  z-index: 2;
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+  .tech-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .tech-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .timeline-content {
+    margin-left: 40px;
+  }
+}
+
+/* Flecha para títulos de sección */
+.title-arrow {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.title-arrow::before {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 12px solid #22c55e;
+  margin-right: 8px;
+}
+
+/* Animaciones para el asistente virtual */
+.animate-blink {
+  animation: blink-cursor 1s step-end infinite;
+}
+
+.animation-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Efectos de transición entre páginas */
+.page-transition-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Efecto de mecanografía mejorado */
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  border-right: 3px solid transparent; /* Para evitar movimiento cuando aparece */
+  animation: typing 3.5s steps(40, end) forwards;
+}
+
+.typewriter-no-cursor {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: typing 3.5s steps(40, end) forwards;
+}
+
+/* Efecto de cargando/compilando - Eliminado */
+.loading-compilation {
+  display: none; /* Ocultado en lugar de eliminado completamente para evitar errores */
+}
+
+.compilation-text,
+.compilation-progress,
+.compilation-bar,
+.compilation-log,
+.compilation-log-entry {
+  display: none;
+}
+
+/* Efecto Glitch para títulos */
+.glitch {
+  position: relative;
+  color: white;
+  font-weight: bold;
+  text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75), 
+               -0.025em -0.05em 0 rgba(0, 255, 0, 0.75), 
+               0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+  animation: glitch 1s infinite;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch::before {
+  left: 2px;
+  text-shadow: -1px 0 #22c55e;
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim-1 5s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: 1px 0 #22c55e;
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+  0% { clip: rect(51px, 9999px, 99px, 0); }
+  5% { clip: rect(69px, 9999px, 57px, 0); }
+  10% { clip: rect(88px, 9999px, 78px, 0); }
+  15% { clip: rect(40px, 9999px, 31px, 0); }
+  20% { clip: rect(99px, 9999px, 87px, 0); }
+  25% { clip: rect(65px, 9999px, 77px, 0); }
+  30% { clip: rect(0px, 9999px, 10px, 0); }
+  35% { clip: rect(66px, 9999px, 55px, 0); }
+  40% { clip: rect(43px, 9999px, 76px, 0); }
+  45% { clip: rect(77px, 9999px, 20px, 0); }
+  50% { clip: rect(80px, 9999px, 23px, 0); }
+  55% { clip: rect(22px, 9999px, 35px, 0); }
+  60% { clip: rect(91px, 9999px, 66px, 0); }
+  65% { clip: rect(21px, 9999px, 34px, 0); }
+  70% { clip: rect(89px, 9999px, 92px, 0); }
+  75% { clip: rect(2px, 9999px, 11px, 0); }
+  80% { clip: rect(67px, 9999px, 93px, 0); }
+  85% { clip: rect(42px, 9999px, 31px, 0); }
+  90% { clip: rect(47px, 9999px, 7px, 0); }
+  95% { clip: rect(24px, 9999px, 35px, 0); }
+  100% { clip: rect(85px, 9999px, 97px, 0); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { clip: rect(19px, 9999px, 24px, 0); }
+  5% { clip: rect(70px, 9999px, 95px, 0); }
+  10% { clip: rect(12px, 9999px, 40px, 0); }
+  15% { clip: rect(10px, 9999px, 1px, 0); }
+  20% { clip: rect(14px, 9999px, 31px, 0); }
+  25% { clip: rect(42px, 9999px, 73px, 0); }
+  30% { clip: rect(33px, 9999px, 49px, 0); }
+  35% { clip: rect(33px, 9999px, 67px, 0); }
+  40% { clip: rect(65px, 9999px, 19px, 0); }
+  45% { clip: rect(71px, 9999px, 11px, 0); }
+  50% { clip: rect(71px, 9999px, 16px, 0); }
+  55% { clip: rect(53px, 9999px, 31px, 0); }
+  60% { clip: rect(79px, 9999px, 30px, 0); }
+  65% { clip: rect(99px, 9999px, 63px, 0); }
+  70% { clip: rect(83px, 9999px, 4px, 0); }
+  75% { clip: rect(73px, 9999px, 28px, 0); }
+  80% { clip: rect(38px, 9999px, 95px, 0); }
+  85% { clip: rect(91px, 9999px, 57px, 0); }
+  90% { clip: rect(5px, 9999px, 79px, 0); }
+  95% { clip: rect(68px, 9999px, 91px, 0); }
+  100% { clip: rect(33px, 9999px, 56px, 0); }
+}
+
+/* Efecto de interferencia de señal para secciones */
+.section-scan {
+  position: relative;
+  overflow: hidden;
+}
+
+.section-scan::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgba(34, 197, 94, 0.5);
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.7);
+  z-index: 2;
+  animation: scan-line 4s linear infinite;
+}
+
+@keyframes scan-line {
+  0% { 
+    top: -10px;
+    opacity: 0.5;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% { 
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+/* Efecto de glitch para imágenes */
+.img-glitch {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-glitch::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent 45%, rgba(34, 197, 94, 0.7) 50%, transparent 55%);
+  z-index: 2;
+  opacity: 0;
+  animation: img-glitch 5s infinite;
+}
+
+@keyframes img-glitch {
+  0%, 95%, 100% { 
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  92% { 
+    opacity: 0.8;
+    transform: translate(-5px, 0);
+  }
+  93% { 
+    opacity: 0.5;
+    transform: translate(5px, 0);
+  }
+  94% { 
+    opacity: 0.6;
+    transform: translate(0, 0);
+  }
+}
+
+/* Efecto de terminal input */
+.terminal-input {
+  position: relative;
+  padding-left: 1.5rem;
+  font-family: 'Courier New', monospace;
+}
+
+.terminal-input::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: #22c55e;
+  font-family: monospace;
+  animation: blink 1s step-end infinite;
 }
