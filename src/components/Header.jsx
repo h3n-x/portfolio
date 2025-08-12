@@ -9,6 +9,16 @@ const Header = memo(() => {
   const [activeSection, setActiveSection] = useState('home');
   const { language } = useContext(LanguageContext);
   const { t } = useTranslation(language);
+  
+  // Función para forzar la carga de secciones lazy
+  const forceLoadSection = (sectionId) => {
+    // Trigger scroll event to force lazy loading
+    window.dispatchEvent(new Event('scroll'));
+    // Wait for potential lazy loading
+    setTimeout(() => {
+      window.dispatchEvent(new Event('scroll'));
+    }, 100);
+  };
 
   useEffect(() => {
     // Simple scroll para detectar cuando añadir sombra al header
@@ -24,7 +34,6 @@ const Header = memo(() => {
   const updateActiveSection = useCallback(() => {
     const sections = document.querySelectorAll('section[id]');
     if (sections.length === 0) return;
-    
     
     const scrollY = window.scrollY;
     const windowHeight = window.innerHeight;
@@ -144,15 +153,45 @@ const Header = memo(() => {
   // Manejar click en enlaces de navegación
   const handleNavClick = (e, sectionId) => {
     e.preventDefault();
-    const section = document.getElementById(sectionId);
-    if (section) {
-      const offsetTop = section.offsetTop - 80; // Compensar por el header fijo
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
+    setIsMenuOpen(false); // Cerrar menú móvil primero
+    
+    const scrollToSection = () => {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        const offsetTop = section.offsetTop - 80; // Compensar por el header fijo
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+        setActiveSection(sectionId); // Establecer sección activa
+        return true;
+      }
+      return false;
+    };
+
+    // Intentar scroll inmediato
+    if (!scrollToSection()) {
+      // Forzar la carga de secciones lazy
+      forceLoadSection(sectionId);
+      
+      // Si la sección no está disponible, esperar a que se cargue (lazy loading)
+      const observer = new MutationObserver((mutations, obs) => {
+        if (scrollToSection()) {
+          obs.disconnect(); // Dejar de observar una vez que encontramos la sección
+        }
       });
-      // Cerrar menú móvil si está abierto
-      setIsMenuOpen(false);
+      
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+      
+      // Timeout de seguridad más largo para dar tiempo al lazy loading
+      setTimeout(() => {
+        observer.disconnect();
+        // Intento final de navegación
+        scrollToSection();
+      }, 2000);
     }
   };
 
