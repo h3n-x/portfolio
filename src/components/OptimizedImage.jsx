@@ -11,63 +11,65 @@ const OptimizedImage = memo(({ src, alt, className, width, height, priority = 'h
     }
   }, []);
   
-  // Determinar el tamaño adecuado para la imagen según el dispositivo
-  const getResponsiveSize = () => {
-    const isMobile = window.innerWidth < 768;
-    const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
-    
-    if (isMobile) {
-      return {
-        width: width ? Math.floor(parseInt(width) * 0.7) : 300,
-        height: height ? Math.floor(parseInt(height) * 0.7) : 169
-      };
-    } else if (isTablet) {
-      return {
-        width: width ? Math.floor(parseInt(width) * 0.85) : 400,
-        height: height ? Math.floor(parseInt(height) * 0.85) : 225
-      };
+  // Función para obtener la URL de la imagen optimizada según el tamaño
+  const getOptimizedSrc = (baseSrc, targetWidth) => {
+    // Si ya es una URL completa o no es una imagen local, devolver como está
+    if (baseSrc.includes('http') || !baseSrc.startsWith('/images/')) {
+      return baseSrc;
     }
     
-    return { width, height };
+    // Extraer el nombre base sin extensión
+    const nameWithoutExt = baseSrc.replace(/\.(jpg|jpeg|png|webp|avif)$/i, '');
+    const baseName = nameWithoutExt.split('/').pop();
+    
+    // Para imágenes específicas que sabemos que existen en diferentes formatos
+    if (baseSrc.includes('/images/profile')) {
+      // Para profile, tenemos .avif y .webp
+      return `/images/profile.webp`; // Usar WebP como formato principal
+    }
+    
+    // Para otras imágenes, buscar el JPEG más cercano al tamaño objetivo
+    const availableSizes = [640, 960, 1280, 1920];
+    const closestSize = availableSizes.reduce((prev, curr) => 
+      Math.abs(curr - targetWidth) < Math.abs(prev - targetWidth) ? curr : prev
+    );
+    
+    return `/images/${baseName}-${closestSize}.jpeg`;
   };
   
-  const responsiveSize = getResponsiveSize();
-  
-  // Generar fuentes con diferentes resoluciones basadas en la imagen original
-  const generateSourceSets = () => {
-    // Extraer la base del nombre de archivo y extensión
-    const baseSrc = src.replace(/\.(avif|webp|jpg|png|jpeg)$/i, '');
-    
-    // Definir tamaños para srcset
-    const widths = [640, 960, 1280, 1920];
-    
-    // Generar srcset para AVIF
-    const avifSrcSet = widths
-      .map(w => `${baseSrc}-${w}.avif ${w}w`)
-      .join(', ');
-      
-    // Generar srcset para WebP como respaldo
-    const webpSrcSet = widths
-      .map(w => `${baseSrc}-${w}.webp ${w}w`)
-      .join(', ');
-      
-    // Fallback para navegadores que no soportan los formatos modernos
-    const jpgSrcSet = widths
-      .map(w => `${baseSrc}-${w}.jpg ${w}w`)
-      .join(', ');
-    
-    return {
-      avifSrcSet,
-      webpSrcSet,
-      jpgSrcSet,
-      // Si src ya es una URL completa, usarla, de lo contrario usar un fallback
-      fallbackSrc: src.includes(".avif") ? src.replace('.avif', '.jpg') : `${baseSrc}.jpg`
-    };
+  // Determinar el tamaño adecuado según el viewport
+  const getTargetWidth = () => {
+    if (typeof window === 'undefined') return 1280;
+    const vw = window.innerWidth;
+    if (vw < 640) return 640;
+    if (vw < 960) return 960;
+    if (vw < 1280) return 1280;
+    return 1920;
   };
   
-  // Determinar si debemos usar srcset o una imagen estática basada en el src
-  const useSourceSets = !src.includes("http") && src.includes("/images/");
-  const sourceData = useSourceSets ? generateSourceSets() : null;
+  const targetWidth = getTargetWidth();
+  const optimizedSrc = getOptimizedSrc(src, targetWidth);
+  
+  // Generar srcset para imágenes responsivas
+  const generateSrcSet = () => {
+    if (src.includes('http') || !src.startsWith('/images/')) {
+      return '';
+    }
+    
+    if (src.includes('/images/profile')) {
+      return ''; // Profile no tiene múltiples tamaños
+    }
+    
+    const baseName = src.replace(/\.(jpg|jpeg|png|webp|avif)$/i, '').split('/').pop();
+    return `
+      /images/${baseName}-640.jpeg 640w,
+      /images/${baseName}-960.jpeg 960w,
+      /images/${baseName}-1280.jpeg 1280w,
+      /images/${baseName}-1920.jpeg 1920w
+    `.trim();
+  };
+  
+  const srcSet = generateSrcSet();
   
   return (
     <div 
@@ -77,74 +79,40 @@ const OptimizedImage = memo(({ src, alt, className, width, height, priority = 'h
       aria-label={alt || 'Imagen'}
     >
       {!isLoaded && !error && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-800 animate-pulse">
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-900 animate-pulse rounded-lg">
           <span className="sr-only">Cargando imagen...</span>
           <div className="w-10 h-10 border-4 border-green-500/20 border-t-green-500 rounded-full animate-spin"></div>
         </div>
       )}
       
       {error && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-800 text-red-500">
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-900 text-red-500 rounded-lg">
           <span className="text-sm">Error al cargar la imagen</span>
         </div>
       )}
       
-      {useSourceSets ? (
-        <picture>
-          <source
-            type="image/avif"
-            srcSet={sourceData.avifSrcSet}
-            sizes={sizes}
-          />
-          <source
-            type="image/webp"
-            srcSet={sourceData.webpSrcSet}
-            sizes={sizes}
-          />
-          <source
-            type="image/jpeg"
-            srcSet={sourceData.jpgSrcSet}
-            sizes={sizes}
-          />
-          <img
-            ref={imgRef}
-            src={sourceData.fallbackSrc}
-            alt={alt || ""}
-            width={responsiveSize.width}
-            height={responsiveSize.height}
-            className={`w-full h-full object-cover transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
-            onLoad={() => setIsLoaded(true)}
-            onError={() => {
-              setError(true);
-              setIsLoaded(true);
-            }}
-            loading={priority === 'high' ? 'eager' : 'lazy'}
-            fetchPriority={priority}
-            decoding="async"
-          />
-        </picture>
-      ) : (
-        <img
-          ref={imgRef}
-          src={src}
-          alt={alt || ""}
-          width={responsiveSize.width}
-          height={responsiveSize.height}
-          className={`w-full h-full object-cover transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
-          onLoad={() => setIsLoaded(true)}
-          onError={() => {
-            setError(true);
-            setIsLoaded(true);
-          }}
-          loading={priority === 'high' ? 'eager' : 'lazy'}
-          fetchPriority={priority}
-          decoding="async"
-        />
-      )}
+      <img
+        ref={imgRef}
+        src={optimizedSrc}
+        srcSet={srcSet}
+        sizes={sizes}
+        alt={alt || ""}
+        width={width}
+        height={height}
+        className={`transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+        onLoad={() => setIsLoaded(true)}
+        onError={() => {
+          setError(true);
+          setIsLoaded(true);
+        }}
+        loading={priority === 'high' ? 'eager' : 'lazy'}
+        fetchPriority={priority}
+        decoding="async"
+      />
     </div>
   );
 });
 
 OptimizedImage.displayName = 'OptimizedImage';
 
-export default OptimizedImage; 
+export default OptimizedImage;

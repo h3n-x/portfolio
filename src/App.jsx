@@ -4,7 +4,8 @@ import { LanguageProvider } from './LanguageContext'
 import { useTranslation } from './translations'
 import { LanguageContext } from './LanguageContext'
 import LoadingSpinner from './components/LoadingSpinner'
-import { LazyMotion, m, domAnimation } from 'framer-motion'
+import { LazyMotion, domAnimation } from 'framer-motion'
+import SkeletonLoader from './components/SkeletonLoader'
 
 // Utilizar lazy loading para todos los componentes no críticos
 const Header = lazy(() => import('./components/Header'))
@@ -163,8 +164,25 @@ function App() {
     }
   }, [])
   
-  // Fallback minimalista para componentes en carga
-  const MinimalFallback = () => <div className="min-h-[200px]"></div>;
+  // Fallback con skeleton loaders para componentes en carga
+  const SectionFallback = ({ type = 'paragraph' }) => (
+    <div className="py-20 bg-black">
+      <div className="container">
+        <SkeletonLoader type="title" className="mb-12" />
+        {type === 'cards' ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[1, 2, 3, 4, 5, 6].map(i => (
+              <SkeletonLoader key={i} type="tech-card" />
+            ))}
+          </div>
+        ) : (
+          <div className="max-w-3xl mx-auto">
+            <SkeletonLoader type="paragraph" />
+          </div>
+        )}
+      </div>
+    </div>
+  );
   
   if (loading) {
     return (
@@ -191,7 +209,7 @@ function App() {
               
               {loadedSections.initial && (
                 <div className="relative overflow-hidden">
-                  <Suspense fallback={<MinimalFallback />}>
+                  <Suspense fallback={<SectionFallback type="paragraph" />}>
                     <SobreMi />
                     <div className="absolute -z-10 inset-0 opacity-10">
                       <Suspense fallback={null}>
@@ -203,14 +221,14 @@ function App() {
               )}
               
               {loadedSections.initial && (
-                <Suspense fallback={<MinimalFallback />}>
+                <Suspense fallback={<SectionFallback type="cards" />}>
                   <Tecnologias />
                 </Suspense>
               )}
               
               {loadedSections.secondary && (
                 <div className="relative overflow-hidden">
-                  <Suspense fallback={<MinimalFallback />}>
+                  <Suspense fallback={<SectionFallback type="paragraph" />}>
                     <Experiencia />
                     <div className="absolute -z-10 inset-0 opacity-5">
                       <Suspense fallback={null}>
@@ -222,13 +240,13 @@ function App() {
               )}
               
               {loadedSections.secondary && (
-                <Suspense fallback={<MinimalFallback />}>
+                <Suspense fallback={<SectionFallback type="cards" />}>
                   <Proyectos />
                 </Suspense>
               )}
               
               {loadedSections.tertiary && (
-                <Suspense fallback={<MinimalFallback />}>
+                <Suspense fallback={<SectionFallback type="paragraph" />}>
                   <Formacion />
                 </Suspense>
               )}

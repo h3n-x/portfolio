@@ -2,7 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/images/profile.avif" />
+    <link rel="icon" type="image/svg+xml" href="/images/original/profile.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
     <meta name="description" content="Portfolio de h3n - Desarrollador y programador especializado en tecnologías web modernas y Linux" />
     <meta name="theme-color" content="#0f0f0f" />
@@ -16,12 +16,12 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     
     <!-- Precarga de recursos críticos para el LCP (Largest Contentful Paint) -->
-    <link rel="preload" as="image" href="/images/profile.avif" type="image/avif" fetchpriority="high" />
     <link rel="preload" as="image" href="/images/profile.webp" type="image/webp" fetchpriority="high" />
     
     <!-- Precarga de fuentes para evitar FOIT/FOUT -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" as="style" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" as="style" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap"></noscript>
     
     <!-- Font Awesome optimizado sólo con los iconos necesarios -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -58,7 +58,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon" href="/images/profile.avif">
+    <link rel="apple-touch-icon" href="/images/profile-960.jpeg">
     
     <!-- Carga crítica de CSS inline para evitar bloqueo de renderizado -->
     <style>

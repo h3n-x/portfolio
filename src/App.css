@@ -6,6 +6,28 @@ html {
   scroll-padding-top: 80px; /* Para que el scroll se detenga antes del header */
 }
 
+/* Transiciones mejoradas entre secciones */
+section {
+  position: relative;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.3), transparent);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+section:hover::before {
+  opacity: 1;
+}
+
 /* Reset básico */
 * {
   margin: 0;
@@ -361,6 +383,7 @@ body {
 .nav-link {
   position: relative;
   transition: all 0.3s ease;
+  padding-bottom: 2px;
 }
 
 .nav-link::after {
@@ -383,10 +406,25 @@ body {
 
 .nav-link.active {
   color: #22c55e !important;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
 }
 
 .nav-link.active::after {
   transform: scaleX(1);
+  background-color: #22c55e;
+  box-shadow: 0 0 5px rgba(34, 197, 94, 0.8);
+}
+
+/* Animación para el cambio de sección activa */
+@keyframes navPulse {
+  0% { transform: scaleX(1); }
+  50% { transform: scaleX(1.1); }
+  100% { transform: scaleX(1); }
+}
+
+.nav-link.active::after {
+  animation: navPulse 0.3s ease-out;
 }
 
 /* Estilos para imágenes */
@@ -416,6 +454,7 @@ body {
 .tech-icon {
   position: relative;
   transition: all 0.3s ease;
+  cursor: default !important;
 }
 
 .tech-icon::after {
@@ -425,7 +464,7 @@ body {
   left: -5px;
   right: -5px;
   bottom: -5px;
-  background: radial-gradient(circle, rgba(34, 197, 94, 0.3) 0%, rgba(34, 197, 94, 0) 70%);
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.2) 0%, rgba(34, 197, 94, 0) 70%);
   border-radius: 50%;
   z-index: -1;
   opacity: 0;
@@ -433,7 +472,7 @@ body {
 }
 
 .tech-icon:hover::after {
-  opacity: 1;
+  opacity: 0.5;
 }
 
 /* Estilos para secciones */
@@ -1182,24 +1221,13 @@ section h2 {
 .tech-icon {
   position: relative;
   transition: all 0.3s ease;
+  cursor: default !important;
 }
 
-.tech-icon::after {
-  content: '';
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  background: radial-gradient(circle, rgba(34, 197, 94, 0.3) 0%, rgba(34, 197, 94, 0) 70%);
-  border-radius: 50%;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.tech-icon:hover::after {
-  opacity: 1;
+/* Eliminar efectos hover adicionales en el ícono */
+.tech-icon:hover {
+  transform: none !important;
+  cursor: default !important;
 }
 
 /* Estilos para la sección de experiencia */

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useContext, memo, useCallback } from 'reac
 import { motion } from 'framer-motion';
 import { LanguageContext } from '../LanguageContext';
 import { useTranslation } from '../translations';
+import SkeletonLoader from './SkeletonLoader';
 
 const Tecnologias = memo(() => {
   const { language } = useContext(LanguageContext);
@@ -117,13 +118,6 @@ const Tecnologias = memo(() => {
         damping: 15,
         delay: 0.2
       }
-    },
-    hover: {
-      scale: 1.1,
-      rotate: [0, -10, 10, -5, 5, 0],
-      transition: {
-        duration: 0.5
-      }
     }
   };
 
@@ -188,46 +182,49 @@ const Tecnologias = memo(() => {
           viewport={{ once: true, amount: 0.1 }}
         >
           {sortedTecnologias.map((tech, index) => (
-            <motion.div 
-              key={index} 
-              className="bg-black p-6 rounded-lg border border-green-500/30 glow-box relative overflow-hidden perspective-500"
-              variants={itemVariants(tech.order)}
-              whileHover="hover"
-              role="listitem"
-              aria-label={tech.nombre}
-            >
-              {/* Fondo de partículas */}
-              <div className="absolute inset-0 bg-green-500/5 z-0"></div>
-              
-              {/* Contenido */}
-              <div className="relative z-10">
-                <motion.div 
-                  className={`w-16 h-16 ${tech.color} rounded-full flex items-center justify-center mb-4 mx-auto tech-icon shadow-lg shadow-green-500/20`}
-                  aria-hidden="true"
-                  variants={iconVariants}
-                  whileHover="hover"
-                >
-                  <span className="text-black">{tech.icon}</span>
-                </motion.div>
+            visibleItems.includes(index) ? (
+              <motion.div 
+                key={index} 
+                className="bg-black p-6 rounded-lg border border-green-500/30 glow-box relative overflow-hidden perspective-500 group"
+                variants={itemVariants(tech.order)}
+                whileHover="hover"
+                role="listitem"
+                aria-label={tech.nombre}
+              >
+                {/* Fondo de partículas */}
+                <div className="absolute inset-0 bg-green-500/5 z-0"></div>
                 
-                <h3 className="text-center text-white font-medium text-lg mb-2">{tech.nombre}</h3>
-                <p className="text-gray-200 text-sm text-center">{tech.descripcion}</p>
-                
-                {tech.url && (
-                  <motion.a
-                    href={tech.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-4 text-xs text-green-500 hover:text-green-400 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-                    whileHover={{ scale: 1.05 }}
-                    aria-label={`Más información sobre ${tech.nombre}`}
+                {/* Contenido */}
+                <div className="relative z-10 flex flex-col items-center">
+                  <motion.div 
+                    className={`w-16 h-16 ${tech.color} rounded-full flex items-center justify-center mb-4 tech-icon shadow-lg shadow-green-500/20`}
+                    aria-hidden="true"
+                    variants={iconVariants}
                   >
-                    <span>Más info</span>
-                    <i className="fas fa-external-link-alt ml-1"></i>
-                  </motion.a>
-                )}
-              </div>
-            </motion.div>
+                    <span className="text-black text-2xl">{tech.icon}</span>
+                  </motion.div>
+                  
+                  <h3 className="text-center text-white font-medium text-lg mb-2">{tech.nombre}</h3>
+                  <p className="text-gray-200 text-sm text-center">{tech.descripcion}</p>
+                  
+                  {tech.url && (
+                    <motion.a
+                      href={tech.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 text-xs text-green-500 hover:text-green-400 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                      whileHover={{ scale: 1.05 }}
+                      aria-label={`Más información sobre ${tech.nombre}`}
+                    >
+                      <span>Más info</span>
+                      <i className="fas fa-external-link-alt ml-1"></i>
+                    </motion.a>
+                  )}
+                </div>
+              </motion.div>
+            ) : (
+              <SkeletonLoader key={`skeleton-${index}`} type="tech-card" />
+            )
           ))}
         </motion.div>
       </div>

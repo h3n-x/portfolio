@@ -64,9 +64,19 @@ export default defineConfig({
     },
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          animations: ['./src/components/MatrixRain.jsx', './src/components/MatrixGrid.jsx']
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            if (id.includes('react')) return 'react-vendor';
+            if (id.includes('framer-motion')) return 'framer-motion';
+            if (id.includes('@')) return 'vendor';
+            return 'vendor';
+          }
+          if (id.includes('MatrixRain') || id.includes('MatrixGrid')) {
+            return 'animations';
+          }
+          if (id.includes('components/')) {
+            return 'components';
+          }
         }
       }
     },

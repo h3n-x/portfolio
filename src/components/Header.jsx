@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, memo } from 'react';
+import { useState, useEffect, useContext, memo, useCallback } from 'react';
 import { LanguageContext } from '../LanguageContext';
 import { useTranslation } from '../translations';
 import LanguageToggle from '../LanguageToggle';
@@ -20,48 +20,104 @@ const Header = memo(() => {
     return () => window.removeEventListener('scroll', handleSimpleScroll);
   }, []);
   
-  // Utilizar Intersection Observer para detectar qué sección es visible
-  useEffect(() => {
-    // Establecer 'home' como sección inicial por defecto
-    setActiveSection('home');
+  // Función mejorada para detectar la sección activa
+  const updateActiveSection = useCallback(() => {
+    const sections = document.querySelectorAll('section[id]');
+    if (sections.length === 0) return;
     
-    const options = { 
-      threshold: 0.2, // Una sección se considera visible cuando al menos el 20% es visible
-      rootMargin: '-80px 0px' // Ajuste para tener en cuenta la altura del header
+    
+    const scrollY = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    
+    // Si estamos en la parte superior de la página, activar "home"
+    if (scrollY < 50) {
+      setActiveSection('home');
+      return;
+    }
+    
+    // Si estamos cerca del final de la página, activar la última sección
+    if (scrollY + windowHeight >= documentHeight - 50) {
+      const lastSection = sections[sections.length - 1];
+      setActiveSection(lastSection.getAttribute('id'));
+      return;
+    }
+    
+    // Encontrar la sección que está más centrada en el viewport
+    let currentSection = 'home';
+    let maxVisibility = 0;
+    
+    sections.forEach((section) => {
+      const rect = section.getBoundingClientRect();
+      const sectionTop = rect.top;
+      const sectionBottom = rect.bottom;
+      const sectionHeight = rect.height;
+      
+      // Calcular qué porcentaje de la sección es visible
+      const visibleHeight = Math.min(windowHeight, sectionBottom) - Math.max(0, sectionTop);
+      const visibilityRatio = visibleHeight / Math.min(sectionHeight, windowHeight);
+      
+      // Si esta sección es más visible que las anteriores, actualizarla como activa
+      if (visibilityRatio > maxVisibility && visibilityRatio > 0.3) {
+        maxVisibility = visibilityRatio;
+        currentSection = section.getAttribute('id');
+      }
+    });
+    
+    setActiveSection(currentSection);
+  }, []);
+  
+  // Usar scroll event con throttle para mejor rendimiento
+  useEffect(() => {
+    let ticking = false;
+    
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateActiveSection();
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     
-    const sectionObserver = new IntersectionObserver((entries) => {
-      // Solo considerar entradas que están en la vista actual
-      const visibleEntries = entries.filter(entry => entry.isIntersecting);
-      
-      if (visibleEntries.length === 0) return;
-      
-      // Encontrar la entrada con la mayor proporción visible
-      let maxVisibleEntry = visibleEntries[0];
-      let maxRatio = visibleEntries[0].intersectionRatio;
-      
-      visibleEntries.forEach(entry => {
-        if (entry.intersectionRatio > maxRatio) {
-          maxRatio = entry.intersectionRatio;
-          maxVisibleEntry = entry;
-        }
-      });
-      
-      // Si encontramos una sección, activarla
-      if (maxVisibleEntry) {
-        setActiveSection(maxVisibleEntry.target.id);
-      }
-    }, options);
+    // Verificar sección inicial después de un pequeño delay
+    const initialCheck = setTimeout(() => {
+      updateActiveSection();
+    }, 100);
     
-    // Observar todas las secciones
-    document.querySelectorAll('section[id]').forEach(section => {
-      sectionObserver.observe(section);
+    // También verificar cuando el contenido se carga completamente
+    window.addEventListener('load', updateActiveSection);
+    
+    // Escuchar scroll
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Re-verificar cuando las secciones se cargan dinámicamente
+    const observer = new MutationObserver((mutations) => {
+      // Solo actualizar si se añadieron nodos con ID
+      const hasNewSections = mutations.some(mutation => 
+        Array.from(mutation.addedNodes).some(node => 
+          node.nodeType === 1 && node.tagName === 'SECTION' && node.id
+        )
+      );
+      
+      if (hasNewSections) {
+        setTimeout(updateActiveSection, 100);
+      }
+    });
+    
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
     });
     
     return () => {
-      sectionObserver.disconnect();
+      clearTimeout(initialCheck);
+      window.removeEventListener('load', updateActiveSection);
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
     };
-  }, []);
+  }, [updateActiveSection]);
 
   // Orden de los elementos de navegación según la estructura de la página
   const navItems = ['home', 'sobre-mí', 'tecnologías', 'experiencia', 'proyectos', 'formación'];
@@ -85,6 +141,21 @@ const Header = memo(() => {
     'formación': t('nav.education')
   };
 
+  // Manejar click en enlaces de navegación
+  const handleNavClick = (e, sectionId) => {
+    e.preventDefault();
+    const section = document.getElementById(sectionId);
+    if (section) {
+      const offsetTop = section.offsetTop - 80; // Compensar por el header fijo
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
+      // Cerrar menú móvil si está abierto
+      setIsMenuOpen(false);
+    }
+  };
+
   return (
     <header 
       className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/90 shadow-md backdrop-blur-sm py-4' : 'bg-transparent py-6'}`}
@@ -92,7 +163,8 @@ const Header = memo(() => {
     >
       <div className="container flex justify-between items-center">
         <a 
-          href="#" 
+          href="#home"
+          onClick={(e) => handleNavClick(e, 'home')}
           className="text-2xl font-bold font-heading text-green-500 glow-text"
           aria-label="Inicio"
         >
@@ -121,10 +193,18 @@ const Header = memo(() => {
             <a 
               key={item} 
               href={`#${sectionIds[item]}`}
-              className={`font-medium transition-colors nav-link ${activeSection === sectionIds[item] ? 'active text-green-500' : 'text-gray-300 hover:text-green-500'}`}
+              onClick={(e) => handleNavClick(e, sectionIds[item])}
+              className={`relative font-medium transition-all duration-300 nav-link ${
+                activeSection === sectionIds[item] 
+                  ? 'active text-green-500' 
+                  : 'text-gray-300 hover:text-green-500'
+              }`}
               aria-current={activeSection === sectionIds[item] ? 'page' : undefined}
             >
-              {navLabels[item]}
+              <span className="relative z-10">{navLabels[item]}</span>
+              {activeSection === sectionIds[item] && (
+                <span className="absolute inset-0 bg-green-500/10 rounded-md -z-0 animate-pulse"></span>
+              )}
             </a>
           ))}
           <div className="flex items-center">
@@ -146,11 +226,18 @@ const Header = memo(() => {
               <a 
                 key={item} 
                 href={`#${sectionIds[item]}`}
-                className={`font-medium transition-colors nav-link ${activeSection === sectionIds[item] ? 'active text-green-500' : 'text-gray-400 hover:text-green-500'}`}
-                onClick={() => setIsMenuOpen(false)}
+                onClick={(e) => handleNavClick(e, sectionIds[item])}
+                className={`relative font-medium transition-all duration-300 nav-link block py-2 ${
+                  activeSection === sectionIds[item] 
+                    ? 'active text-green-500 pl-4' 
+                    : 'text-gray-400 hover:text-green-500'
+                }`}
                 aria-current={activeSection === sectionIds[item] ? 'page' : undefined}
               >
-                {navLabels[item]}
+                {activeSection === sectionIds[item] && (
+                  <span className="absolute left-0 top-0 bottom-0 w-1 bg-green-500"></span>
+                )}
+                <span className="relative">{navLabels[item]}</span>
               </a>
             ))}
             <div className="pt-2 border-t border-green-500/20 flex items-center">
@@ -165,4 +252,4 @@ const Header = memo(() => {
 
 Header.displayName = 'Header';
 
-export default Header; 
+export default Header;

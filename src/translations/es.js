@@ -11,12 +11,14 @@ export const es = {
   
   // Hero
   hero: {
-    role: 'Programador',
+    role: 'Desarrollador Backend',
     location: 'Colombia',
     contactMe: 'Contáctame',
     downloadCV: 'Descargar CV',
     learnMore: 'Conoce más',
-    viewProjects: 'Ver Proyectos'
+    viewProjects: 'Ver Proyectos',
+    availableForWork: 'Disponible para proyectos',
+    availableStatus: 'Disponible'
   },
   
   // Sobre Mí

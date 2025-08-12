@@ -1,4 +1,4 @@
-import { useEffect, useRef, useContext, memo } from 'react';
+import { useEffect, useRef, useContext, memo, useState } from 'react';
 import { m as motion } from 'framer-motion';
 import { LanguageContext } from '../LanguageContext';
 import { useTranslation } from '../translations';
@@ -8,6 +8,7 @@ const HeroComponent = () => {
   const particlesRef = useRef(null);
   const { language } = useContext(LanguageContext);
   const { t } = useTranslation(language);
+  const [emailCopied, setEmailCopied] = useState(false);
 
   useEffect(() => {
     // Crear partículas para el efecto de fondo
@@ -133,6 +134,17 @@ const HeroComponent = () => {
     tap: { scale: 0.95 }
   };
 
+  const copyEmail = async () => {
+    const email = 'h3n.eth@gmail.com';
+    try {
+      await navigator.clipboard.writeText(email);
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    } catch (err) {
+      console.error('Error al copiar email:', err);
+    }
+  };
+
   return (
     <section id="home" className="min-h-screen flex items-center pt-20 bg-black relative">
       <div className="hero-particles" ref={particlesRef} aria-hidden="true"></div>
@@ -183,6 +195,22 @@ const HeroComponent = () => {
             <span className="text-green-500 animate-blink ml-1">_</span>
           </motion.div>
           
+          {/* Indicador de disponibilidad */}
+          <motion.div 
+            className="flex justify-center mb-6"
+            variants={itemVariants}
+          >
+            <div className="flex items-center gap-3 bg-green-500/10 border border-green-500/30 rounded-full px-4 py-2 backdrop-blur-sm">
+              <div className="relative flex items-center">
+                <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
+                <span className="absolute w-3 h-3 bg-green-500 rounded-full animate-ping"></span>
+              </div>
+              <span className="text-green-500 font-medium text-sm">
+                {t('hero.availableForWork')}
+              </span>
+            </div>
+          </motion.div>
+          
           <motion.div 
             className="flex justify-center space-x-4 mb-8"
             variants={itemVariants}
@@ -194,9 +222,9 @@ const HeroComponent = () => {
           </motion.div>
           
           <div className="flex flex-wrap justify-center gap-4">
-            <motion.a 
-              href="mailto:h3n.eth@gmail.com" 
-              className="flex items-center justify-center border border-green-500 text-green-500 hover:bg-green-500 hover:text-black px-4 py-2 rounded-md transition-colors btn focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-black"
+            <motion.button 
+              onClick={copyEmail}
+              className="relative flex items-center justify-center border border-green-500 text-green-500 hover:bg-green-500 hover:text-black px-4 py-2 rounded-md transition-colors btn focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-black"
               variants={buttonVariants}
               custom={0}
               initial="hidden"
@@ -204,9 +232,19 @@ const HeroComponent = () => {
               whileHover="hover"
               whileTap="tap"
             >
-              <i className="fas fa-envelope mr-2"></i>
-              <span>{t('hero.contactMe')}</span>
-            </motion.a>
+              <i className={`fas ${emailCopied ? 'fa-check' : 'fa-envelope'} mr-2 transition-all duration-300`}></i>
+              <span>{emailCopied ? (language === 'es' ? '¡Email copiado!' : 'Email copied!') : t('hero.contactMe')}</span>
+              {emailCopied && (
+                <motion.div
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0, opacity: 0 }}
+                  className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-green-500 text-black px-3 py-1 rounded text-sm whitespace-nowrap"
+                >
+                  h3n.eth@gmail.com
+                </motion.div>
+              )}
+            </motion.button>
             
             <motion.a 
               href="#" 
