@@ -1,0 +1,20 @@
+# Netlify redirects file
+# Handle client-side routing for SPA
+/*    /index.html   200
+
+# Security headers
+/*  X-Frame-Options: DENY
+/*  X-Content-Type-Options: nosniff
+/*  X-XSS-Protection: 1; mode=block
+/*  Referrer-Policy: strict-origin-when-cross-origin
+/*  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Cache static assets
+/images/*  Cache-Control: public, max-age=31536000, immutable
+/fonts/*   Cache-Control: public, max-age=31536000, immutable
+/*.css     Cache-Control: public, max-age=31536000, immutable
+/*.js      Cache-Control: public, max-age=31536000, immutable
+
+# Force HTTPS
+http://h3n.dev/*  https://h3n.dev/:splat  301!
+http://www.h3n.dev/*  https://h3n.dev/:splat  301!

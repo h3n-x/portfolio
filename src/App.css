@@ -559,7 +559,8 @@ body {
   /* Optimizar animaciones para móviles */
   .matrix-rain,
   .matrix-grid {
-    opacity: 0.5; /* Reducir opacidad para mejorar rendimiento */
+    opacity: 0.3; /* Reducir más la opacidad para mejor rendimiento */
+    display: none; /* Ocultar completamente en móviles para mejor rendimiento */
   }
   
   /* Reducir complejidad visual en móviles */
@@ -569,12 +570,12 @@ body {
   
   /* Optimizar espaciado para móviles */
   .py-20 {
-    padding-top: 3rem !important;
-    padding-bottom: 3rem !important;
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
   }
   
   .mb-12 {
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 1rem !important;
   }
   
   /* Reducir tamaño de iconos para móviles */
@@ -585,7 +586,38 @@ body {
   
   /* Optimizar imágenes para móviles */
   .project-image {
-    height: 12rem !important;
+    height: 10rem !important;
+  }
+  
+  /* Mejorar interacción táctil */
+  .btn,
+  button,
+  a[href] {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+  }
+  
+  /* Optimizar scroll en móviles */
+  body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
+  }
+  
+  /* Mejorar viewport en móviles */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Reducir efectos complejos */
+  .hero-particles {
+    display: none;
+  }
+  
+  /* Optimizar modales para móviles */
+  .modal {
+    padding: 1rem;
   }
 }
 

@@ -1,4 +1,34 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /.git/
+Disallow: /dist/
+Disallow: /build/
 
+# Específico para bots de búsqueda principales
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Bloquear bots maliciosos conocidos
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# Configuración de velocidad de rastreo
+Crawl-delay: 1
+
+# Sitemap
 Sitemap: https://h3n.dev/sitemap.xml

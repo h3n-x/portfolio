@@ -17,9 +17,11 @@ const Experiencia = lazy(() => import('./components/Experiencia'))
 const MatrixRain = lazy(() => import('./components/MatrixRain'))
 const MatrixGrid = lazy(() => import('./components/MatrixGrid'))
 
-// Solo el Hero y el CursorTrail se cargan inmediatamente (experiencia crítica del usuario)
+// Solo el Hero y componentes críticos se cargan inmediatamente
 import Hero from './components/Hero'
 import CursorTrail from './components/CursorTrail'
+import ScrollProgress from './components/ScrollProgress'
+import MobileEnhancements from './components/MobileEnhancements'
 
 // Componente de Footer
 const Footer = memo(() => {
@@ -203,6 +205,8 @@ function App() {
         <div className="App">
           <Suspense fallback={<LoadingSpinner />}>
             <CursorTrail />
+            <ScrollProgress />
+            <MobileEnhancements />
             <Header />
             <main>
               <Hero />
