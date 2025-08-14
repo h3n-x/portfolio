@@ -4,7 +4,7 @@
 
 ### Backend Developer | | Open Source Contributor
 
-[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Visit_Site-00ff41?style=for-the-badge)](h3n-x.netlify.app)
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Visit_Site-00ff41?style=for-the-badge)](https://h3n-x.netlify.app)
 [![React](https://img.shields.io/badge/React-19.0.0-61DAFB?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-Latest-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind-3.x-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
@@ -335,7 +335,7 @@ MIT License - Libertad para usar, modificar y distribuir
 ## 📧 Contacto y Redes
 
 [![Email](https://img.shields.io/badge/📧_Email-h3n.eth@gmail.com-00ff41?style=for-the-badge)](mailto:h3n.eth@gmail.com)
-[![Portfolio](https://img.shields.io/badge/🌐_Portfolio-Visit_Live_Site-00ff41?style=for-the-badge)](h3n-x.netlify.app)
+[![Portfolio](https://img.shields.io/badge/🌐_Portfolio-Visit_Live_Site-00ff41?style=for-the-badge)](https://h3n-x.netlify.app)
 [![GitHub](https://img.shields.io/badge/💻_GitHub-Follow_Me-00ff41?style=for-the-badge&logo=github&logoColor=00ff41)](https://github.com/h3n-x)
 
 ### 💖 Si te gusta este proyecto, ¡dale una estrella! ⭐
