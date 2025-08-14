@@ -110,16 +110,16 @@ export const es = {
   education: {
     title: 'Formación',
     computerScience: {
-      title: 'Ingeniería en Sistemas',
-      description: 'Estudios en desarrollo de software, algoritmos, bases de datos y sistemas operativos. Enfoque en soluciones tecnológicas y programación avanzada.'
+      title: 'BOOTCAMP PROGRAMACION',
+      description: 'Curso de programación básico ofrecido por el Ministerio de las TICs de Colombia en colaboración con la Universidad Tecnológica de Bolívar. En este curso, adquirí una sólida comprensión de los fundamentos de la programación, incluyendo lógica de programación, estructuras de control y desarrollo de software, preparando el camino para continuar avanzando en el mundo de la tecnología.'
     },
     autoDidactic: {
-      title: 'Estudio Autodidacta',
-      description: 'Estudio de forma autodidacta donde he adquirido conocimientos de linux, python, bases de datos, bash, git, tambien he fortalecido mis habilidades blandas.'
+      title: 'PERSONALIZACION ENTORNOS LINUX',
+      description: 'Curso autodidacta sobre la personalización de entornos Linux ofrecido por Savitar en la academia Hack4U. En este curso, adquirí conocimientos prácticos sobre la configuración, optimización y personalización avanzada de sistemas Linux, mejorando mis habilidades para trabajar en entornos de desarrollo y seguridad.'
     },
     basic: {
-      title: 'Educacion Básica',
-      description: 'Formacion en el bachillerato, donde adquiri conocimientos, habilidades y experiencia que me permitieron adquirir una buena base para entrar a la universidad.'
+      title: 'ORACLE NEXT EDUCATION - BACKEND',
+      description: 'Formación especializada en backend a través del programa Oracle Next Education, donde adquirí conocimientos técnicos, habilidades prácticas y experiencia en programación, creando una base sólida para continuar mis estudios en la universidad.'
     },
     viewCertificate: 'Ver certificado'
   },
@@ -129,11 +129,29 @@ export const es = {
     contact: 'Contacto',
     social: 'Redes',
     rights: ' ',
-    quote: 'Los programadores son los poetas de la era digital.'
+    quote: 'Inserte cafe para iniciar.'
   },
   
   // Botones
   buttons: {
     backToTop: 'Volver arriba'
+  },
+  
+  // Modal de certificaciones
+  certificateModal: {
+    external: 'Certificado Externo',
+    externalDescription: 'Este certificado se encuentra alojado en una plataforma externa. Haz clic en el botón de abajo para verlo.',
+    viewCertificate: 'Ver Certificado',
+    openInNewTab: 'Abrir en nueva pestaña',
+    openInNewTabShort: 'Ver en nueva pestaña',
+    certificatePdf: 'Certificado PDF',
+    certificateDigital: 'Certificado Digital',
+    loading: 'Cargando certificado...',
+    errorTitle: 'Problema de visualización',
+    errorPdf: 'El navegador no puede mostrar este PDF aquí',
+    errorGeneral: 'No se pudo cargar el certificado',
+    pressEsc: 'Presiona',
+    toClose: 'para cerrar',
+    close: 'Cerrar'
   },
 };

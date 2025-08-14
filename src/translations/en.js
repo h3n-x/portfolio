@@ -110,16 +110,16 @@ export const en = {
   education: {
     title: 'Education',
     computerScience: {
-      title: 'Computer Systems Engineering',
-      description: 'Studies in software development, algorithms, databases, and operating systems. Focus on technological solutions and advanced programming.'
+      title: 'PROGRAMMING BOOTCAMP',
+      description: 'Basic programming course offered by the Colombian Ministry of ICT in collaboration with the Technological University of Bolívar. In this course, I gained a solid understanding of the fundamentals of programming, including programming logic, control structures, and software development, paving the way for me to continue advancing in the world of technology.'
     },
     autoDidactic: {
-      title: 'Self-taught Studies',
-      description: 'Self-taught study where I have acquired knowledge of Linux, Python, databases, Bash, Git, and have also strengthened my soft skills.'
+      title: 'LINUX ENVIRONMENT CUSTOMIZATION',
+      description: 'Self-paced course on Linux environment customization offered by Savitar at the Hack4U Academy. In this course, I gained practical knowledge on configuring, optimizing, and advanced customizing Linux systems, enhancing my skills for development and security environments.'
     },
     basic: {
-      title: 'Basic Education',
-      description: 'High school education, where I acquired knowledge, skills, and experience that allowed me to build a good foundation for entering university.'
+      title: 'ORACLE NEXT EDUCATION - BACKEND',
+      description: 'Specialized backend training through the Oracle Next Education program, where I gained technical knowledge, practical skills, and hands-on experience, providing a strong foundation for pursuing further studies at the university level.'
     },
     viewCertificate: 'View certificate'
   },
@@ -129,11 +129,29 @@ export const en = {
     contact: 'Contact',
     social: 'Social',
     rights: ' ',
-    quote: 'Programmers are the poets of the digital age.'
+    quote: 'Insert coffe to boot'
   },
   
   // Buttons
   buttons: {
     backToTop: 'Back to top'
+  },
+  
+  // Certificate Modal
+  certificateModal: {
+    external: 'External Certificate',
+    externalDescription: 'This certificate is hosted on an external platform. Click the button below to view it.',
+    viewCertificate: 'View Certificate',
+    openInNewTab: 'Open in new tab',
+    openInNewTabShort: 'View in new tab',
+    certificatePdf: 'PDF Certificate',
+    certificateDigital: 'Digital Certificate',
+    loading: 'Loading certificate...',
+    errorTitle: 'Display issue',
+    errorPdf: 'The browser cannot display this PDF here',
+    errorGeneral: 'Could not load the certificate',
+    pressEsc: 'Press',
+    toClose: 'to close',
+    close: 'Close'
   },
 };

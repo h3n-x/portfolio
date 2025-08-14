@@ -46,9 +46,9 @@ function Proyectos() {
       titulo: t('projects.hyprDot.title'),
       descripcion: t('projects.hyprDot.description'),
       tecnologias: ["Python", "Arch Linux", "Hyprland", "Bash"],
-      imagen: "/images/hypr-dot",
+      imagen: "/images/Deskt",
       detalles: t('projects.hyprDot.details'),
-      codeLink: "https://github.com/h3nr1d3v/hypr-dot",
+      codeLink: "https://github.com/h3n-x/hypr-rice.git",
       destacado: true
     }
   ], [t]);

@@ -119,67 +119,9 @@ const MobileEnhancements = memo(() => {
 
   if (!isVisible) return null;
 
-  return (
-    <div className="fixed bottom-4 left-4 right-4 z-40 md:hidden">
-      {/* Indicador de sección actual */}
-      <div className="flex justify-center mb-4">
-        <div className="bg-black/80 backdrop-blur-sm border border-green-500/30 rounded-full px-4 py-2">
-          <div className="flex items-center space-x-2">
-            {sections.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => navigateToSection(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentSection
-                    ? 'bg-green-500 w-6'
-                    : 'bg-green-500/30'
-                }`}
-                aria-label={`Ir a sección ${index + 1}`}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Controles de navegación */}
-      <div className="flex justify-between items-center">
-        <button
-          onClick={() => navigateToSection(currentSection - 1)}
-          disabled={currentSection === 0}
-          className="bg-black/80 backdrop-blur-sm border border-green-500/30 rounded-full w-12 h-12 flex items-center justify-center text-green-500 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-green-500/10 transition-all duration-300"
-          aria-label="Sección anterior"
-        >
-          <i className="fas fa-chevron-up"></i>
-        </button>
-
-        {/* Hint de swipe */}
-        <div className="bg-black/80 backdrop-blur-sm border border-green-500/30 rounded-lg px-3 py-2 text-xs text-green-500 flex items-center space-x-2">
-          <i className="fas fa-hand-paper"></i>
-          <span>Desliza para navegar</span>
-        </div>
-
-        <button
-          onClick={() => navigateToSection(currentSection + 1)}
-          disabled={currentSection === sections.length - 1}
-          className="bg-black/80 backdrop-blur-sm border border-green-500/30 rounded-full w-12 h-12 flex items-center justify-center text-green-500 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-green-500/10 transition-all duration-300"
-          aria-label="Siguiente sección"
-        >
-          <i className="fas fa-chevron-down"></i>
-        </button>
-      </div>
-
-      {/* Vibración táctil (si está disponible) */}
-      <script>
-        {`
-          if (window.navigator && window.navigator.vibrate) {
-            document.addEventListener('touchstart', function() {
-              navigator.vibrate(10);
-            });
-          }
-        `}
-      </script>
-    </div>
-  );
+  // Componente deshabilitado por solicitud del usuario
+  // Los controles de navegación móvil han sido removidos para una experiencia más limpia
+  return null;
 });
 
 MobileEnhancements.displayName = 'MobileEnhancements';

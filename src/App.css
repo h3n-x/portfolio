@@ -545,15 +545,37 @@ body {
 @media (max-width: 768px) {
   /* Reducir tamaño de fuentes para móviles */
   h1 {
-    font-size: 1.75rem !important;
+    font-size: 1.875rem !important;
+    line-height: 1.2 !important;
   }
   
   h2 {
     font-size: 1.5rem !important;
+    line-height: 1.3 !important;
   }
   
   h3 {
     font-size: 1.25rem !important;
+    line-height: 1.4 !important;
+  }
+  
+  /* Mejorar padding del container en móvil */
+  .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    max-width: 100% !important;
+  }
+  
+  /* Espaciado optimizado para secciones */
+  section {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+  
+  /* Hero section específicamente */
+  #home {
+    padding-top: 1rem !important;
+    min-height: 100vh !important;
   }
   
   /* Optimizar animaciones para móviles */
@@ -606,8 +628,21 @@ body {
   
   /* Mejorar viewport en móviles */
   .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  /* Optimizar texto para móvil */
+  .text-2xl {
+    font-size: 1.5rem !important;
+  }
+  
+  .text-3xl {
+    font-size: 1.875rem !important;
+  }
+  
+  .text-4xl {
+    font-size: 2.25rem !important;
   }
   
   /* Reducir efectos complejos */
@@ -615,9 +650,46 @@ body {
     display: none;
   }
   
+  /* Ocultar elementos de navegación móvil */
+  .mobile-navigation,
+  .mobile-nav-hint,
+  .mobile-scroll-indicator {
+    display: none !important;
+  }
+  
   /* Optimizar modales para móviles */
   .modal {
-    padding: 1rem;
+    padding: 1rem !important;
+    margin: 1rem !important;
+  }
+  
+  /* Mejorar legibilidad en móvil */
+  .text-gray-400 {
+    color: #9ca3af !important;
+  }
+  
+  .text-gray-500 {
+    color: #6b7280 !important;
+  }
+  
+  /* Ajustar imagen de perfil para móvil */
+  .profile-img-container {
+    width: 8rem !important;
+    height: 8rem !important;
+  }
+  
+  /* Optimizar espaciado de secciones */
+  .mb-8 {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .mb-12 {
+    margin-bottom: 2rem !important;
+  }
+  
+  .py-20 {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
   }
 }
 
@@ -647,9 +719,33 @@ img, picture, video {
   .btn,
   .nav-link,
   .project-button {
-    min-height: 44px;
-    min-width: 44px;
-    padding: 0.75rem 1rem;
+    min-height: 44px !important;
+    min-width: 44px !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 0.875rem !important;
+    touch-action: manipulation;
+  }
+  
+  /* Botones hero específicos */
+  .hero-buttons .btn {
+    width: 100% !important;
+    margin-bottom: 0.75rem !important;
+    justify-content: center !important;
+  }
+  
+  /* Mejoras para formularios y inputs */
+  input, textarea, select {
+    min-height: 44px !important;
+    font-size: 16px !important; /* Prevenir zoom en iOS */
+  }
+  
+  /* Espaciado mejorado entre elementos */
+  .flex.gap-4 {
+    gap: 0.75rem !important;
+  }
+  
+  .flex.gap-3 {
+    gap: 0.5rem !important;
   }
 }
 

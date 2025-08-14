@@ -14,6 +14,13 @@ const Header = memo(() => {
   const forceLoadSection = (sectionId) => {
     // Trigger scroll event to force lazy loading
     window.dispatchEvent(new Event('scroll'));
+    
+    // Forzar la carga de secciones específicas dispatching eventos
+          const forceEvent = new CustomEvent('forceLoadSection', {
+        detail: { sectionId }
+      });
+    window.dispatchEvent(forceEvent);
+    
     // Wait for potential lazy loading
     setTimeout(() => {
       window.dispatchEvent(new Event('scroll'));
@@ -158,40 +165,82 @@ const Header = memo(() => {
     const scrollToSection = () => {
       const section = document.getElementById(sectionId);
       if (section) {
-        const offsetTop = section.offsetTop - 80; // Compensar por el header fijo
+        // Usar getBoundingClientRect para cálculo preciso con lazy-loaded sections
+        const rect = section.getBoundingClientRect();
+        const targetTop = rect.top + window.scrollY - 80;
+        
         window.scrollTo({
-          top: offsetTop,
+          top: Math.max(0, targetTop),
           behavior: 'smooth'
         });
-        setActiveSection(sectionId); // Establecer sección activa
+        
+        setActiveSection(sectionId);
+        
+        // Ajuste fino para asegurar navegación precisa
+        setTimeout(() => {
+          const finalScroll = window.scrollY;
+          const tolerance = 50;
+          if (Math.abs(finalScroll - targetTop) > tolerance) {
+            window.scrollTo({
+              top: Math.max(0, targetTop),
+              behavior: 'smooth'
+            });
+          }
+        }, 300);
+        
         return true;
       }
       return false;
     };
 
+    // Mapeo de secciones que requieren carga especial
+    const sectionLoadRequirements = {
+      'home': 'initial',
+      'sobre-mí': 'initial',
+      'tecnologías': 'initial', 
+      'experiencia': 'secondary',
+      'proyectos': 'secondary',
+      'formación': 'secondary'
+    };
+
     // Intentar scroll inmediato
     if (!scrollToSection()) {
+      // Enviar evento personalizado para forzar carga
+      const loadEvent = new CustomEvent('forceLoadSections', {
+        detail: { 
+          sectionId,
+          requirement: sectionLoadRequirements[sectionId] || 'initial'
+        }
+      });
+      window.dispatchEvent(loadEvent);
+      
       // Forzar la carga de secciones lazy
       forceLoadSection(sectionId);
       
-      // Si la sección no está disponible, esperar a que se cargue (lazy loading)
-      const observer = new MutationObserver((mutations, obs) => {
+      // Configurar observador con timeout más largo
+      let attempts = 0;
+      const maxAttempts = 15; // Incrementar intentos
+      
+      const checkAndScroll = () => {
+        const element = document.getElementById(sectionId);
+        
         if (scrollToSection()) {
-          obs.disconnect(); // Dejar de observar una vez que encontramos la sección
+          return;
         }
-      });
+        
+        attempts++;
+        if (attempts < maxAttempts) {
+          setTimeout(checkAndScroll, 500); // Más tiempo entre intentos
+        } else {
+          // Como fallback, scroll al inicio si es home
+          if (sectionId === 'home') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        }
+      };
       
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true
-      });
-      
-      // Timeout de seguridad más largo para dar tiempo al lazy loading
-      setTimeout(() => {
-        observer.disconnect();
-        // Intento final de navegación
-        scrollToSection();
-      }, 2000);
+      // Iniciar verificación después de un breve delay
+      setTimeout(checkAndScroll, 300);
     }
   };
 
@@ -212,13 +261,13 @@ const Header = memo(() => {
         
         {/* Mobile menu button */}
         <button 
-          className="md:hidden text-green-500 flex items-center p-2 focus:outline-none focus:ring-2 focus:ring-green-500 rounded bg-black border border-green-500/30"
+          className="md:hidden text-green-500 flex items-center justify-center p-3 focus:outline-none focus:ring-2 focus:ring-green-500 rounded bg-black border border-green-500/30 min-h-[44px] min-w-[44px]"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-expanded={isMenuOpen}
           aria-controls="mobile-menu"
           aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
         >
-          <i className="fas fa-bars" aria-hidden="true"></i>
+          <i className={`fas ${isMenuOpen ? 'fa-times' : 'fa-bars'} text-lg`} aria-hidden="true"></i>
           <span className="sr-only">{isMenuOpen ? "Cerrar menú" : "Abrir menú"}</span>
         </button>
         
@@ -256,30 +305,30 @@ const Header = memo(() => {
       {isMenuOpen && (
         <nav 
           id="mobile-menu"
-          className="md:hidden absolute top-full left-0 w-full bg-black border-t border-green-500/20 shadow-lg shadow-green-500/10 py-4 animate-fade-in"
+          className="md:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-sm border-t border-green-500/20 shadow-lg shadow-green-500/10 py-6 animate-fade-in"
           role="navigation"
           aria-label="Navegación móvil"
         >
-          <div className="container flex flex-col space-y-4">
+          <div className="container flex flex-col space-y-6">
             {navItems.map((item) => (
               <a 
                 key={item} 
                 href={`#${sectionIds[item]}`}
                 onClick={(e) => handleNavClick(e, sectionIds[item])}
-                className={`relative font-medium transition-all duration-300 nav-link block py-2 ${
+                className={`relative font-medium transition-all duration-300 nav-link py-3 px-4 rounded-md min-h-[44px] flex items-center ${
                   activeSection === sectionIds[item] 
-                    ? 'active text-green-500 pl-4' 
-                    : 'text-gray-400 hover:text-green-500'
+                    ? 'active text-green-500 bg-green-500/10 border border-green-500/30' 
+                    : 'text-gray-300 hover:text-green-500 hover:bg-green-500/5'
                 }`}
                 aria-current={activeSection === sectionIds[item] ? 'page' : undefined}
               >
                 {activeSection === sectionIds[item] && (
-                  <span className="absolute left-0 top-0 bottom-0 w-1 bg-green-500"></span>
+                  <span className="absolute left-0 top-0 bottom-0 w-1 bg-green-500 rounded-r-full"></span>
                 )}
-                <span className="relative">{navLabels[item]}</span>
+                <span className="relative text-base">{navLabels[item]}</span>
               </a>
             ))}
-            <div className="pt-2 border-t border-green-500/20 flex items-center">
+            <div className="pt-4 border-t border-green-500/20 flex justify-center">
               <LanguageToggle />
             </div>
           </div>

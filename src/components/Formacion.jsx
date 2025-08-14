@@ -1,33 +1,68 @@
-import { useContext, memo, useCallback } from 'react';
+import { useContext, memo, useCallback, useState } from 'react';
 import { m as motion } from 'framer-motion';
 import { LanguageContext } from '../LanguageContext';
 import { useTranslation } from '../translations';
+import SimpleCertificateModal from './SimpleCertificateModal';
+
 
 const Formacion = memo(() => {
   const { language } = useContext(LanguageContext);
   const { t } = useTranslation(language);
   
+  // Estado para el modal de certificados
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCertificate, setSelectedCertificate] = useState(null);
+  
+  // Funciones para manejar el modal
+  const openModal = (certificate) => {
+    setSelectedCertificate(certificate);
+    setIsModalOpen(true);
+  };
+  
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedCertificate(null);
+  };
+  
   const getFormacion = useCallback(() => [
     {
-      institucion: 'Universidad De Investigacion Y Desarrollo',
+      institucion: 'UNIVERSIDAD TECNOLOGICA DE BOLIVAR',
       titulo: t('education.computerScience.title'),
-      periodo: '2022 - 2027',
+      periodo: '2024',
       descripcion: t('education.computerScience.description'),
-      icono: <i className="fas fa-graduation-cap text-xl" aria-hidden="true"></i>
+      icono: <i className="fas fa-graduation-cap text-xl" aria-hidden="true"></i>,
+      certificate: {
+        title: t('education.computerScience.title'),
+        institution: 'UNIVERSIDAD TECNOLOGICA DE BOLIVAR',
+        type: 'pdf',
+        url: '/certifications/bootcamp-programacion.pdf'
+      }
     },
     {
-      institucion: 'Udemy',
+      institucion: 'Hack4U',
       titulo: t('education.autoDidactic.title'),
-      periodo: '2020 - 2021',
+      periodo: '2023',
       descripcion: t('education.autoDidactic.description'),
-      icono: <i className="fas fa-laptop-code text-xl" aria-hidden="true"></i>
+      icono: <i className="fas fa-laptop-code text-xl" aria-hidden="true"></i>,
+      certificate: {
+        title: t('education.autoDidactic.title'),
+        institution: 'Hack4U',
+        type: 'pdf',
+        url: '/certifications/personalizacion-linux.pdf'
+      }
     },
     {
-      institucion: 'I.E.T.A.C Eutimio Gutierrez Manjon',
+      institucion: 'ALURA LATAM',
       titulo: t('education.basic.title'),
-      periodo: '2014 - 2019',
+      periodo: '2023',
       descripcion: t('education.basic.description'),
-      icono: <i className="fas fa-school text-xl" aria-hidden="true"></i>
+      icono: <i className="fas fa-school text-xl" aria-hidden="true"></i>,
+      certificate: {
+        title: t('education.basic.title'),
+        institution: 'ALURA LATAM',
+        type: 'external',
+        url: 'https://app.aluracursos.com/program/certificate/f4bda55f-ac51-49b4-8c62-91267a88d488'
+      }
     }
   ], [t]);
 
@@ -125,7 +160,10 @@ const Formacion = memo(() => {
                 
                 {/* Certificado link */}
                 <div className="mt-4 text-right">
-                  <button className="bg-black text-green-500 border border-green-500 px-4 py-2 rounded-md hover:bg-green-500/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-black inline-flex items-center">
+                  <button 
+                    onClick={() => openModal(item.certificate)}
+                    className="bg-black text-green-500 border border-green-500 px-4 py-2 rounded-md hover:bg-green-500/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-black inline-flex items-center"
+                  >
                     <i className="fas fa-certificate mr-2"></i>
                     <span>{t('education.viewCertificate')}</span>
                   </button>
@@ -135,6 +173,13 @@ const Formacion = memo(() => {
           ))}
         </motion.div>
       </div>
+      
+      {/* Modal de certificados */}
+      <SimpleCertificateModal 
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        certificate={selectedCertificate}
+      />
     </section>
   );
 });

@@ -123,7 +123,33 @@ function App() {
       }, 4000)
     }, 1000)
     
-    return () => clearTimeout(timer)
+    // Listener para forzar carga de secciones cuando se necesite
+    const handleForceLoad = (event) => {
+      const { sectionId, requirement } = event.detail;
+      
+      setLoadedSections(prev => {
+        const newState = { ...prev };
+        // Forzar carga inmediata de todo lo necesario
+        if (requirement === 'secondary' && !prev.secondary) {
+          newState.secondary = true;
+        }
+        if (requirement === 'tertiary' && !prev.tertiary) {
+          newState.tertiary = true;
+        }
+        // Asegurar que initial también esté cargado
+        if (!prev.initial) {
+          newState.initial = true;
+        }
+        return newState;
+      });
+    };
+    
+    window.addEventListener('forceLoadSections', handleForceLoad);
+    
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('forceLoadSections', handleForceLoad);
+    }
   }, [])
   
   useEffect(() => {
