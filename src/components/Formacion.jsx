@@ -34,8 +34,8 @@ const Formacion = memo(() => {
       certificate: {
         title: t('education.computerScience.title'),
         institution: 'UNIVERSIDAD TECNOLOGICA DE BOLIVAR',
-        type: 'pdf',
-        url: '/certifications/bootcamp-programacion.pdf'
+        type: 'external',
+        url: 'https://drive.google.com/file/d/1xgriuNThS4Ch-t1sSu0BNe0J7SMdJ4T4/view?usp=sharing'
       }
     },
     {
@@ -47,8 +47,8 @@ const Formacion = memo(() => {
       certificate: {
         title: t('education.autoDidactic.title'),
         institution: 'Hack4U',
-        type: 'pdf',
-        url: '/certifications/personalizacion-linux.pdf'
+        type: 'external',
+        url: 'https://drive.google.com/file/d/1zCtMYj73aN_MowW42dUhdIzQh4CuRTBU/view?usp=sharing'
       }
     },
     {
