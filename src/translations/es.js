@@ -152,6 +152,13 @@ export const es = {
     errorGeneral: 'No se pudo cargar el certificado',
     pressEsc: 'Presiona',
     toClose: 'para cerrar',
-    close: 'Cerrar'
+    close: 'Cerrar',
+    pdfCertificate: 'Certificado PDF',
+    pdfDescription: 'Documento oficial de certificación disponible para visualización y descarga.',
+    issuer: 'Emisor',
+    viewFullCertificate: 'Ver Certificado Completo',
+    downloadCertificate: 'Descargar Certificado',
+    browserNote: 'Optimizado para mejor experiencia',
+    browserNoteDescription: 'El certificado se abrirá en una nueva pestaña para una visualización completa y funcionalidades de zoom nativas del navegador.'
   },
 };

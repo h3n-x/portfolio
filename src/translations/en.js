@@ -152,6 +152,13 @@ export const en = {
     errorGeneral: 'Could not load the certificate',
     pressEsc: 'Press',
     toClose: 'to close',
-    close: 'Close'
+    close: 'Close',
+    pdfCertificate: 'PDF Certificate',
+    pdfDescription: 'Official certification document available for viewing and download.',
+    issuer: 'Issuer',
+    viewFullCertificate: 'View Full Certificate',
+    downloadCertificate: 'Download Certificate',
+    browserNote: 'Optimized for better experience',
+    browserNoteDescription: 'The certificate will open in a new tab for full viewing and native browser zoom functionality.'
   },
 };

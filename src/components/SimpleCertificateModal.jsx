@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { m as motion, AnimatePresence } from 'framer-motion';
 import { LanguageContext } from '../LanguageContext';
 import { useTranslation } from '../translations';
@@ -6,8 +6,6 @@ import { useTranslation } from '../translations';
 const SimpleCertificateModal = ({ isOpen, onClose, certificate }) => {
   const { language } = useContext(LanguageContext);
   const { t } = useTranslation(language);
-  const [iframeLoaded, setIframeLoaded] = useState(false);
-  const [iframeError, setIframeError] = useState(false);
 
   // Cerrar modal con ESC
   useEffect(() => {
@@ -28,13 +26,7 @@ const SimpleCertificateModal = ({ isOpen, onClose, certificate }) => {
     };
   }, [isOpen, onClose]);
 
-  // Reset estados cuando se abre el modal
-  useEffect(() => {
-    if (isOpen) {
-      setIframeLoaded(false);
-      setIframeError(false);
-    }
-  }, [isOpen]);
+
 
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) {
@@ -49,32 +41,7 @@ const SimpleCertificateModal = ({ isOpen, onClose, certificate }) => {
     }
   };
 
-  const handleIframeLoad = () => {
-    // Verificar si el iframe cargó realmente el PDF y no la página principal
-    const iframe = document.querySelector('iframe[title*="Certificado"]');
-    if (iframe) {
-      try {
-        // Si podemos acceder al contentDocument, probablemente cargó HTML en lugar de PDF
-        const doc = iframe.contentDocument || iframe.contentWindow.document;
-        if (doc && doc.title && doc.title.includes('H3n')) {
-          // Si el título contiene 'H3n', probablemente cargó la página principal
-          setIframeError(true);
-          setIframeLoaded(false);
-          return;
-        }
-      } catch (e) {
-        // Si hay error de CORS, probablemente es porque cargó el PDF correctamente
-        // Los PDFs no permiten acceso desde iframe por seguridad
-      }
-    }
-    setIframeLoaded(true);
-    setIframeError(false);
-  };
 
-  const handleIframeError = () => {
-    setIframeError(true);
-    setIframeLoaded(false);
-  };
 
   const openInNewTab = () => {
     window.open(certificate.url, '_blank', 'noopener,noreferrer');
@@ -154,71 +121,71 @@ const SimpleCertificateModal = ({ isOpen, onClose, certificate }) => {
                 </div>
               ) : (
                 <div className="w-full">
-                  {/* Información y controles */}
-                  <div className="flex justify-between items-center mb-4 p-3 bg-black/50 rounded-md border border-green-500/20">
-                    <div className="text-sm text-gray-400">
-                      <i className={`fas ${certificate.type === 'pdf' ? 'fa-file-pdf' : 'fa-certificate'} mr-2 text-green-500`}></i>
-                      {certificate.type === 'pdf' ? t('certificateModal.certificatePdf') : t('certificateModal.certificateDigital')}
+                  {/* Información del certificado */}
+                  <div className="text-center mb-6">
+                    <div className="inline-flex items-center justify-center w-20 h-20 bg-red-500/10 rounded-full mb-4">
+                      <i className="fas fa-file-pdf text-red-500 text-2xl"></i>
                     </div>
-                    <button
-                      onClick={openInNewTab}
-                      className="bg-green-500/20 text-green-500 px-3 py-1 rounded-md hover:bg-green-500/30 transition-all duration-300 text-sm inline-flex items-center"
-                    >
-                      <i className="fas fa-external-link-alt mr-2"></i>
-                      {t('certificateModal.openInNewTab')}
-                    </button>
+                    <h4 className="text-xl text-white mb-2">{t('certificateModal.pdfCertificate')}</h4>
+                    <p className="text-gray-400 mb-4">
+                      {t('certificateModal.pdfDescription')}
+                    </p>
+                    
+                    {/* Información del archivo */}
+                    <div className="bg-black/50 rounded-md p-4 mb-6 border border-green-500/20">
+                      <div className="flex items-center justify-center text-sm text-gray-400 mb-2">
+                        <i className="fas fa-file-pdf mr-2 text-green-500"></i>
+                        <span>{certificate.title}</span>
+                      </div>
+                      <div className="text-xs text-gray-500">
+                        <span>{t('certificateModal.issuer')}: {certificate.institution}</span>
+                      </div>
+                    </div>
                   </div>
 
-                  {/* Visor del PDF */}
-                  <div className="relative w-full h-[70vh] bg-gray-900/50 rounded-md border border-green-500/20">
-                    {/* Loading state */}
-                    {!iframeLoaded && !iframeError && (
-                      <div className="absolute inset-0 flex items-center justify-center z-10 bg-gray-900/80">
-                        <div className="text-center">
-                          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500 mb-4"></div>
-                          <p className="text-gray-400">{t('certificateModal.loading')}</p>
-                        </div>
-                      </div>
-                    )}
+                  {/* Opciones de visualización */}
+                  <div className="space-y-4">
+                    {/* Botón principal - Abrir en nueva pestaña */}
+                    <button
+                      onClick={openInNewTab}
+                      className="w-full bg-green-500 text-black px-6 py-4 rounded-md hover:bg-green-400 transition-all duration-300 font-medium inline-flex items-center justify-center text-lg"
+                    >
+                      <i className="fas fa-external-link-alt mr-3"></i>
+                      {t('certificateModal.viewFullCertificate')}
+                    </button>
 
-                    {/* Error state */}
-                    {iframeError && (
-                      <div className="absolute inset-0 flex items-center justify-center z-10 bg-gray-900/90">
-                        <div className="text-center">
-                          <div className="text-yellow-500 text-4xl mb-4">
-                            <i className="fas fa-exclamation-triangle"></i>
-                          </div>
-                          <p className="text-yellow-400 mb-2">{t('certificateModal.errorTitle')}</p>
-                          <p className="text-gray-400 text-sm mb-4">
-                            {certificate.type === 'pdf' 
-                              ? t('certificateModal.errorPdf')
-                              : t('certificateModal.errorGeneral')}
-                          </p>
-                          <button
-                            onClick={openInNewTab}
-                            className="bg-green-500 text-black px-4 py-2 rounded-md hover:bg-green-400 transition-all duration-300 inline-flex items-center"
-                          >
-                            <i className="fas fa-external-link-alt mr-2"></i>
-                            {t('certificateModal.openInNewTabShort')}
-                          </button>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Iframe */}
-                    <iframe
-                      src={`${certificate.url}?v=${Date.now()}`}
-                      className="w-full h-full rounded-md"
-                      title={`Certificado - ${certificate.title}`}
-                      onLoad={handleIframeLoad}
-                      onError={handleIframeError}
-                      style={{ 
-                        opacity: iframeLoaded ? 1 : 0,
-                        transition: 'opacity 0.3s ease'
+                    {/* Botón secundario - Descargar */}
+                    <button
+                      onClick={() => {
+                        const link = document.createElement('a');
+                        link.href = certificate.url;
+                        link.download = `${certificate.title}.pdf`;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
                       }}
-                      // Forzar recarga y evitar cache
-                      key={`${certificate.url}-${Date.now()}`}
-                    />
+                      className="w-full bg-green-500/20 text-green-500 px-6 py-3 rounded-md hover:bg-green-500/30 transition-all duration-300 font-medium inline-flex items-center justify-center"
+                    >
+                      <i className="fas fa-download mr-3"></i>
+                      {t('certificateModal.downloadCertificate')}
+                    </button>
+
+                    {/* Nota informativa */}
+                    <div className="bg-blue-500/10 border border-blue-500/20 rounded-md p-4">
+                      <div className="flex items-start">
+                        <div className="text-blue-400 mr-3 mt-1">
+                          <i className="fas fa-info-circle"></i>
+                        </div>
+                        <div>
+                          <p className="text-blue-400 text-sm font-medium mb-1">
+                            {t('certificateModal.browserNote')}
+                          </p>
+                          <p className="text-gray-400 text-xs">
+                            {t('certificateModal.browserNoteDescription')}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
