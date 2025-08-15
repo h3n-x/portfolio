@@ -12,6 +12,8 @@
 /*    /index.html   200
 
 # Security headers
+# Allow iframes for certificates while maintaining security for other content
+/certifications/*  X-Frame-Options: SAMEORIGIN
 /*  X-Frame-Options: DENY
 /*  X-Content-Type-Options: nosniff
 /*  X-XSS-Protection: 1; mode=block
