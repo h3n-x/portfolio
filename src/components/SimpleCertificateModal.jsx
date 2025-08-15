@@ -50,6 +50,23 @@ const SimpleCertificateModal = ({ isOpen, onClose, certificate }) => {
   };
 
   const handleIframeLoad = () => {
+    // Verificar si el iframe cargó realmente el PDF y no la página principal
+    const iframe = document.querySelector('iframe[title*="Certificado"]');
+    if (iframe) {
+      try {
+        // Si podemos acceder al contentDocument, probablemente cargó HTML en lugar de PDF
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
+        if (doc && doc.title && doc.title.includes('H3n')) {
+          // Si el título contiene 'H3n', probablemente cargó la página principal
+          setIframeError(true);
+          setIframeLoaded(false);
+          return;
+        }
+      } catch (e) {
+        // Si hay error de CORS, probablemente es porque cargó el PDF correctamente
+        // Los PDFs no permiten acceso desde iframe por seguridad
+      }
+    }
     setIframeLoaded(true);
     setIframeError(false);
   };
@@ -190,7 +207,7 @@ const SimpleCertificateModal = ({ isOpen, onClose, certificate }) => {
 
                     {/* Iframe */}
                     <iframe
-                      src={certificate.url}
+                      src={`${certificate.url}?v=${Date.now()}`}
                       className="w-full h-full rounded-md"
                       title={`Certificado - ${certificate.title}`}
                       onLoad={handleIframeLoad}
@@ -199,6 +216,8 @@ const SimpleCertificateModal = ({ isOpen, onClose, certificate }) => {
                         opacity: iframeLoaded ? 1 : 0,
                         transition: 'opacity 0.3s ease'
                       }}
+                      // Forzar recarga y evitar cache
+                      key={`${certificate.url}-${Date.now()}`}
                     />
                   </div>
                 </div>
