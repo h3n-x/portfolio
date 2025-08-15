@@ -1,7 +1,9 @@
 # Netlify redirects file
 
-# Static file exceptions - serve directly (MUST be before /* rule)
+# Static file exceptions - serve directly with proper headers (MUST be before /* rule)
 /certifications/*  /certifications/:splat  200!
+  Cache-Control: public, max-age=3600
+  Content-Disposition: inline
 /images/*          /images/:splat          200!
 /cursors/*         /cursors/:splat         200!
 /manifest.json     /manifest.json          200!

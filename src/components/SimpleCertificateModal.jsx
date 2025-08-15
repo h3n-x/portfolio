@@ -44,7 +44,9 @@ const SimpleCertificateModal = ({ isOpen, onClose, certificate }) => {
 
 
   const openInNewTab = () => {
-    window.open(certificate.url, '_blank', 'noopener,noreferrer');
+    // Crear una URL absoluta para evitar problemas de routing de SPA
+    const fullUrl = new URL(certificate.url, window.location.origin).href;
+    window.open(fullUrl, '_blank', 'noopener,noreferrer');
     onClose();
   };
 
