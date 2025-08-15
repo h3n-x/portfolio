@@ -81,7 +81,14 @@ const Footer = memo(() => {
             {t('footer.rights')}
           </p>
           <button 
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            onClick={() => {
+              // Scroll más compatible con móvil
+              const isMobile = window.innerWidth < 768;
+              window.scrollTo({ 
+                top: 0, 
+                behavior: isMobile ? 'auto' : 'smooth' 
+              });
+            }}
             className="bg-black text-green-500 border border-green-500 px-4 py-2 rounded-md hover:bg-green-500/10 transition-all duration-300 flex items-center focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-black"
             aria-label="Volver arriba"
           >
@@ -153,38 +160,47 @@ function App() {
   }, [])
   
   useEffect(() => {
-    // Función para animar elementos al hacer scroll con throttle
+    // Función para animar elementos al hacer scroll con mejor throttle
     let lastScrollTime = 0;
-    const throttleInterval = 100; // ms
+    let ticking = false;
+    const throttleInterval = 16; // 60fps para scroll más fluido
     
     const animateOnScroll = () => {
       const now = Date.now();
-      if (now - lastScrollTime < throttleInterval) return;
-      lastScrollTime = now;
+      if (now - lastScrollTime < throttleInterval && ticking) return;
       
-      const elements = document.querySelectorAll('.animate-on-scroll, .animate-on-scroll-left, .animate-on-scroll-right')
-      
-      elements.forEach(element => {
-        const rect = element.getBoundingClientRect();
-        const isVisible = rect.top < window.innerHeight - 100 && rect.bottom > 0
-        
-        if (isVisible) {
-          if (element.classList.contains('animate-on-scroll-left')) {
-            element.classList.add('animate-slide-in-left')
-          } else if (element.classList.contains('animate-on-scroll-right')) {
-            element.classList.add('animate-slide-in-right')
-          } else {
-            element.classList.add('animate-slide-up')
-          }
-          element.style.opacity = '1'
-        }
-      })
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          lastScrollTime = now;
+          
+          const elements = document.querySelectorAll('.animate-on-scroll, .animate-on-scroll-left, .animate-on-scroll-right')
+          
+          elements.forEach(element => {
+            const rect = element.getBoundingClientRect();
+            const isVisible = rect.top < window.innerHeight - 100 && rect.bottom > 0
+            
+            if (isVisible) {
+              if (element.classList.contains('animate-on-scroll-left')) {
+                element.classList.add('animate-slide-in-left')
+              } else if (element.classList.contains('animate-on-scroll-right')) {
+                element.classList.add('animate-slide-in-right')
+              } else {
+                element.classList.add('animate-slide-up')
+              }
+              element.style.opacity = '1'
+            }
+          })
+          
+          ticking = false;
+        });
+        ticking = true;
+      }
     }
     
     // Ejecutar la animación al cargar la página
     animateOnScroll()
     
-    // Ejecutar la animación al hacer scroll con throttle
+    // Ejecutar la animación al hacer scroll con mejor performance
     window.addEventListener('scroll', animateOnScroll, { passive: true })
     
     return () => {
@@ -243,7 +259,7 @@ function App() {
                     <SobreMi />
                     <div className="absolute -z-10 inset-0 opacity-10">
                       <Suspense fallback={null}>
-                        {loadedSections.secondary && <MatrixGrid />}
+                        {loadedSections.initial && <MatrixGrid />}
                       </Suspense>
                     </div>
                   </Suspense>
@@ -256,26 +272,26 @@ function App() {
                 </Suspense>
               )}
               
-              {loadedSections.secondary && (
+              {loadedSections.initial && (
                 <div className="relative overflow-hidden">
                   <Suspense fallback={<SectionFallback type="paragraph" />}>
                     <Experiencia />
                     <div className="absolute -z-10 inset-0 opacity-5">
                       <Suspense fallback={null}>
-                        {loadedSections.tertiary && <MatrixRain />}
+                        {loadedSections.initial && <MatrixRain />}
                       </Suspense>
                     </div>
                   </Suspense>
                 </div>
               )}
               
-              {loadedSections.secondary && (
+              {loadedSections.initial && (
                 <Suspense fallback={<SectionFallback type="cards" />}>
                   <Proyectos />
                 </Suspense>
               )}
               
-              {loadedSections.tertiary && (
+              {loadedSections.initial && (
                 <Suspense fallback={<SectionFallback type="paragraph" />}>
                   <Formacion />
                 </Suspense>

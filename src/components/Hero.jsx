@@ -189,14 +189,6 @@ const HeroComponent = () => {
             <span className="text-green-500 glow-text-intense">(H3n)</span>
           </motion.h1>
           
-          <motion.div 
-            className="text-base sm:text-lg md:text-xl mb-4 md:mb-6 text-gray-200 flex items-center justify-center px-4"
-            variants={itemVariants}
-          >
-            <span>{t('hero.role')}</span>
-            <span className="text-green-500 animate-blink ml-1">_</span>
-          </motion.div>
-          
           {/* Indicador de disponibilidad */}
           <motion.div 
             className="flex justify-center mb-4 md:mb-6 px-4"
@@ -262,20 +254,6 @@ const HeroComponent = () => {
             >
               <i className="fas fa-download mr-2"></i>
               <span>{t('hero.downloadCV')}</span>
-            </motion.a>
-            
-            <motion.a 
-              href="#sobre-mí" 
-              className="flex items-center justify-center bg-transparent border border-green-500 text-green-500 hover:bg-green-500 hover:text-black px-4 py-3 sm:py-2 rounded-md transition-colors btn focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-black w-full sm:w-auto min-h-[44px] text-sm sm:text-base"
-              variants={buttonVariants}
-              custom={2}
-              initial="hidden"
-              animate="visible"
-              whileHover="hover"
-              whileTap="tap"
-            >
-              <i className="fas fa-chevron-right mr-2"></i>
-              <span>{t('hero.learnMore')}</span>
             </motion.a>
           </div>
         </motion.div>

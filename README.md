@@ -9,7 +9,7 @@
 [![Vite](https://img.shields.io/badge/Vite-Latest-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind-3.x-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 
-![Portfolio Preview](https://github.com/user-attachments/assets/47bb90ce-d4ef-429b-a994-fe591fca7e09)
+![Portfolio Preview](https://github.com/user-attachments/assets/cab146a2-2498-49f2-8f96-e6406c0df1d9)
 
 [![GitHub Stars](https://img.shields.io/github/stars/h3n-x/portfolio?style=social)](https://github.com/h3n-x/portfolio/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/h3n-x/portfolio?style=social)](https://github.com/h3n-x/portfolio/network/members)

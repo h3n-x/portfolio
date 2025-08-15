@@ -14,7 +14,7 @@ const Tecnologias = memo(() => {
     { 
       nombre: t('technologies.bash.name'), 
       color: "bg-green-500",
-      icon: <i className="fas fa-terminal text-xl" aria-hidden="true"></i>,
+      icon: <i className="fas fa-terminal text-2xl" aria-hidden="true"></i>,
       url: "https://www.gnu.org/software/bash/",
       descripcion: t('technologies.bash.description'),
       order: 1
@@ -22,7 +22,7 @@ const Tecnologias = memo(() => {
     { 
       nombre: t('technologies.git.name'), 
       color: "bg-green-500",
-      icon: <i className="fab fa-git-alt text-xl" aria-hidden="true"></i>,
+      icon: <i className="fab fa-git-alt text-2xl" aria-hidden="true"></i>,
       url: "https://git-scm.com/",
       descripcion: t('technologies.git.description'),
       order: 3
@@ -30,7 +30,7 @@ const Tecnologias = memo(() => {
     { 
       nombre: t('technologies.linux.name'), 
       color: "bg-green-500",
-      icon: <i className="fab fa-linux text-xl" aria-hidden="true"></i>,
+      icon: <i className="fab fa-linux text-2xl" aria-hidden="true"></i>,
       url: "https://www.kernel.org/",
       descripcion: t('technologies.linux.description'),
       order: 5
@@ -38,7 +38,7 @@ const Tecnologias = memo(() => {
     { 
       nombre: t('technologies.mysql.name'), 
       color: "bg-green-500",
-      icon: <i className="fas fa-database text-xl" aria-hidden="true"></i>,
+      icon: <i className="fas fa-database text-2xl" aria-hidden="true"></i>,
       url: "https://www.mysql.com/",
       descripcion: t('technologies.mysql.description'),
       order: 2
@@ -46,7 +46,7 @@ const Tecnologias = memo(() => {
     { 
       nombre: t('technologies.python.name'), 
       color: "bg-green-500",
-      icon: <i className="fab fa-python text-xl" aria-hidden="true"></i>,
+      icon: <i className="fab fa-python text-2xl" aria-hidden="true"></i>,
       url: "https://www.python.org/",
       descripcion: t('technologies.python.description'),
       order: 4
@@ -54,7 +54,7 @@ const Tecnologias = memo(() => {
     { 
       nombre: t('technologies.vim.name'), 
       color: "bg-green-500",
-      icon: <i className="fas fa-terminal text-xl" aria-hidden="true"></i>,
+      icon: <i className="fas fa-terminal text-2xl" aria-hidden="true"></i>,
       url: "https://www.vim.org/",
       descripcion: t('technologies.vim.description'),
       order: 6
@@ -201,7 +201,7 @@ const Tecnologias = memo(() => {
                     aria-hidden="true"
                     variants={iconVariants}
                   >
-                    <span className="text-black text-2xl">{tech.icon}</span>
+                    <span className="text-black">{tech.icon}</span>
                   </motion.div>
                   
                   <h3 className="text-center text-white font-medium text-lg mb-2">{tech.nombre}</h3>

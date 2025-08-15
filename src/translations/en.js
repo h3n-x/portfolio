@@ -11,11 +11,9 @@ export const en = {
   
   // Hero
   hero: {
-    role: 'Backend Developer',
     location: 'Colombia',
     contactMe: 'Contact Me',
     downloadCV: 'Download CV',
-    learnMore: 'Learn More',
     viewProjects: 'View Projects',
     availableForWork: 'Available for projects',
     availableStatus: 'Available'

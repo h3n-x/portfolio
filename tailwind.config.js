@@ -28,8 +28,8 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['Inter', 'Roboto', 'sans-serif'],
-        heading: ['Poppins', 'sans-serif'],
+        sans: ['Lato', 'system-ui', '-apple-system', 'sans-serif'],
+        heading: ['Montserrat', 'system-ui', '-apple-system', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
