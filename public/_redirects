@@ -34,3 +34,5 @@
 # Force HTTPS
 http://h3n.dev/*  https://h3n.dev/:splat  301!
 http://www.h3n.dev/*  https://h3n.dev/:splat  301!
+
+)
