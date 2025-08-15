@@ -1,5 +1,14 @@
 # Netlify redirects file
-# Handle client-side routing for SPA
+
+# Static file exceptions - serve directly (MUST be before /* rule)
+/certifications/*  /certifications/:splat  200!
+/images/*          /images/:splat          200!
+/cursors/*         /cursors/:splat         200!
+/manifest.json     /manifest.json          200!
+/robots.txt        /robots.txt             200!
+/sitemap.xml       /sitemap.xml            200!
+
+# Handle client-side routing for SPA (catch-all for remaining routes)
 /*    /index.html   200
 
 # Security headers
