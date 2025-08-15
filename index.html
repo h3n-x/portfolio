@@ -2,7 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/images/original/profile.svg" />
+    <link rel="icon" type="image/jpeg" href="/images/profile-640.jpeg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
     
     <!-- SEO Meta Tags -->
@@ -14,33 +14,28 @@
     <meta name="revisit-after" content="7 days" />
     <meta name="theme-color" content="#22c55e" />
     
-    <!-- Security Headers (X-Frame-Options handled via _redirects for PDF compatibility) -->
+    <!-- Security Headers -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
     <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
     
-    <!-- DNS Prefetch y Preconexión para recursos externos -->
+    <!-- DNS Prefetch optimizado -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     
-    <!-- Precarga de recursos críticos para el LCP (Largest Contentful Paint) -->
-    <link rel="preload" as="image" href="/images/profile.webp" type="image/webp" fetchpriority="high" />
+    <!-- Precarga de recursos críticos -->
+    <link rel="preload" as="image" href="/images/profile-640.jpeg" type="image/jpeg" fetchpriority="high" />
     
-    <!-- Precarga de fuentes para evitar FOIT/FOUT -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" as="style" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap"></noscript>
+    <!-- Fuentes optimizadas con crossorigin -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" as="style" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" crossorigin="anonymous" />
     
-    <!-- Font Awesome optimizado sólo con los iconos necesarios -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
-    <!-- Precarga del script principal dividido en chunks -->
-    <link rel="modulepreload" href="/src/main.jsx" as="script" />
+    <!-- Font Awesome con defer para no bloquear renderizado -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" crossorigin="anonymous" />
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" /></noscript>
     
     <title>Henry Pacheco (H3n) | Desarrollador Backend | Python & Linux</title>
     
@@ -54,7 +49,7 @@
       "jobTitle": "Desarrollador Backend",
       "description": "Desarrollador Backend especializado en Python, Linux y MySQL. Disponible para proyectos freelance.",
       "url": "https://h3n.dev",
-      "image": "https://h3n-x.netlify.app/images/profile-1280.jpeg",
+      "image": "https://h3n-x.netlify.app/images/profile-640.jpeg",
       "email": "h3n.eth@gmail.com",
       "knowsAbout": ["Python", "Linux", "MySQL", "Bash", "Git", "Vim", "Arch Linux"],
       "worksFor": {
@@ -76,13 +71,12 @@
     }
     </script>
     
-    <!-- Optimización de SEO y meta tags para redes sociales -->
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="profile" />
     <meta property="og:url" content="https://h3n.dev/" />
     <meta property="og:title" content="Henry Pacheco (H3n) | Desarrollador Backend Disponible" />
     <meta property="og:description" content="Desarrollador Backend especializado en Python, Linux y MySQL. Disponible para proyectos freelance y colaboraciones. Contacta conmigo para tu próximo proyecto." />
-    <meta property="og:image" content="https://h3n-x.netlify.app/images/profile-1280.jpeg" />
+    <meta property="og:image" content="https://h3n-x.netlify.app/images/profile-640.jpeg" />
     <meta property="og:image:alt" content="Henry Pacheco - Desarrollador Backend especializado en Python y Linux" />
     <meta property="og:site_name" content="Henry Pacheco | Portfolio">
     <meta property="og:locale" content="es_ES">
@@ -96,22 +90,21 @@
     <meta name="twitter:url" content="https://h3n.dev/" />
     <meta name="twitter:title" content="Henry Pacheco (H3n) | Desarrollador Backend Disponible" />
     <meta name="twitter:description" content="Desarrollador Backend especializado en Python, Linux y MySQL. Disponible para proyectos freelance." />
-    <meta name="twitter:image" content="https://h3n-x.netlify.app/images/profile-1280.jpeg" />
+    <meta name="twitter:image" content="https://h3n-x.netlify.app/images/profile-640.jpeg" />
     <meta name="twitter:creator" content="@h3n_eth" />
     
-    <!-- Canonical URL para prevenir contenido duplicado -->
+    <!-- Canonical URL -->
     <link rel="canonical" href="https://h3n.dev/" />
     
-    <!-- PWA y funcionalidades móviles -->
+    <!-- PWA -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon" href="/images/profile-960.jpeg">
+    <link rel="apple-touch-icon" href="/images/profile-640.jpeg">
     
-    <!-- Carga crítica de CSS inline para evitar bloqueo de renderizado -->
+    <!-- CSS crítico inline para FCP -->
     <style>
-      /* Estilos críticos para FCP (First Contentful Paint) */
       :root {
         color-scheme: dark;
       }
@@ -120,6 +113,7 @@
         background-color: #000;
         color: #fff;
         font-family: 'JetBrains Mono', monospace;
+        font-display: swap;
       }
       .initial-loader {
         position: fixed;
@@ -144,10 +138,16 @@
       @keyframes spin {
         to { transform: rotate(360deg); }
       }
+      /* Prevenir CLS */
+      img, picture, video {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
     </style>
   </head>
   <body>
-    <!-- Loader inicial que se muestra antes de que React se inicialice -->
+    <!-- Loader inicial -->
     <div id="initial-loader" class="initial-loader">
       <div class="spinner"></div>
     </div>
@@ -163,7 +163,7 @@
     
     <script type="module" src="/src/main.jsx"></script>
     <script>
-      // Eliminar el loader inicial cuando la aplicación esté lista
+      // Eliminar loader cuando la app esté lista
       window.addEventListener('load', function() {
         setTimeout(function() {
           const loader = document.getElementById('initial-loader');
@@ -176,6 +176,15 @@
           }
         }, 300);
       });
+      
+      // Cargar Font Awesome de forma asíncrona si no se cargó
+      if (!document.querySelector('link[href*="font-awesome"]').sheet) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+        link.crossOrigin = 'anonymous';
+        document.head.appendChild(link);
+      }
     </script>
   </body>
 </html>

@@ -17,12 +17,20 @@
 /*  Referrer-Policy: strict-origin-when-cross-origin
 /*  Permissions-Policy: camera=(), microphone=(), geolocation=()
 
-# Cache static assets
+# Cache static assets with proper headers
 /images/*  Cache-Control: public, max-age=31536000, immutable
 /fonts/*   Cache-Control: public, max-age=31536000, immutable
 /*.css     Cache-Control: public, max-age=31536000, immutable
 /*.js      Cache-Control: public, max-age=31536000, immutable
+/*.jpeg    Cache-Control: public, max-age=31536000, immutable
+/*.jpg     Cache-Control: public, max-age=31536000, immutable
+/*.png     Cache-Control: public, max-age=31536000, immutable
+/*.webp    Cache-Control: public, max-age=31536000, immutable
 
+# MIME types for proper serving
+/*.js      Content-Type: application/javascript
+/*.jsx     Content-Type: application/javascript
+/*.mjs     Content-Type: application/javascript
 # Force HTTPS
 http://h3n.dev/*  https://h3n.dev/:splat  301!
 http://www.h3n.dev/*  https://h3n.dev/:splat  301!

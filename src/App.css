@@ -1,5 +1,11 @@
 /* Efectos Matrix y estilos personalizados */
 
+/* Optimización de fuentes */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-display: swap;
+}
+
 /* Smooth scrolling behavior */
 html {
   scroll-behavior: smooth;

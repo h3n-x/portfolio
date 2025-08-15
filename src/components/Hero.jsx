@@ -173,6 +173,7 @@ const HeroComponent = () => {
                   width={192}
                   height={192}
                   priority="high"
+                  loading="eager"
                   sizes="(max-width: 640px) 128px, (max-width: 768px) 160px, 192px"
                 />
               </div>

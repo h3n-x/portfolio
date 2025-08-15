@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, memo } from 'react';
 
-const OptimizedImage = memo(({ src, alt, className, width, height, priority = 'high', sizes = "100vw" }) => {
+const OptimizedImage = memo(({ src, alt, className, width, height, priority = 'high', sizes = "100vw", loading = 'lazy' }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(false);
   const imgRef = useRef(null);
@@ -24,8 +24,11 @@ const OptimizedImage = memo(({ src, alt, className, width, height, priority = 'h
     
     // Para imágenes específicas que sabemos que existen en diferentes formatos
     if (baseSrc.includes('/images/profile')) {
-      // Para profile, tenemos .avif y .webp
-      return `/images/profile.webp`; // Usar WebP como formato principal
+      // Usar el tamaño más apropiado para profile
+      if (targetWidth <= 640) return `/images/profile-640.jpeg`;
+      if (targetWidth <= 960) return `/images/profile-960.jpeg`;
+      if (targetWidth <= 1280) return `/images/profile-1280.jpeg`;
+      return `/images/profile-1920.jpeg`;
     }
     
     // Para otras imágenes, buscar el JPEG más cercano al tamaño objetivo
@@ -41,9 +44,11 @@ const OptimizedImage = memo(({ src, alt, className, width, height, priority = 'h
   const getTargetWidth = () => {
     if (typeof window === 'undefined') return 1280;
     const vw = window.innerWidth;
-    if (vw < 640) return 640;
-    if (vw < 960) return 960;
-    if (vw < 1280) return 1280;
+    const dpr = window.devicePixelRatio || 1;
+    const effectiveWidth = vw * dpr;
+    if (effectiveWidth < 640) return 640;
+    if (effectiveWidth < 960) return 960;
+    if (effectiveWidth < 1280) return 1280;
     return 1920;
   };
   
@@ -57,7 +62,12 @@ const OptimizedImage = memo(({ src, alt, className, width, height, priority = 'h
     }
     
     if (src.includes('/images/profile')) {
-      return ''; // Profile no tiene múltiples tamaños
+      return `
+        /images/profile-640.jpeg 640w,
+        /images/profile-960.jpeg 960w,
+        /images/profile-1280.jpeg 1280w,
+        /images/profile-1920.jpeg 1920w
+      `.trim();
     }
     
     const baseName = src.replace(/\.(jpg|jpeg|png|webp|avif)$/i, '').split('/').pop();
@@ -105,7 +115,7 @@ const OptimizedImage = memo(({ src, alt, className, width, height, priority = 'h
           setError(true);
           setIsLoaded(true);
         }}
-        loading={priority === 'high' ? 'eager' : 'lazy'}
+        loading={priority === 'high' ? 'eager' : loading}
         fetchPriority={priority}
         decoding="async"
       />

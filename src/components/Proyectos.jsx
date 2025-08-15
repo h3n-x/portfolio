@@ -102,8 +102,9 @@ function Proyectos() {
                   src={proyecto.imagen} 
                   alt={proyecto.titulo}
                   className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
-                  width="600"
-                  height="337"
+                  width={600}
+                  height={337}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 {proyecto.destacado && (
                   <div className="absolute top-2 right-2 bg-green-500 text-black text-xs font-bold px-2 py-1 rounded-full">
@@ -179,8 +180,9 @@ function Proyectos() {
                     src={proyectoActivo.imagen} 
                     alt={proyectoActivo.titulo}
                     className="w-full h-full object-contain"
-                    width="1200"
-                    height="675"
+                    width={1200}
+                    height={675}
+                    sizes="(max-width: 768px) 100vw, 80vw"
                   />
                   
                   {/* Overlay con gradiente */}
