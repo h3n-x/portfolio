@@ -363,4 +363,4 @@ Un agradecimiento especial a las increíbles herramientas y librerías que hicie
 [![Sharp](https://img.shields.io/badge/Sharp-🖼️-99CC00?style=flat-square)](https://sharp.pixelplumbing.com/)
 [![Netlify](https://img.shields.io/badge/Netlify-🚀-00C7B7?style=flat-square&logo=netlify&logoColor=white)](https://netlify.com/)
 
-</div>`
+</div>
