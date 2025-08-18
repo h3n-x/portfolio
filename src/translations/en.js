@@ -82,6 +82,11 @@ export const en = {
     back: 'Back',
     showMore: 'Show more projects',
     showLess: 'Show fewer projects',
+    chat: {
+      title: 'Anonymous Chat',
+      description: 'A simple and secure web application that allows users to engage in anonymous conversations without the need for registration or personal information.',
+      details: 'This application is built with Python for the backend, utilizing Flask to handle server-side logic and manage user sessions. The frontend is developed using Vite and Tailwind CSS, providing a responsive and user-friendly interface. The chat functionality is implemented using WebSockets, enabling real-time communication between users. The application emphasizes privacy and security, ensuring that no personal data is collected or stored.'
+    },
     h3nColors: {
       title: 'Color Generator',
       description: 'A modern web application for creating, customizing, and evaluating pastel-style color palettes that meet WCAG accessibility standards.',

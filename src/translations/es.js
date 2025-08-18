@@ -82,6 +82,11 @@ export const es = {
     back: 'Volver',
     showMore: 'Ver más proyectos',
     showLess: 'Ver menos proyectos',
+    chat: {
+      title: 'Chat Anónimo',
+      description: 'Una aplicación web moderna para chatear de forma anónima con otros usuarios en tiempo real, utilizando tecnologías como Python, Vite y Tailwind CSS.',
+      details: 'Esta aplicación permite a los usuarios unirse a salas de chat públicas o privadas sin necesidad de registrarse, utilizando un nombre de usuario temporal. La comunicación en tiempo real se logra mediante WebSockets, proporcionando una experiencia fluida y rápida. La interfaz de usuario es intuitiva y atractiva, diseñada con Tailwind CSS para una apariencia moderna y responsiva. Además, la aplicación incluye características como notificaciones de nuevos mensajes, historial de chat limitado y opciones de personalización del nombre de usuario.'
+    },
     h3nColors: {
       title: 'Color Generator',
       description: 'Una aplicación web moderna para crear, personalizar y evaluar paletas de colores con estilo pastel que cumplen con los estándares de accesibilidad WCAG.',

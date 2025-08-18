@@ -13,6 +13,16 @@ function Proyectos() {
   
   const getProyectos = useCallback(() => [
     {
+      titulo: t('projects.chat.title'),
+      descripcion: t('projects.chat.description'),
+      tecnologias: ["Python", "Vite", "Tailwind CSS"],
+      imagen: "/images/chat",
+      detalles: t('projects.chat.details'),
+      demoLink: "https://write-ghost.netlify.app/",
+      codeLink: "https://github.com/h3n-x/chat-anonimo.git",
+      destacado: true
+    },
+    {
       titulo: t('projects.h3nColors.title'),
       descripcion: t('projects.h3nColors.description'),
       tecnologias: ["React", "Vite", "Tailwind CSS"],
@@ -20,7 +30,7 @@ function Proyectos() {
       detalles: t('projects.h3nColors.details'),
       demoLink: "https://color-design.netlify.app/",
       codeLink: "https://github.com/h3n-x/color-generator",
-      destacado: true
+      destacado: false
     },
     {
       titulo: t('projects.skyCheck.title'),
@@ -30,7 +40,7 @@ function Proyectos() {
       detalles: t('projects.skyCheck.details'),
       demoLink: "https://skyh3n.netlify.app/",
       codeLink: "https://github.com/h3n-x/Skycheck",
-      destacado: true
+      destacado: false
     },
     {
       titulo: t('projects.zenShell.title'),
