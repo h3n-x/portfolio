@@ -1,0 +1,38 @@
+# Netlify redirects file
+
+# Static file exceptions - serve directly (MUST be before /* rule)
+/images/*          /images/:splat          200!
+/cursors/*         /cursors/:splat         200!
+/manifest.json     /manifest.json          200!
+/robots.txt        /robots.txt             200!
+/sitemap.xml       /sitemap.xml            200!
+
+# Handle client-side routing for SPA (catch-all for remaining routes)
+/*    /index.html   200
+
+# Security headers
+/*  X-Frame-Options: DENY
+/*  X-Content-Type-Options: nosniff
+/*  X-XSS-Protection: 1; mode=block
+/*  Referrer-Policy: strict-origin-when-cross-origin
+/*  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Cache static assets with proper headers
+/images/*  Cache-Control: public, max-age=31536000, immutable
+/fonts/*   Cache-Control: public, max-age=31536000, immutable
+/*.css     Cache-Control: public, max-age=31536000, immutable
+/*.js      Cache-Control: public, max-age=31536000, immutable
+/*.jpeg    Cache-Control: public, max-age=31536000, immutable
+/*.jpg     Cache-Control: public, max-age=31536000, immutable
+/*.png     Cache-Control: public, max-age=31536000, immutable
+/*.webp    Cache-Control: public, max-age=31536000, immutable
+
+# MIME types for proper serving
+/*.js      Content-Type: application/javascript
+/*.jsx     Content-Type: application/javascript
+/*.mjs     Content-Type: application/javascript
+# Force HTTPS
+http://h3n.dev/*  https://h3n.dev/:splat  301!
+http://www.h3n.dev/*  https://h3n.dev/:splat  301!
+
+)
