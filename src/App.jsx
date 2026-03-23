@@ -3,7 +3,7 @@ import { Copy, Check, Github, ArrowUp } from 'lucide-react'
 
 import { LanguageProvider } from './LanguageContext'
 
-import { LanguageContext } from './LanguageContext'
+import { LanguageContext } from './language-context'
 import { LazyMotion, domAnimation } from 'framer-motion'
 
 // Critical — above the fold
@@ -25,6 +25,11 @@ const Footer = memo(() => {
   const { language } = useContext(LanguageContext)
   const currentYear = new Date().getFullYear()
   const [emailCopied, setEmailCopied] = useState(false)
+
+  const scrollToTop = () => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' })
+  }
 
   const copyEmail = async () => {
     try {
@@ -113,10 +118,8 @@ const Footer = memo(() => {
             <a
               key={link.href}
               href={link.href}
-              className="text-xs transition-colors duration-200"
+              className="interactive-muted text-xs transition-colors duration-200"
               style={{ color: 'var(--text-muted)', textDecoration: 'none' }}
-              onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--accent)' }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-muted)' }}
             >
               {link.label}
             </a>
@@ -127,21 +130,17 @@ const Footer = memo(() => {
             href="https://github.com/h3n-x"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-xs transition-colors duration-200"
+            className="interactive-muted flex items-center gap-1.5 text-xs transition-colors duration-200"
             style={{ color: 'var(--text-muted)', textDecoration: 'none' }}
-            onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--accent)' }}
-            onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-muted)' }}
             aria-label="GitHub"
           >
             <Github size={14} aria-hidden="true" />
             <span>GitHub</span>
           </a>
           <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="flex items-center gap-1.5 text-xs transition-colors duration-200"
+            onClick={scrollToTop}
+            className="interactive-muted flex items-center gap-1.5 text-xs transition-colors duration-200"
             style={{ color: 'var(--text-muted)', background: 'none', border: 'none', cursor: 'pointer' }}
-            onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--accent)' }}
-            onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-muted)' }}
             aria-label={language === 'es' ? 'Volver arriba' : 'Back to top'}
           >
             <ArrowUp size={14} aria-hidden="true" />
@@ -158,21 +157,34 @@ function App() {
   // Lenis smooth scroll
   useEffect(() => {
     let lenis
+    let rafId
     const initLenis = async () => {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      if (prefersReducedMotion) return
       const { default: Lenis } = await import('lenis')
       lenis = new Lenis({
         lerp: 0.08,
         smoothWheel: true,
         syncTouch: false,
       })
+      window.__portfolioLenis = lenis
+
       function raf(time) {
         lenis.raf(time)
-        requestAnimationFrame(raf)
+        rafId = requestAnimationFrame(raf)
       }
-      requestAnimationFrame(raf)
+      rafId = requestAnimationFrame(raf)
     }
     initLenis()
-    return () => { if (lenis) lenis.destroy() }
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId)
+      if (lenis) {
+        lenis.destroy()
+        if (window.__portfolioLenis === lenis) {
+          delete window.__portfolioLenis
+        }
+      }
+    }
   }, [])
 
   return (

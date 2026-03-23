@@ -24,7 +24,14 @@ export const en = {
   about: {
     title: 'About Me',
     description: 'I build backends with Python and Flask, from REST APIs to Discord bots with real persistence. My environment is Arch Linux with Hyprland — every tool I use is custom-configured.',
-    interests: 'I work with Python as my primary language, combining it with Flask for APIs, Supabase for persistence, and Bash for automation in my Arch Linux environment.'
+    interests: 'I work with Python as my primary language, combining it with Flask for APIs, Supabase for persistence, and Bash for automation in my Arch Linux environment.',
+    stats: {
+      projects: 'Projects',
+      started: 'Started',
+      years: 'Years',
+      openSource: 'Open Source',
+      stack: 'Core stack'
+    }
   },
   
   // Technologies
@@ -74,8 +81,8 @@ export const en = {
       title: 'Open Source Projects on GitHub',
       description: 'Publishing and maintaining documented public repositories. Focus on clean code, descriptive READMEs, and functional demos deployed in production.',
       achievements: [
-        '5+ active public repositories with production demos',
-        'SkyCheck, Color Generator, and Hypr-Dot with real users',
+        '3 active public repositories with production demos',
+        'Anonymous Chat and Hypr-Dot with real users',
       ]
     }
   },
@@ -97,21 +104,6 @@ export const en = {
       title: 'Anonymous Chat',
       description: 'Real-time communication without signup or personal data',
       details: 'This application is built with Python for the backend, utilizing Flask to handle server-side logic and manage user sessions. The frontend is developed using Vite and Tailwind CSS, providing a responsive and user-friendly interface. The chat functionality is implemented using WebSockets, enabling real-time communication between users. The application emphasizes privacy and security, ensuring that no personal data is collected or stored.'
-    },
-    h3nColors: {
-      title: 'Color Generator',
-      description: 'Color palette generator with built-in WCAG contrast validation',
-      details: 'This application allows users to select colors through an intuitive visual picker, evaluate their accessibility based on WCAG standards, preview UI components with selected colors, and export palettes in various formats (Tailwind, CSS, SCSS, JSON). It includes features like saving favorite colors, keyboard shortcuts for enhanced productivity, and automatic contrast calculations to ensure accessibility. Built with React, Vite, and Tailwind CSS, it combines a retro interface with modern functionality.'
-    },
-    "skyCheck": {
-      "title": "SkyCheck",
-      "description": "Detailed weather data with clean UX and automatic geolocation",
-      "details": "A modern weather application built with React, Vite, and Tailwind CSS that offers current weather conditions, extended forecasts, astronomy data, air quality information, and UV index. Features automatic geolocation, city search, responsive design, smooth animations, and a pastel color scheme that adapts to the time of day."
-    },
-    zenShell: {
-      title: 'ZenShell Bot',
-      description: 'Discord community automation and management from a web dashboard',
-      details: 'A highly customizable Discord bot with multiple functionality modules including music, moderation, leveling and economy, featuring a real-time control panel. The bot uses modern technologies like Discord.py, Supabase for database, and a Flask control panel for administration.'
     },
     hyprDot: {
       title: 'Hypr-Dot',

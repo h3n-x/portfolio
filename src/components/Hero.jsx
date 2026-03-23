@@ -49,7 +49,7 @@ const metricCardStyle = {
 }
 
 const METRICS = [
-  { value: '5+', labelEs: 'proyectos en producción', labelEn: 'projects in production' },
+  { value: '3', labelEs: 'proyectos en producción', labelEn: 'projects in production' },
   { value: '100%', labelEs: 'open source', labelEn: 'open source' },
   { value: '3+', labelEs: 'años de experiencia', labelEn: 'years of experience' },
 ]
@@ -111,7 +111,7 @@ const HeroComponent = () => {
       id="home"
       ref={sectionRef}
       onMouseMove={handleMouseMove}
-      className="relative min-h-screen flex items-center pt-20 pb-20 overflow-hidden"
+      className="hero-section relative min-h-screen flex items-center pt-20 pb-20 overflow-hidden"
       style={{ background: 'var(--bg-primary)' }}
       aria-label="Hero"
     >
@@ -138,19 +138,6 @@ const HeroComponent = () => {
           width: '600px',
           height: '600px',
           background: 'radial-gradient(circle, rgba(255,183,3,0.09) 0%, rgba(255,183,3,0.03) 40%, transparent 70%)',
-        }}
-      />
-
-      {/* Ambient glow — left bottom */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute z-0"
-        style={{
-          bottom: '15%',
-          left: '-5%',
-          width: '350px',
-          height: '350px',
-          background: 'radial-gradient(circle, rgba(255,183,3,0.05) 0%, transparent 70%)',
         }}
       />
 

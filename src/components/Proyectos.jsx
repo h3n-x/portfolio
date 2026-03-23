@@ -2,7 +2,7 @@ import { useState, useContext, useCallback, useEffect, useRef, useMemo } from 'r
 import { createPortal } from 'react-dom'
 import { m as motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, X, ExternalLink, Github, ChevronDown } from 'lucide-react'
-import { LanguageContext } from '../LanguageContext'
+import { LanguageContext } from '../language-context'
 import { useTranslation } from '../translations'
 import OptimizedImage from './OptimizedImage'
 
@@ -71,9 +71,15 @@ function Proyectos() {
     {
       titulo: t('projects.chat.title'),
       descripcion: t('projects.chat.description'),
+      impacto: t('projects.chat.impact'),
       tecnologias: ['Python', 'Vite', 'Tailwind CSS'],
       imagen: '/images/chat',
       detalles: t('projects.chat.details'),
+      prueba: {
+        rol: t('projects.chat.proofRole'),
+        alcance: t('projects.chat.proofScope'),
+        estado: t('projects.chat.proofStatus'),
+      },
       demoLink: 'https://write-ghost.netlify.app/',
       codeLink: 'https://github.com/h3n-x/chat-anonimo.git',
       destacado: true,
@@ -115,10 +121,32 @@ function Proyectos() {
     {
       titulo: t('projects.hyprDot.title'),
       descripcion: t('projects.hyprDot.description'),
+      impacto: t('projects.hyprDot.impact'),
       tecnologias: ['Python', 'Arch Linux', 'Hyprland', 'Bash'],
       imagen: '/images/Deskt',
       detalles: t('projects.hyprDot.details'),
+      prueba: {
+        rol: t('projects.hyprDot.proofRole'),
+        alcance: t('projects.hyprDot.proofScope'),
+        estado: t('projects.hyprDot.proofStatus'),
+      },
       codeLink: 'https://github.com/h3n-x/hypr-rice.git',
+      destacado: true,
+      categoria: 'backend',
+    },
+    {
+      titulo: t('projects.archforge.title'),
+      descripcion: t('projects.archforge.description'),
+      impacto: t('projects.archforge.impact'),
+      tecnologias: ['Bash', 'Arch Linux', 'systemd', 'nftables'],
+      imagen: '/images/archforge',
+      detalles: t('projects.archforge.details'),
+      prueba: {
+        rol: t('projects.archforge.proofRole'),
+        alcance: t('projects.archforge.proofScope'),
+        estado: t('projects.archforge.proofStatus'),
+      },
+      codeLink: 'https://github.com/h3n-x/archforge',
       destacado: true,
       categoria: 'backend',
     },
@@ -141,12 +169,26 @@ function Proyectos() {
 
   const cerrar = useCallback(() => setProyectoActivo(null), [])
   const modalRef = useRef(null)
+  const closeButtonRef = useRef(null)
   const previousFocusRef = useRef(null)
+  const scrollYRef = useRef(0)
 
   useEffect(() => {
     if (!proyectoActivo) return
+
     previousFocusRef.current = document.activeElement
-    document.body.style.overflow = 'hidden'
+    const bodyStyle = document.body.style
+    const htmlStyle = document.documentElement.style
+    const lenis = window.__portfolioLenis
+    const previousBody = {
+      overflow: bodyStyle.overflow,
+    }
+    const previousHtmlOverflow = htmlStyle.overflow
+    scrollYRef.current = window.scrollY
+
+    bodyStyle.overflow = 'hidden'
+    htmlStyle.overflow = 'hidden'
+    lenis?.stop?.()
 
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') { cerrar(); return }
@@ -165,12 +207,25 @@ function Proyectos() {
     }
 
     document.addEventListener('keydown', handleKeyDown)
-    requestAnimationFrame(() => { modalRef.current?.querySelector('button')?.focus() })
+    requestAnimationFrame(() => {
+      closeButtonRef.current?.focus({ preventScroll: true })
+    })
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
-      document.body.style.overflow = 'unset'
-      previousFocusRef.current?.focus()
+      bodyStyle.overflow = previousBody.overflow
+      htmlStyle.overflow = previousHtmlOverflow
+      const currentScrollY = scrollYRef.current
+      window.scrollTo(0, currentScrollY)
+      lenis?.start?.()
+      lenis?.scrollTo?.(currentScrollY, { immediate: true, force: true })
+      if (previousFocusRef.current?.focus) {
+        try {
+          previousFocusRef.current.focus({ preventScroll: true })
+        } catch {
+          previousFocusRef.current.focus()
+        }
+      }
     }
   }, [proyectoActivo, cerrar])
 
@@ -217,19 +272,8 @@ function Proyectos() {
               role="tab"
               aria-selected={activeFilter === f.key}
               onClick={() => handleFilterChange(f.key)}
+              className="chip-filter"
               style={activeFilter === f.key ? tabActive : tabBase}
-              onMouseEnter={(e) => {
-                if (activeFilter !== f.key) {
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'
-                  e.currentTarget.style.color = 'var(--text-secondary)'
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (activeFilter !== f.key) {
-                  e.currentTarget.style.borderColor = 'transparent'
-                  e.currentTarget.style.color = 'var(--text-muted)'
-                }
-              }}
             >
               {f.label}
             </button>
@@ -244,7 +288,7 @@ function Proyectos() {
         >
           <AnimatePresence mode="popLayout">
             {visible.map((proyecto, index) => (
-              <motion.div
+              <motion.article
                 key={proyecto.titulo}
                 layout
                 variants={cardVariants}
@@ -252,65 +296,75 @@ function Proyectos() {
                 animate="visible"
                 exit="exit"
                 transition={{ delay: index * 0.05 }}
-                className="card-project card-base overflow-hidden cursor-pointer flex flex-col"
-                onClick={() => setProyectoActivo(proyecto)}
-                onKeyDown={(e) => e.key === 'Enter' && setProyectoActivo(proyecto)}
+                className="card-project card-base overflow-hidden flex flex-col"
                 role="listitem"
-                tabIndex={0}
-                aria-label={proyecto.titulo}
               >
-                {/* Image */}
-                <div className="relative overflow-hidden group h-48">
-                  <span
-                    className="absolute top-3 left-3 z-10 font-mono text-xs"
-                    style={indexLabel}
-                    aria-hidden="true"
-                  >
-                    {`0${index + 1}`}
-                  </span>
-                  <OptimizedImage
-                    src={proyecto.imagen}
-                    alt={proyecto.titulo}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
-                    width={600}
-                    height={337}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                  <div
-                    className="absolute inset-0 pointer-events-none"
-                    style={imageGradient}
-                  />
-                  {proyecto.destacado && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    previousFocusRef.current = e.currentTarget
+                    setProyectoActivo(proyecto)
+                  }}
+                  className="text-left w-full h-full"
+                  aria-label={`${language === 'es' ? 'Ver detalles de' : 'View details for'} ${proyecto.titulo}`}
+                >
+                  {/* Image */}
+                  <div className="relative overflow-hidden group h-48">
                     <div
-                      className="absolute top-3 right-3 px-2.5 py-1 rounded-full text-xs font-mono font-medium"
-                      style={featuredBadge}
+                      className="absolute top-3 left-3 z-10 font-mono text-xs"
+                      style={indexLabel}
+                      aria-hidden="true"
                     >
-                      {t('projects.featured')}
+                      {`0${index + 1}`}
                     </div>
-                  )}
-                </div>
+                    <OptimizedImage
+                      src={proyecto.imagen}
+                      alt={proyecto.titulo}
+                      className="w-full h-full object-cover project-image-zoom"
+                      width={600}
+                      height={337}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                    <div
+                      className="absolute inset-0 pointer-events-none"
+                      style={imageGradient}
+                    />
+                    {proyecto.destacado && (
+                      <div
+                        className="absolute top-3 right-3 px-2.5 py-1 rounded-full text-xs font-mono font-medium"
+                        style={featuredBadge}
+                      >
+                        {t('projects.featured')}
+                      </div>
+                    )}
+                  </div>
 
-                {/* Content */}
-                <div className="p-5 flex flex-col flex-1">
-                  <h3 className="font-display font-semibold mb-2" style={cardTitle}>
-                    {proyecto.titulo}
-                  </h3>
-                  <p className="mb-4 line-clamp-2" style={cardDesc}>
-                    {proyecto.descripcion}
-                  </p>
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {proyecto.tecnologias.map((tech, i) => (
-                      <span key={i} className="tech-tag">{tech}</span>
-                    ))}
+                  {/* Content */}
+                  <div className="p-5 flex flex-col flex-1">
+                    <h3 className="font-display font-semibold mb-2" style={cardTitle}>
+                      {proyecto.titulo}
+                    </h3>
+                    <p className="mb-4 line-clamp-2" style={cardDesc}>
+                      {proyecto.descripcion}
+                    </p>
+                    <p className="project-impact-chip mb-4">
+                      <span aria-hidden="true">↗</span>
+                      <span>{proyecto.impacto}</span>
+                    </p>
+                    <div className="project-tech-group flex flex-wrap gap-1.5 mb-4">
+                      {proyecto.tecnologias.map((tech, i) => (
+                        <span key={i} className="tech-tag">{tech}</span>
+                      ))}
+                    </div>
+                    <div className="mt-auto pt-3" style={topBorder}>
+                      <span className="card-cta-link" aria-hidden="true">
+                        {language === 'es' ? 'Ver detalles' : 'View details'}
+                        <ArrowRight size={12} aria-hidden="true" />
+                      </span>
+                    </div>
                   </div>
-                  <div className="mt-auto pt-3" style={topBorder}>
-                    <button className="card-cta-link" tabIndex={-1} aria-hidden="true">
-                      {language === 'es' ? 'Ver detalles' : 'View details'}
-                      <ArrowRight size={12} aria-hidden="true" />
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
+                </button>
+              </motion.article>
             ))}
           </AnimatePresence>
         </div>
@@ -358,7 +412,7 @@ function Proyectos() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 24, scale: 0.97 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="relative rounded-2xl w-full max-w-[640px] max-h-[85vh] flex flex-col overflow-hidden"
+              className="relative rounded-2xl w-full max-w-[640px] max-h-[90vh] flex flex-col overflow-hidden"
               style={modalPanel}
               onClick={(e) => e.stopPropagation()}
             >
@@ -396,6 +450,7 @@ function Proyectos() {
                   </div>
                 </div>
                 <button
+                  ref={closeButtonRef}
                   onClick={cerrar}
                   className="shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors"
                   style={modalClose}
@@ -406,7 +461,7 @@ function Proyectos() {
               </div>
 
               {/* Scrollable body */}
-              <div className="overflow-y-auto flex-1 px-6 pb-6">
+              <div className="project-modal-scroll overflow-y-auto flex-1 px-6 pb-6" data-lenis-prevent>
                 {/* Image — fixed height, rounded */}
                 <div className="rounded-lg overflow-hidden h-56 md:h-64 mb-5 bg-black/30">
                   <OptimizedImage
@@ -424,8 +479,26 @@ function Proyectos() {
                   {proyectoActivo.detalles}
                 </p>
 
+                <section className="project-proof-panel mb-5" aria-label={t('projects.proof.title')}>
+                  <h4 className="project-proof-title">{t('projects.proof.title')}</h4>
+                  <div className="project-proof-grid" role="list">
+                    <div className="project-proof-item" role="listitem">
+                      <span className="project-proof-label">{t('projects.proof.role')}</span>
+                      <span className="project-proof-value">{proyectoActivo.prueba.rol}</span>
+                    </div>
+                    <div className="project-proof-item" role="listitem">
+                      <span className="project-proof-label">{t('projects.proof.scope')}</span>
+                      <span className="project-proof-value">{proyectoActivo.prueba.alcance}</span>
+                    </div>
+                    <div className="project-proof-item" role="listitem">
+                      <span className="project-proof-label">{t('projects.proof.status')}</span>
+                      <span className="project-proof-value">{proyectoActivo.prueba.estado}</span>
+                    </div>
+                  </div>
+                </section>
+
                 {/* Tags */}
-                <div className="flex flex-wrap gap-2">
+                <div className="project-tech-group flex flex-wrap gap-2">
                   {proyectoActivo.tecnologias.map((tech, i) => (
                     <span key={i} className="tech-tag">{tech}</span>
                   ))}

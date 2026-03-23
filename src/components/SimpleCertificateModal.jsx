@@ -1,24 +1,39 @@
-import { useContext, useEffect, useRef } from 'react'
+import { useContext, useEffect, useRef, useCallback } from 'react'
 import { createPortal } from 'react-dom'
 import { Award, X, ExternalLink } from 'lucide-react'
 import { m as motion, AnimatePresence } from 'framer-motion'
-import { LanguageContext } from '../LanguageContext'
+import { LanguageContext } from '../language-context'
 import { useTranslation } from '../translations'
 
 const SimpleCertificateModal = ({ isOpen, onClose, certificate }) => {
   const { language } = useContext(LanguageContext)
   const { t } = useTranslation(language)
   const modalRef = useRef(null)
+  const closeButtonRef = useRef(null)
   const previousFocusRef = useRef(null)
+  const scrollYRef = useRef(0)
+
+  const handleClose = useCallback(() => onClose(), [onClose])
 
   useEffect(() => {
     if (!isOpen) return
 
     previousFocusRef.current = document.activeElement
-    document.body.style.overflow = 'hidden'
+    const bodyStyle = document.body.style
+    const htmlStyle = document.documentElement.style
+    const lenis = window.__portfolioLenis
+    const previousBody = {
+      overflow: bodyStyle.overflow,
+    }
+    const previousHtmlOverflow = htmlStyle.overflow
+    scrollYRef.current = window.scrollY
+
+    bodyStyle.overflow = 'hidden'
+    htmlStyle.overflow = 'hidden'
+    lenis?.stop?.()
 
     const handleEscape = (e) => {
-      if (e.key === 'Escape') onClose()
+      if (e.key === 'Escape') handleClose()
     }
 
     const handleTab = (e) => {
@@ -42,25 +57,43 @@ const SimpleCertificateModal = ({ isOpen, onClose, certificate }) => {
     document.addEventListener('keydown', handleTab)
 
     requestAnimationFrame(() => {
-      const firstBtn = modalRef.current?.querySelector('button')
-      firstBtn?.focus()
+      closeButtonRef.current?.focus({ preventScroll: true })
     })
 
     return () => {
       document.removeEventListener('keydown', handleEscape)
       document.removeEventListener('keydown', handleTab)
-      document.body.style.overflow = 'unset'
-      previousFocusRef.current?.focus()
+      bodyStyle.overflow = previousBody.overflow
+      htmlStyle.overflow = previousHtmlOverflow
+      const currentScrollY = scrollYRef.current
+      window.scrollTo(0, currentScrollY)
+      lenis?.start?.()
+      lenis?.scrollTo?.(currentScrollY, { immediate: true, force: true })
+      if (previousFocusRef.current?.focus) {
+        try {
+          previousFocusRef.current.focus({ preventScroll: true })
+        } catch {
+          previousFocusRef.current.focus()
+        }
+      }
     }
-  }, [isOpen, onClose])
+  }, [isOpen, handleClose])
 
   const handleBackdropClick = (e) => {
-    if (e.target === e.currentTarget) onClose()
+    if (e.target === e.currentTarget) handleClose()
   }
 
   const handleViewCertificate = () => {
     window.open(certificate.url, '_blank', 'noopener,noreferrer')
-    onClose()
+    handleClose()
+  }
+
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(certificate.url)
+    } catch {
+      // noop
+    }
   }
 
   if (!certificate) return null
@@ -81,7 +114,7 @@ const SimpleCertificateModal = ({ isOpen, onClose, certificate }) => {
         >
           <motion.div
             ref={modalRef}
-            className="relative w-full max-w-lg rounded-xl overflow-hidden"
+            className="relative w-full max-w-lg max-h-[90vh] rounded-xl overflow-hidden flex flex-col"
             style={{
               background: 'var(--bg-surface)',
               border: '1px solid var(--border-default)',
@@ -117,7 +150,8 @@ const SimpleCertificateModal = ({ isOpen, onClose, certificate }) => {
                 </div>
               </div>
               <button
-                onClick={onClose}
+                ref={closeButtonRef}
+                onClick={handleClose}
                 className="flex items-center justify-center w-8 h-8 rounded-full transition-colors"
                 style={{
                   color: 'var(--text-muted)',
@@ -131,7 +165,7 @@ const SimpleCertificateModal = ({ isOpen, onClose, certificate }) => {
             </div>
 
             {/* Content */}
-            <div className="p-6 text-center">
+            <div className="p-6 text-center overflow-y-auto" data-lenis-prevent>
               <div
                 className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-4"
                 style={{ background: 'var(--accent-dim)' }}
@@ -147,13 +181,24 @@ const SimpleCertificateModal = ({ isOpen, onClose, certificate }) => {
               <p className="mb-6" style={{ color: 'var(--text-muted)', fontSize: 'var(--text-sm)' }}>
                 {t('certificateModal.externalDescription')}
               </p>
-              <button
-                onClick={handleViewCertificate}
-                className="btn-amber btn-amber-solid"
-              >
-                <ExternalLink size={12} aria-hidden="true" />
-                <span>{t('certificateModal.viewCertificate')}</span>
-              </button>
+              <p className="mb-4" style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>
+                {t('certificateModal.mayRequireLogin')}
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
+                <button
+                  onClick={handleViewCertificate}
+                  className="btn-amber btn-amber-solid"
+                >
+                  <ExternalLink size={12} aria-hidden="true" />
+                  <span>{t('certificateModal.viewCertificate')}</span>
+                </button>
+                <button
+                  onClick={handleCopyLink}
+                  className="btn-amber"
+                >
+                  <span>{t('certificateModal.copyLink')}</span>
+                </button>
+              </div>
             </div>
 
             {/* Footer */}
@@ -171,7 +216,7 @@ const SimpleCertificateModal = ({ isOpen, onClose, certificate }) => {
                 </kbd>{' '}
                 {t('certificateModal.toClose')}
               </div>
-              <button onClick={onClose} className="btn-amber text-xs">
+              <button onClick={handleClose} className="btn-amber text-xs">
                 {t('certificateModal.close')}
               </button>
             </div>
