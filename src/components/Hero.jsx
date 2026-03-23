@@ -177,7 +177,7 @@ const HeroComponent = () => {
 
       {/* Scroll indicator */}
       <motion.div
-        className="pb-2 flex justify-center"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex justify-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 0.5 }}
