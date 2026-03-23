@@ -2,7 +2,7 @@ import { useContext, memo } from 'react'
 import { m as motion } from 'framer-motion'
 import { LanguageContext } from '../language-context'
 import { useTranslation } from '../translations'
-import { Database, Terminal, Globe, FolderGit2, CalendarDays, Code2, Monitor } from 'lucide-react'
+import { Database, Terminal, Globe, FolderGit2, Code2, Monitor } from 'lucide-react'
 import { PythonIcon, LinuxIcon, GitIcon, ReactIcon, FlaskIcon, SupabaseIcon, ViteIcon, FastAPIIcon, PostgreSQLIcon, DockerIcon } from './icons/BrandIcons'
 
 const chipStyle = {
@@ -17,10 +17,8 @@ const SobreMi = memo(() => {
 
   const stats = [
     { value: '3', label: t('about.stats.projects'), icon: <FolderGit2 size={14} /> },
-    { value: '2022', label: t('about.stats.started'), icon: <CalendarDays size={14} /> },
     { value: '3+', label: t('about.stats.years'), icon: <Code2 size={14} /> },
     { value: '100%', label: t('about.stats.openSource'), icon: <Monitor size={14} /> },
-    { value: 'Py/Flask', label: t('about.stats.stack'), icon: <Database size={14} /> },
   ]
 
   const techCategories = [
@@ -125,10 +123,10 @@ const SobreMi = memo(() => {
               {t('about.interests')}
             </motion.p>
 
-            {/* Stats 2x2 grid */}
+            {/* Stats grid */}
             <motion.div
               variants={stagger}
-              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-2 mt-2"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 mt-2"
             >
               {stats.map((stat) => (
                 <motion.div

@@ -27,10 +27,8 @@ export const en = {
     interests: 'I work with Python as my primary language, combining it with Flask for APIs, Supabase for persistence, and Bash for automation in my Arch Linux environment.',
     stats: {
       projects: 'Projects',
-      started: 'Started',
       years: 'Years',
-      openSource: 'Open Source',
-      stack: 'Core stack'
+      openSource: 'Open Source'
     }
   },
   
