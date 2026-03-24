@@ -3,7 +3,7 @@ import { m as motion } from 'framer-motion'
 import { LanguageContext } from '../language-context'
 import { useTranslation } from '../translations'
 import { Database, Terminal, Globe, FolderGit2, Code2, Monitor } from 'lucide-react'
-import { PythonIcon, LinuxIcon, GitIcon, ReactIcon, FlaskIcon, SupabaseIcon, ViteIcon, FastAPIIcon, PostgreSQLIcon, DockerIcon } from './icons/BrandIcons'
+import { PythonIcon, LinuxIcon, GitIcon, FlaskIcon, SupabaseIcon, FastAPIIcon, PostgreSQLIcon, DockerIcon } from './icons/BrandIcons'
 
 const chipStyle = {
   background: 'var(--bg-elevated)',
@@ -41,13 +41,6 @@ const SobreMi = memo(() => {
         { icon: <GitIcon size={16} />, name: 'Git', url: 'https://git-scm.com' },
         { icon: <Globe size={16} />, name: 'Vim', url: 'https://www.vim.org' },
         { icon: <DockerIcon size={16} />, name: 'Docker', url: 'https://www.docker.com' },
-      ],
-    },
-    {
-      label: 'Frontend',
-      items: [
-        { icon: <ReactIcon size={16} />, name: 'React', url: 'https://react.dev' },
-        { icon: <ViteIcon size={16} />, name: 'Vite', url: 'https://vite.dev' },
       ],
     },
   ]
@@ -165,7 +158,7 @@ const SobreMi = memo(() => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.5, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col pt-1 justify-between h-full"
+            className="flex flex-col pt-1 gap-4"
           >
             <span
               className="font-mono uppercase block mb-5"
@@ -174,8 +167,8 @@ const SobreMi = memo(() => {
               {language === 'es' ? 'Stack tecnológico' : 'Tech Stack'}
             </span>
 
-            {techCategories.map((category) => (
-              <div key={category.label} className="mb-4 last:mb-0">
+            {techCategories.map((category, index) => (
+              <div key={category.label} className={index === 1 ? 'mt-1' : ''}>
                 <span
                   className="block font-mono uppercase mb-2"
                   style={{ fontSize: '11px', color: '#52525B', letterSpacing: '0.09em' }}

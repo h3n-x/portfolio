@@ -1,6 +1,6 @@
 import { useContext, memo } from 'react'
 import { m as motion } from 'framer-motion'
-import { LanguageContext } from '../LanguageContext'
+import { LanguageContext } from '../language-context'
 import { useTranslation } from '../translations'
 
 const sectionBackgroundStyle = { background: 'var(--bg-primary)' }

@@ -1,6 +1,7 @@
 import sharp from 'sharp';
 import fs from 'fs/promises';
 import path from 'path';
+import process from 'node:process';
 
 const SIZES = [
   { width: 640, name: '640' },
@@ -29,8 +30,7 @@ async function processImage(inputPath, outputDir) {
         const outputPath = path.join(outputDir, `${filename}-${size.name}.${format.format}`);
 
         await resizedImage
-          .clone()
-          [format.format](format.options)
+          .clone()[format.format](format.options)
           .toFile(outputPath);
 
         console.log(`Generado: ${outputPath}`);

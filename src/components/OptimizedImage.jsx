@@ -1,15 +1,12 @@
-import { useState, useEffect, useRef, memo } from 'react';
+import { useState, useContext, memo } from 'react';
+import { LanguageContext } from '../language-context';
+import { useTranslation } from '../translations';
 
 const OptimizedImage = memo(({ src, alt, className, width, height, priority = 'low', sizes = "100vw", loading = 'lazy' }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(false);
-  const imgRef = useRef(null);
-  
-  useEffect(() => {
-    if (imgRef.current && imgRef.current.complete) {
-      setIsLoaded(true);
-    }
-  }, []);
+  const { language } = useContext(LanguageContext);
+  const { t } = useTranslation(language);
   
   // Función para obtener la URL de la imagen optimizada según el tamaño
   const getOptimizedSrc = (baseSrc, targetWidth) => {
@@ -92,24 +89,21 @@ const OptimizedImage = memo(({ src, alt, className, width, height, priority = 'l
     <div 
       className={`relative ${className || ''}`}
       aria-busy={!isLoaded}
-      role="img"
-      aria-label={alt || 'Imagen'}
     >
       {!isLoaded && !error && (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-900 animate-pulse rounded-lg">
-          <span className="sr-only">Cargando imagen...</span>
+          <span className="sr-only">{t('image.loading')}</span>
           <div className="w-10 h-10 border-4 border-green-500/20 border-t-green-500 rounded-full animate-spin"></div>
         </div>
       )}
       
       {error && (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-900 text-red-500 rounded-lg">
-          <span className="text-sm">Error al cargar la imagen</span>
+          <span className="text-sm">{t('image.error')}</span>
         </div>
       )}
       
       <img
-        ref={imgRef}
         src={optimizedSrc}
         srcSet={srcSet}
         sizes={sizes}

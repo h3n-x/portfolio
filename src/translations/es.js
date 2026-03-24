@@ -17,14 +17,20 @@ export const es = {
     viewProjects: 'Ver Proyectos',
     availableForWork: 'Disponible para proyectos',
     availableStatus: 'Disponible',
-    tagline: 'Construyo backends que resuelven problemas reales — desde APIs REST con autenticación hasta bots de Discord con panel de control. Trabajo en Linux, pienso en sistemas, escribo en Python.'
+    tagline: 'Construyo backends en Python con foco en seguridad y fiabilidad: APIs autenticadas, automatización en Linux y despliegues que funcionan en producción.',
+    quickScan: {
+      title: 'Resumen para reclutador',
+      item1: 'Backend Python con foco en sistemas Linux',
+      item2: 'Proyectos desplegados y mantenimiento activo',
+      item3: 'Código abierto con documentación y demo funcional'
+    }
   },
   
   // Sobre Mí
   about: {
     title: 'Sobre Mí',
-    description: 'Construyo backends con Python y Flask, desde APIs REST hasta bots de Discord con persistencia real. Mi entorno es Arch Linux con Hyprland — cada herramienta que uso está configurada a medida.',
-    interests: 'Trabajo con Python como lenguaje principal, combinándolo con Flask para APIs, Supabase para persistencia y Bash para automatización en mi entorno Arch Linux.',
+    description: 'Comencé personalizando Linux para entender cómo funcionan los sistemas por dentro; hoy uso esa base para diseñar backends en Python con decisiones claras de arquitectura, seguridad y mantenimiento.',
+    interests: 'Actualmente curso 8 de 10 semestres de Ingeniería de Sistemas y avanzo en el Certificado Profesional de Ciberseguridad de Google en Coursera (6 de 9 cursos). Mi enfoque está en hardening Linux, automatización con Bash y servicios backend listos para producción con impacto real.',
     stats: {
       projects: 'Proyectos',
       years: 'Años',
@@ -98,15 +104,38 @@ export const es = {
     back: 'Volver',
     showMore: 'Ver más proyectos',
     showLess: 'Ver menos proyectos',
+    proof: {
+      title: 'Pruebas de ejecución',
+      role: 'Rol',
+      scope: 'Alcance',
+      status: 'Estado'
+    },
     chat: {
       title: 'Chat Anónimo',
       description: '¿Quieres hablar sin dejar rastro? Chat en tiempo real sin cuentas, sin historial, sin datos personales',
-      details: 'Esta aplicación permite a los usuarios unirse a salas de chat públicas o privadas sin necesidad de registrarse, utilizando un nombre de usuario temporal. La comunicación en tiempo real se logra mediante WebSockets, proporcionando una experiencia fluida y rápida. La interfaz de usuario es intuitiva y atractiva, diseñada con Tailwind CSS para una apariencia moderna y responsiva. Además, la aplicación incluye características como notificaciones de nuevos mensajes, historial de chat limitado y opciones de personalización del nombre de usuario.'
+      details: 'Esta aplicación permite a los usuarios unirse a salas de chat públicas o privadas sin necesidad de registrarse, utilizando un nombre de usuario temporal. La comunicación en tiempo real se logra mediante WebSockets, proporcionando una experiencia fluida y rápida. La interfaz de usuario es intuitiva y atractiva, diseñada con Tailwind CSS para una apariencia moderna y responsiva. Además, la aplicación incluye características como notificaciones de nuevos mensajes, historial de chat limitado y opciones de personalización del nombre de usuario.',
+      impact: 'Chat en tiempo real sin fricción de registro',
+      proofRole: 'Autor principal del frontend y backend',
+      proofScope: 'Arquitectura en tiempo real, UX y despliegue',
+      proofStatus: 'Demo pública y repositorio activo'
     },
     hyprDot: {
       title: 'Hypr-Dot',
       description: 'Entorno Linux funcional y visualmente cohesivo con gestión dinámica de temas',
-      details: 'Un entorno Arch Linux altamente personalizado con Hyprland como gestor de ventanas, con esquemas de colores dinámicos que se adaptan a tu fondo de pantalla.'
+      details: 'Un entorno Arch Linux altamente personalizado con Hyprland como gestor de ventanas, con esquemas de colores dinámicos que se adaptan a tu fondo de pantalla.',
+      impact: 'Reduce horas de configuración manual del entorno Linux',
+      proofRole: 'Diseño y automatización de dotfiles',
+      proofScope: 'Tema visual, scripts y mantenimiento del entorno',
+      proofStatus: 'Repositorio público con uso real'
+    },
+    archforge: {
+      title: 'ArchForge',
+      description: 'Automatiza la post-instalación de Arch Linux para evitar errores manuales y dejar el sistema listo en minutos',
+      details: 'Toolkit modular para configurar un Arch Linux recién instalado con backups automáticos y restauración por sesión. Cubre paquetes, servicios, seguridad, red, energía y gráficos con un flujo guiado y modo dry-run. Su evolución activa en el changelog (v0.3.0) demuestra madurez y mantenimiento continuo.',
+      impact: 'Estandariza post-instalación y minimiza drift operativo',
+      proofRole: 'Autor y mantenedor del toolkit',
+      proofScope: 'Módulos de seguridad, red, energía y gráficos',
+      proofStatus: 'Versionado activo con changelog público'
     }
   },
   
@@ -146,8 +175,16 @@ export const es = {
     external: 'Certificado Externo',
     externalDescription: 'Este certificado se encuentra alojado en una plataforma externa. Haz clic en el botón de abajo para verlo.',
     viewCertificate: 'Ver Certificado',
+    copyLink: 'Copiar enlace',
+    copied: 'Enlace copiado',
+    mayRequireLogin: 'Algunos certificados externos pueden requerir inicio de sesión. Si no abre, copia el enlace y ábrelo manualmente.',
     pressEsc: 'Presiona',
     toClose: 'para cerrar',
     close: 'Cerrar'
+  },
+
+  image: {
+    loading: 'Cargando imagen...',
+    error: 'Error al cargar la imagen'
   },
 };

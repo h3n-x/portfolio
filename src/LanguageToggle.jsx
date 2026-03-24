@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { LanguageContext } from './LanguageContext'
+import { LanguageContext } from './language-context'
 
 const LanguageToggle = () => {
   const { language, toggleLanguage } = useContext(LanguageContext)

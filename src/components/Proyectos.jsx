@@ -9,7 +9,6 @@ import OptimizedImage from './OptimizedImage'
 const INITIAL_VISIBLE = 6
 
 const sectionBg = { background: 'var(--bg-primary)' }
-const indexLabel = { color: 'var(--accent)', userSelect: 'none' }
 const imageGradient = { background: 'linear-gradient(to top, #111113 10%, transparent 80%)' }
 const featuredBadge = {
   background: 'rgba(255,183,3,0.15)',
@@ -310,13 +309,6 @@ function Proyectos() {
                 >
                   {/* Image */}
                   <div className="relative overflow-hidden group h-48">
-                    <div
-                      className="absolute top-3 left-3 z-10 font-mono text-xs"
-                      style={indexLabel}
-                      aria-hidden="true"
-                    >
-                      {`0${index + 1}`}
-                    </div>
                     <OptimizedImage
                       src={proyecto.imagen}
                       alt={proyecto.titulo}

@@ -1,7 +1,7 @@
 import { useContext, memo, useCallback, useState } from 'react'
 import { m as motion } from 'framer-motion'
 import { Award } from 'lucide-react'
-import { LanguageContext } from '../LanguageContext'
+import { LanguageContext } from '../language-context'
 import { useTranslation } from '../translations'
 import SimpleCertificateModal from './SimpleCertificateModal'
 

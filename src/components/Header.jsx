@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext, memo, useCallback } from 'react'
 import { X, Menu } from 'lucide-react'
-import { LanguageContext } from '../LanguageContext'
+import { LanguageContext } from '../language-context'
 import { useTranslation } from '../translations'
 import LanguageToggle from '../LanguageToggle'
 
@@ -70,8 +70,9 @@ const Header = memo(() => {
     setIsMenuOpen(false)
     const section = document.getElementById(id)
     if (section) {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
       const top = section.getBoundingClientRect().top + window.scrollY - 76
-      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' })
+      window.scrollTo({ top: Math.max(0, top), behavior: prefersReducedMotion ? 'auto' : 'smooth' })
       setActiveSection(id)
     }
   }
@@ -123,14 +124,12 @@ const Header = memo(() => {
                 key={id}
                 href={`#${id}`}
                 onClick={(e) => handleNavClick(e, id)}
-                className={`nav-link-animated relative text-sm font-medium transition-colors duration-200${active ? ' active' : ''}`}
+                className={`nav-link-animated interactive-muted relative text-sm font-medium transition-colors duration-200${active ? ' active' : ''}`}
                 style={{
                   color: active ? 'var(--accent)' : 'var(--text-muted)',
                   fontFamily: 'var(--font-body)',
                   textDecoration: 'none',
                 }}
-                onMouseEnter={(e) => { if (!active) e.currentTarget.style.color = 'var(--text-primary)' }}
-                onMouseLeave={(e) => { if (!active) e.currentTarget.style.color = 'var(--text-muted)' }}
                 aria-current={active ? 'page' : undefined}
               >
                 {label}
