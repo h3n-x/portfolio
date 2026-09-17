@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Terminal, Home, ArrowLeft } from '@lucide/astro';
+
+const title = '404 - Página no encontrada | Page Not Found';
+const description = 'La página que buscas no existe o ha sido trasladada.';
+const lang = 'es';
+---
+
+<BaseLayout title={title} description={description} lang={lang}>
+  <section class="min-h-[60vh] flex flex-col items-center justify-center text-center gap-6 py-16" aria-labelledby="not-found-title">
+    <div class="w-16 h-16 rounded-2xl bg-(--accent-forest-bg) text-(--accent-forest) border border-(--border-subtle) flex items-center justify-center shadow-sm">
+      <Terminal class="w-8 h-8" aria-hidden="true" />
+    </div>
+
+    <div class="flex flex-col gap-2 max-w-md">
+      <span class="text-xs font-mono font-bold tracking-widest uppercase text-(--accent-primary)">
+        HTTP 404 · NOT FOUND
+      </span>
+      <h1 id="not-found-title" class="text-3xl sm:text-4xl font-extrabold tracking-tight text-(--text-primary)">
+        Página no encontrada
+      </h1>
+      <p class="text-sm text-(--text-muted) leading-relaxed">
+        La ruta que intentas visitar no existe o ha sido reestructurada durante la actualización del portfolio.
+      </p>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+      <a
+        href="/es/"
+        class="interactive-target px-5 py-2.5 rounded-xl font-medium text-sm bg-(--accent-primary) text-white hover:bg-(--accent-primary-hover) transition-all flex items-center gap-2 shadow-xs"
+      >
+        <Home class="w-4 h-4" aria-hidden="true" />
+        <span>Volver al Inicio (ES)</span>
+      </a>
+      <a
+        href="/en/"
+        class="interactive-target px-5 py-2.5 rounded-xl font-medium text-sm bg-(--bg-surface) text-(--text-secondary) border border-(--border-default) hover:text-(--text-primary) hover:border-(--border-strong) transition-all flex items-center gap-2 shadow-xs"
+      >
+        <ArrowLeft class="w-4 h-4" aria-hidden="true" />
+        <span>Return Home (EN)</span>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

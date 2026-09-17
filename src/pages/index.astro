@@ -1,0 +1,23 @@
+---
+// Root page that gracefully routes to the user's preferred language or default /es/
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0;url=/es/" />
+    <title>Henry Pacheco (H3n) | Portfolio</title>
+    <script is:inline>
+      const userLang = navigator.language || navigator.userLanguage || 'es';
+      if (userLang.startsWith('en')) {
+        window.location.replace('/en/');
+      } else {
+        window.location.replace('/es/');
+      }
+    </script>
+  </head>
+  <body style="background: #0E141D; color: #F3F6F9; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0;">
+    <p>Redirigiendo / Redirecting... <a href="/es/" style="color: #F4A261;">Click aquí si no redirige automáticamente</a></p>
+  </body>
+</html>

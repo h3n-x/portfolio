@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/sections/Hero.astro';
+import About from '../../components/sections/About.astro';
+import Projects from '../../components/sections/Projects.astro';
+import Experience from '../../components/sections/Experience.astro';
+import Skills from '../../components/sections/Skills.astro';
+import Education from '../../components/sections/Education.astro';
+import Contact from '../../components/sections/Contact.astro';
+
+const lang = 'es';
+const title = 'Henry Pacheco (H3n) | Desarrollador Backend & Linux';
+const description = 'Portfolio profesional de Henry Pacheco (H3n). Especializado en automatización con Bash, sistemas Linux y desarrollo backend con Python.';
+---
+
+<BaseLayout title={title} description={description} lang={lang}>
+  <Hero lang={lang} />
+  <About lang={lang} />
+  <Projects lang={lang} />
+  <Experience lang={lang} />
+  <Skills lang={lang} />
+  <Education lang={lang} />
+  <Contact lang={lang} />
+</BaseLayout>
