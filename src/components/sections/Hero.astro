@@ -65,6 +65,7 @@ const t = useTranslations(lang);
       download="cv-henry-pacheco.pdf"
       class="interactive-target px-4 py-2.5 rounded-xl font-medium text-sm bg-(--bg-surface) text-(--text-secondary) border border-(--border-default) hover:text-(--text-primary) hover:border-(--accent-primary) transition-all duration-200 flex items-center gap-2 shadow-xs"
       aria-label={`${t('hero.ctaCV')} (abre en nueva pestaña o descarga)`}
+      data-umami-event="download-cv"
     >
       <FileText class="w-4 h-4 text-(--accent-primary)" aria-hidden="true" />
       <span>{t('hero.ctaCV')}</span>

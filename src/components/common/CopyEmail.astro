@@ -26,6 +26,7 @@ const buttonClasses = `${baseClasses} ${variant === 'primary' ? primaryClasses :
     data-copied-text={t('contact.copied')}
     data-initial-text={t('contact.copyEmail')}
     aria-label={t('contact.copyEmail')}
+    data-umami-event="copy-email"
   >
     <span class="icon-mail flex items-center">
       <Copy class="w-4 h-4" aria-hidden="true" />
@@ -51,6 +52,11 @@ const buttonClasses = `${baseClasses} ${variant === 'primary' ? primaryClasses :
         const iconCheck = btn.querySelector('.icon-check');
         const label = btn.querySelector('.btn-label');
         const live = btn.parentElement?.querySelector('.live-feedback');
+
+        // Track event in Umami if available
+        if (typeof window !== 'undefined' && window.umami && typeof window.umami.track === 'function') {
+          window.umami.track('copy-email');
+        }
 
         try {
           await navigator.clipboard.writeText(email);
