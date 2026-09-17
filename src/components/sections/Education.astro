@@ -1,0 +1,85 @@
+---
+import type { SupportedLang } from '../../i18n/ui';
+import { useTranslations } from '../../i18n/utils';
+import { GraduationCap, Award, ExternalLink } from '@lucide/astro';
+
+interface Props {
+  lang: SupportedLang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const educationItems = [
+  {
+    title: t('education.degreeTitle'),
+    institution: t('education.degreeInst'),
+    description: t('education.degreeDesc'),
+    period: 'En curso',
+    icon: GraduationCap,
+  },
+  {
+    title: t('education.certGoogleTitle'),
+    institution: t('education.certGoogleInst'),
+    description: t('education.certGoogleDesc'),
+    period: '2024',
+    icon: Award,
+  },
+  {
+    title: t('education.certHack4uTitle'),
+    institution: t('education.certHack4uInst'),
+    description: t('education.certHack4uDesc'),
+    period: '2023',
+    icon: Award,
+  },
+  {
+    title: t('education.certOneTitle'),
+    institution: t('education.certOneInst'),
+    description: t('education.certOneDesc'),
+    period: '2023',
+    icon: Award,
+  },
+];
+---
+
+<section id="formacion" class="flex flex-col gap-6" aria-labelledby="education-title">
+  <!-- Section Header -->
+  <div class="flex flex-col gap-1 border-b border-(--border-subtle) pb-3">
+    <h2 id="education-title" class="text-2xl sm:text-3xl font-bold tracking-tight text-(--text-primary)">
+      {t('education.title')}
+    </h2>
+    <p class="text-sm text-(--text-muted)">
+      {t('education.subtitle')}
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    {educationItems.map((item) => {
+      const IconComp = item.icon;
+      return (
+        <article class="ghibli-card p-6 flex flex-col justify-between gap-4 bg-(--bg-surface)">
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center justify-between gap-2">
+              <span class="w-8 h-8 rounded-lg bg-(--accent-forest-bg) text-(--accent-forest) flex items-center justify-center">
+                <IconComp class="w-4 h-4" aria-hidden="true" />
+              </span>
+              <span class="text-xs font-semibold px-2 py-0.5 rounded-md bg-(--bg-elevated) text-(--text-muted) border border-(--border-subtle)">
+                {item.period}
+              </span>
+            </div>
+
+            <h3 class="text-base font-bold text-(--text-primary) pt-1">
+              {item.title}
+            </h3>
+            <p class="text-xs font-semibold text-(--accent-forest)">
+              {item.institution}
+            </p>
+            <p class="text-xs text-(--text-muted) leading-relaxed">
+              {item.description}
+            </p>
+          </div>
+        </article>
+      );
+    })}
+  </div>
+</section>

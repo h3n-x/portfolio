@@ -1,0 +1,54 @@
+---
+import type { SupportedLang } from '../../i18n/ui';
+import { useTranslations } from '../../i18n/utils';
+import { Terminal, Shield, Cpu } from '@lucide/astro';
+
+interface Props {
+  lang: SupportedLang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section id="sobre-mi" class="flex flex-col gap-6" aria-labelledby="about-title">
+  <!-- Section Header -->
+  <div class="flex flex-col gap-1 border-b border-(--border-subtle) pb-3">
+    <h2 id="about-title" class="text-2xl sm:text-3xl font-bold tracking-tight text-(--text-primary)">
+      {t('about.title')}
+    </h2>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    <!-- Story & Bio -->
+    <div class="lg:col-span-7 flex flex-col gap-4 text-base text-(--text-secondary) leading-relaxed">
+      <p>
+        {t('about.p1')}
+      </p>
+      <p>
+        {t('about.p2')}
+      </p>
+    </div>
+
+    <!-- Core Specialties Highlight Box -->
+    <div class="lg:col-span-5 ghibli-card p-6 flex flex-col gap-4 bg-(--bg-card-subtle)/50 border-(--border-subtle)">
+      <h3 class="text-sm font-bold uppercase tracking-wider text-(--accent-primary)">
+        {t('about.focusLabel')}
+      </h3>
+      <ul class="flex flex-col gap-3 text-sm text-(--text-secondary)" role="list">
+        <li class="flex items-start gap-2.5">
+          <Terminal class="w-4 h-4 text-(--accent-forest) shrink-0 mt-0.5" aria-hidden="true" />
+          <span>{t('about.focus1')}</span>
+        </li>
+        <li class="flex items-start gap-2.5">
+          <Cpu class="w-4 h-4 text-(--accent-primary) shrink-0 mt-0.5" aria-hidden="true" />
+          <span>{t('about.focus2')}</span>
+        </li>
+        <li class="flex items-start gap-2.5">
+          <Shield class="w-4 h-4 text-(--accent-sky) shrink-0 mt-0.5" aria-hidden="true" />
+          <span>{t('about.focus3')}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,95 @@
+---
+import type { SupportedLang } from '../../i18n/ui';
+import { useTranslations } from '../../i18n/utils';
+import CopyEmail from '../common/CopyEmail.astro';
+import { Terminal, MapPin, ArrowDown, FileText } from '@lucide/astro';
+import GithubIcon from '../icons/GithubIcon.astro';
+import LinkedinIcon from '../icons/LinkedinIcon.astro';
+
+interface Props {
+  lang: SupportedLang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section id="hero" class="relative pt-6 sm:pt-12 pb-4 flex flex-col items-start gap-6" aria-label="Introducción">
+  <!-- Status Badge & Location -->
+  <div class="flex flex-wrap items-center gap-3">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-(--accent-forest-bg) text-(--accent-forest) border border-(--border-subtle)">
+      <span class="relative flex h-2 w-2">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-(--accent-forest) opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-(--accent-forest)"></span>
+      </span>
+      <span>{t('hero.status')}</span>
+    </div>
+
+    <div class="inline-flex items-center gap-1.5 text-xs text-(--text-muted)">
+      <MapPin class="w-3.5 h-3.5 text-(--accent-primary)" aria-hidden="true" />
+      <span>{t('hero.location')}</span>
+    </div>
+  </div>
+
+  <!-- Main Headline -->
+  <div class="flex flex-col gap-3 max-w-3xl">
+    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08] text-(--text-primary)">
+      Henry Pacheco <span class="text-(--accent-primary) font-normal text-2xl sm:text-3xl">(H3n)</span>
+    </h1>
+    <p class="text-xl sm:text-2xl font-semibold text-(--accent-forest)">
+      {t('hero.role')}
+    </p>
+  </div>
+
+  <!-- Narrative Tagline -->
+  <p class="text-base sm:text-lg text-(--text-secondary) leading-relaxed max-w-2xl">
+    {t('hero.tagline')}
+  </p>
+
+  <!-- CTAs & Conversion Actions -->
+  <div class="flex flex-wrap items-center gap-3 pt-2">
+    <CopyEmail lang={lang} variant="primary" />
+
+    <a
+      href="#proyectos"
+      class="interactive-target px-5 py-2.5 rounded-xl font-medium text-sm bg-(--bg-surface) text-(--text-primary) border border-(--border-default) hover:border-(--accent-primary) hover:text-(--accent-primary) transition-all duration-200 flex items-center gap-2 shadow-xs"
+    >
+      <span>{t('hero.ctaProjects')}</span>
+      <ArrowDown class="w-4 h-4" aria-hidden="true" />
+    </a>
+
+    <a
+      href="/docs/cv-henry-pacheco.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      download="cv-henry-pacheco.pdf"
+      class="interactive-target px-4 py-2.5 rounded-xl font-medium text-sm bg-(--bg-surface) text-(--text-secondary) border border-(--border-default) hover:text-(--text-primary) hover:border-(--accent-primary) transition-all duration-200 flex items-center gap-2 shadow-xs"
+      aria-label={`${t('hero.ctaCV')} (abre en nueva pestaña o descarga)`}
+    >
+      <FileText class="w-4 h-4 text-(--accent-primary)" aria-hidden="true" />
+      <span>{t('hero.ctaCV')}</span>
+    </a>
+
+    <a
+      href="https://github.com/h3n-x"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="interactive-target px-4 py-2.5 rounded-xl font-medium text-sm bg-(--bg-surface) text-(--text-secondary) border border-(--border-default) hover:text-(--text-primary) hover:border-(--border-strong) transition-all duration-200 flex items-center gap-2 shadow-xs"
+      aria-label="GitHub (abre en nueva pestaña)"
+    >
+      <GithubIcon class="w-4 h-4" />
+      <span>GitHub</span>
+    </a>
+
+    <a
+      href="https://linkedin.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="interactive-target px-4 py-2.5 rounded-xl font-medium text-sm bg-(--bg-surface) text-(--text-secondary) border border-(--border-default) hover:text-(--text-primary) hover:border-(--border-strong) transition-all duration-200 flex items-center gap-2 shadow-xs"
+      aria-label="LinkedIn (abre en nueva pestaña)"
+    >
+      <LinkedinIcon class="w-4 h-4" />
+      <span>LinkedIn</span>
+    </a>
+  </div>
+</section>

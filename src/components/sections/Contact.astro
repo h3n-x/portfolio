@@ -1,0 +1,82 @@
+---
+import type { SupportedLang } from '../../i18n/ui';
+import { useTranslations } from '../../i18n/utils';
+import CopyEmail from '../common/CopyEmail.astro';
+import { Mail, Send, MessageSquare } from '@lucide/astro';
+import GithubIcon from '../icons/GithubIcon.astro';
+import LinkedinIcon from '../icons/LinkedinIcon.astro';
+
+interface Props {
+  lang: SupportedLang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section id="contacto" class="flex flex-col gap-6" aria-labelledby="contact-title">
+  <!-- Section Header -->
+  <div class="flex flex-col gap-1 border-b border-(--border-subtle) pb-3">
+    <h2 id="contact-title" class="text-2xl sm:text-3xl font-bold tracking-tight text-(--text-primary)">
+      {t('contact.title')}
+    </h2>
+    <p class="text-sm text-(--text-muted)">
+      {t('contact.subtitle')}
+    </p>
+  </div>
+
+  <div class="ghibli-card p-6 sm:p-10 flex flex-col items-center text-center gap-6 bg-(--bg-surface) max-w-2xl mx-auto w-full">
+    <div class="w-12 h-12 rounded-2xl bg-(--accent-forest-bg) text-(--accent-forest) flex items-center justify-center">
+      <Mail class="w-6 h-6" aria-hidden="true" />
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <h3 class="text-xl sm:text-2xl font-bold text-(--text-primary)">
+        h3n.eth@gmail.com
+      </h3>
+      <p class="text-sm text-(--text-muted) max-w-md">
+        {lang === 'es'
+          ? 'Respondo habitualmente en menos de 24-48 horas. Siempre abierto a conversar sobre sistemas, herramientas abiertas y nuevos proyectos.'
+          : 'I typically reply within 24-48 hours. Always open to discussing Linux systems, open source tooling, and new projects.'}
+      </p>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex flex-wrap items-center justify-center gap-3">
+      <CopyEmail lang={lang} variant="primary" />
+
+      <a
+        href="mailto:h3n.eth@gmail.com"
+        class="interactive-target px-5 py-2.5 rounded-xl font-medium text-sm bg-(--bg-elevated) text-(--text-primary) border border-(--border-default) hover:border-(--accent-primary) hover:text-(--accent-primary) transition-all flex items-center gap-2 shadow-xs"
+        aria-label={t('contact.openEmail')}
+      >
+        <Send class="w-4 h-4" aria-hidden="true" />
+        <span>{t('contact.openEmail')}</span>
+      </a>
+    </div>
+
+    <!-- Social Links -->
+    <div class="flex items-center gap-4 pt-4 border-t border-(--border-subtle) w-full justify-center">
+      <a
+        href="https://github.com/h3n-x"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="interactive-target px-3 py-1.5 rounded-lg text-xs font-medium text-(--text-secondary) hover:text-(--text-primary) hover:bg-(--bg-elevated) transition-colors flex items-center gap-1.5"
+        aria-label="GitHub (abre en nueva pestaña)"
+      >
+        <GithubIcon class="w-4 h-4" />
+        <span>GitHub</span>
+      </a>
+      <a
+        href="https://linkedin.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="interactive-target px-3 py-1.5 rounded-lg text-xs font-medium text-(--text-secondary) hover:text-(--text-primary) hover:bg-(--bg-elevated) transition-colors flex items-center gap-1.5"
+        aria-label="LinkedIn (abre en nueva pestaña)"
+      >
+        <LinkedinIcon class="w-4 h-4" />
+        <span>LinkedIn</span>
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,188 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import type { SupportedLang } from '../../i18n/ui';
+import { useTranslations } from '../../i18n/utils';
+import { ExternalLink, CheckCircle2, ShieldAlert, Layers, BookOpen, Terminal, ShieldCheck } from '@lucide/astro';
+import GithubIcon from '../icons/GithubIcon.astro';
+import archforgeImg from '../../assets/archforge.png';
+
+interface Props {
+  lang: SupportedLang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+// Load projects from content collection matching current language and sort by order
+const projects = (await getCollection('projects', ({ id }) => id.startsWith(`${lang}/`)))
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<section id="proyectos" class="flex flex-col gap-8" aria-labelledby="projects-title">
+  <!-- Section Header -->
+  <div class="flex flex-col gap-1 border-b border-(--border-subtle) pb-3">
+    <div class="flex items-center justify-between">
+      <h2 id="projects-title" class="text-2xl sm:text-3xl font-bold tracking-tight text-(--text-primary)">
+        {t('projects.title')}
+      </h2>
+      <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-(--accent-forest-bg) text-(--accent-forest) border border-(--border-subtle)">
+        {projects.length} {lang === 'es' ? 'Casos de Estudio' : 'Case Studies'}
+      </span>
+    </div>
+    <p class="text-sm text-(--text-muted)">
+      {t('projects.subtitle')}
+    </p>
+  </div>
+
+  <div class="flex flex-col gap-10">
+    {projects.map((project) => {
+      const isArchforge = project.slug.endsWith('archforge');
+      return (
+        <article class="ghibli-card p-6 sm:p-8 flex flex-col gap-8 bg-(--bg-surface)">
+          <!-- Top Overview: Title, Category & GitHub Link -->
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+            <div class="flex flex-col gap-2">
+              <div class="flex flex-wrap items-center gap-3">
+                <h3 class="text-2xl sm:text-3xl font-bold text-(--text-primary)">
+                  {project.data.title}
+                </h3>
+                <span class="text-xs px-2.5 py-0.5 rounded-full bg-(--accent-sky-bg) text-(--accent-sky) font-medium border border-(--border-subtle)">
+                  {project.data.category}
+                </span>
+                <span class="text-xs px-2.5 py-0.5 rounded-full bg-(--accent-forest-bg) text-(--accent-forest) font-semibold border border-(--border-subtle)">
+                  {project.data.status}
+                </span>
+              </div>
+              <p class="text-base text-(--text-secondary) max-w-2xl font-medium">
+                {project.data.tagline}
+              </p>
+            </div>
+
+            <a
+              href={project.data.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="interactive-target px-4 py-2 rounded-xl text-sm font-semibold bg-(--bg-elevated) text-(--text-primary) border border-(--border-default) hover:border-(--accent-primary) hover:text-(--accent-primary) transition-all flex items-center gap-2 self-start shadow-xs shrink-0"
+              aria-label={`${t('projects.viewCode')} (abre en nueva pestaña)`}
+            >
+              <GithubIcon class="w-4 h-4" />
+              <span>{t('projects.viewCode')}</span>
+            </a>
+          </div>
+
+          <!-- Visual Demonstration / Screenshot / Terminal Preview -->
+          {isArchforge ? (
+            <div class="rounded-xl overflow-hidden border border-(--border-subtle) bg-(--bg-elevated) relative group">
+              <Image
+                src={archforgeImg}
+                alt="Captura de pantalla de la interfaz CLI de ArchForge mostrando sus módulos"
+                width={1280}
+                height={720}
+                format="webp"
+                quality={85}
+                loading="lazy"
+                class="w-full h-auto object-cover object-top transition-transform duration-300 group-hover:scale-[1.01]"
+              />
+            </div>
+          ) : (
+            <div class="rounded-xl overflow-hidden border border-(--border-subtle) bg-(--bg-elevated) p-5 font-mono text-xs text-(--text-secondary) flex flex-col gap-3 shadow-inner">
+              <!-- Window control dots -->
+              <div class="flex items-center justify-between pb-3 border-b border-(--border-subtle)">
+                <div class="flex items-center gap-2">
+                  <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+                  <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
+                  <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+                  <span class="text-xs text-(--text-muted) ml-2">repo-secret-auditor · CI Policy Gate & SARIF Exporter</span>
+                </div>
+                <span class="text-[11px] text-(--accent-forest) px-2 py-0.5 rounded bg-(--accent-forest-bg)">
+                  FastAPI · Python 3.12+
+                </span>
+              </div>
+
+              <!-- Terminal simulation output -->
+              <div class="flex flex-col gap-1.5 leading-relaxed">
+                <p class="text-(--text-muted)">
+                  <span class="text-(--accent-primary)">$</span> python scripts/run_security_scan.py --project-root . --summary artifacts/summary.json --sarif artifacts/findings.sarif
+                </p>
+                <p class="text-(--text-secondary)">
+                  [INFO] Initializing scan runner for repository workspace...
+                </p>
+                <p class="text-(--text-secondary)">
+                  [INFO] Running AST secret detectors: Checking API keys, RSA/ECDSA private tokens, high-entropy strings...
+                </p>
+                <p class="text-(--text-secondary)">
+                  [INFO] Auditing Python & Node dependency lockfiles against vulnerability advisories...
+                </p>
+                <p class="text-(--accent-forest) font-semibold">
+                  [SUCCESS] Exported OASIS SARIF 2.1.0 report -> artifacts/findings.sarif
+                </p>
+                <p class="text-(--accent-forest)">
+                  [GATE PASSED] 0 High / 0 Critical findings. GitHub Code Scanning action workflow gate passed!
+                </p>
+              </div>
+            </div>
+          )}
+
+          <!-- Technical Case Study Breakdown -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+            <!-- 1. Problem Statement -->
+            <div class="flex flex-col gap-3 p-5 rounded-xl bg-(--bg-card-subtle)/50 border border-(--border-subtle)">
+              <div class="flex items-center gap-2 text-(--accent-primary) font-semibold text-sm">
+                <ShieldAlert class="w-4 h-4" aria-hidden="true" />
+                <h4>{t('projects.problemTitle')}</h4>
+              </div>
+              <p class="text-sm text-(--text-muted) leading-relaxed">
+                {project.data.problemSolved}
+              </p>
+            </div>
+
+            <!-- 2. Key Architecture Decisions -->
+            <div class="flex flex-col gap-3 p-5 rounded-xl bg-(--bg-card-subtle)/50 border border-(--border-subtle)">
+              <div class="flex items-center gap-2 text-(--accent-forest) font-semibold text-sm">
+                <Layers class="w-4 h-4" aria-hidden="true" />
+                <h4>{t('projects.architectureTitle')}</h4>
+              </div>
+              <ul class="flex flex-col gap-2 text-xs text-(--text-muted) leading-relaxed" role="list">
+                {project.data.architectureHighlights.map((item) => (
+                  <li class="flex items-start gap-1.5">
+                    <span class="text-(--accent-forest) mt-0.5">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- 3. Technical Learnings -->
+            <div class="flex flex-col gap-3 p-5 rounded-xl bg-(--bg-card-subtle)/50 border border-(--border-subtle)">
+              <div class="flex items-center gap-2 text-(--accent-sky) font-semibold text-sm">
+                <BookOpen class="w-4 h-4" aria-hidden="true" />
+                <h4>{t('projects.learningsTitle')}</h4>
+              </div>
+              <ul class="flex flex-col gap-2 text-xs text-(--text-muted) leading-relaxed" role="list">
+                {project.data.keyLearnings.map((item) => (
+                  <li class="flex items-start gap-1.5">
+                    <span class="text-(--accent-sky) mt-0.5">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <!-- Tech Stack Badges -->
+          <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-(--border-subtle)">
+            <span class="text-xs font-semibold text-(--text-muted) mr-1">
+              {t('projects.techLabel')}:
+            </span>
+            {project.data.technologies.map((tech) => (
+              <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-(--bg-elevated) text-(--text-secondary) border border-(--border-subtle)">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </article>
+      );
+    })}
+  </div>
+</section>

@@ -1,0 +1,88 @@
+---
+import type { SupportedLang } from '../../i18n/ui';
+import { useTranslations } from '../../i18n/utils';
+import { Terminal, Server, GitBranch, ShieldCheck, Database, HardDrive, Cpu, Network } from '@lucide/astro';
+
+interface Props {
+  lang: SupportedLang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const skillGroups = [
+  {
+    category: t('skills.systems'),
+    icon: Terminal,
+    colorClass: 'text-(--accent-forest)',
+    skills: [
+      { name: 'Linux / Arch Linux', desc: 'Administración, configuración y uso diario' },
+      { name: 'Bash & Shell Scripting', desc: 'Scripts modulares, automatización e idempotencia' },
+      { name: 'systemd', desc: 'Gestión de servicios, units, timers y daemons' },
+      { name: 'nftables & Firewall', desc: 'Reglas básicas de filtrado de paquetes y seguridad' },
+      { name: 'Linux CLI & Utilities', desc: 'grep, sed, awk, find, coreutils, ssh' },
+    ],
+  },
+  {
+    category: t('skills.backend'),
+    icon: Server,
+    colorClass: 'text-(--accent-primary)',
+    skills: [
+      { name: 'Python', desc: 'Lógica backend, utilidades de automatización y scripts' },
+      { name: 'APIs REST', desc: 'Diseño de endpoints HTTP y contratos JSON' },
+      { name: 'Bases de Datos Relacionales', desc: 'SQL, consultas estructuradas, MySQL / PostgreSQL' },
+    ],
+  },
+  {
+    category: t('skills.tools'),
+    icon: GitBranch,
+    colorClass: 'text-(--accent-sky)',
+    skills: [
+      { name: 'Git', desc: 'Control de versiones, branches, rebasing, commits semánticos' },
+      { name: 'GitHub', desc: 'Gestión de repositorios abiertos, issues y releases' },
+      { name: 'Entornos Reproducibles', desc: 'Dotfiles y configuración estandarizada' },
+    ],
+  },
+];
+---
+
+<section id="habilidades" class="flex flex-col gap-6" aria-labelledby="skills-title">
+  <!-- Section Header -->
+  <div class="flex flex-col gap-1 border-b border-(--border-subtle) pb-3">
+    <h2 id="skills-title" class="text-2xl sm:text-3xl font-bold tracking-tight text-(--text-primary)">
+      {t('skills.title')}
+    </h2>
+    <p class="text-sm text-(--text-muted)">
+      {t('skills.subtitle')}
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {skillGroups.map((group) => {
+      const IconComponent = group.icon;
+      return (
+        <div class="ghibli-card p-6 flex flex-col gap-4 bg-(--bg-surface)">
+          <div class="flex items-center gap-2.5 pb-2 border-b border-(--border-subtle)">
+            <IconComponent class={`w-5 h-5 ${group.colorClass}`} aria-hidden="true" />
+            <h3 class="text-base font-bold text-(--text-primary)">
+              {group.category}
+            </h3>
+          </div>
+
+          <ul class="flex flex-col gap-3" role="list">
+            {group.skills.map((skill) => (
+              <li class="flex flex-col">
+                <span class="text-sm font-semibold text-(--text-primary)">
+                  {skill.name}
+                </span>
+                <span class="text-xs text-(--text-muted) leading-relaxed">
+                  {skill.desc}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
+    })}
+  </div>
+</section>
