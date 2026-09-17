@@ -11,6 +11,12 @@
   to = "/sitemap-index.xml"
   status = 301
 
+# Proxy para el script analítico de Umami (Netlify Edge proxy)
+[[redirects]]
+  from = "/stats/script.js"
+  to = "https://cloud.umami.is/script.js"
+  status = 200
+
 # Redirección personalizada de error 404
 [[redirects]]
   from = "/*"
@@ -25,7 +31,7 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cloud.umami.is; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://cloud.umami.is https://api-gateway.umami.dev https://*.umami.is;"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cloud.umami.is; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://cloud.umami.is https://api-gateway.umami.dev https://gateway.umami.is https://*.umami.is;"
 
 # Caché inmutable para assets generados por Astro (con hash de contenido)
 [[headers]]
