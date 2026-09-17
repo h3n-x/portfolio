@@ -1,170 +1,126 @@
-<div align="center">
-
 # Portfolio — Henry Pacheco (H3n)
 
-### Backend Developer | Open Source Contributor | Colombia
+> **Desarrollador Backend & Linux** · Colombia  
+> Especializado en sistemas Linux, automatización modular con Bash y desarrollo de servicios backend en Python.
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Site-6366f1?style=for-the-badge)](https://h3n-x.netlify.app)
-[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
-[![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![TailwindCSS](https://img.shields.io/badge/Tailwind-v4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-
-[![GitHub Stars](https://img.shields.io/github/stars/h3n-x/portfolio?style=social)](https://github.com/h3n-x/portfolio/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/h3n-x/portfolio?style=social)](https://github.com/h3n-x/portfolio/network/members)
-
-</div>
+[![Astro](https://img.shields.io/badge/Astro-5.x-BC52EE?style=flat-square&logo=astro&logoColor=white)](https://astro.build/)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind-v4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Lighthouse](https://img.shields.io/badge/Lighthouse-100%20SEO%20%7C%20100%20A11y-22C55E?style=flat-square)](https://h3n-x.netlify.app)
+[![Netlify](https://img.shields.io/badge/Deploy-Netlify-00C7B7?style=flat-square&logo=netlify&logoColor=white)](https://h3n-x.netlify.app)
 
 ---
 
 ## Descripción
 
-Portfolio personal desarrollado con React 19 + Vite 8. Diseño limpio con profundidad espacial, tipografía Montserrat + Lato, animaciones con Framer Motion y scroll suavizado con Lenis. Soporte completo para español e inglés.
+Portfolio personal reconstruido desde cero con **Astro 5** y **Tailwind CSS v4**, diseñado bajo la premisa de rendimiento extremo, accesibilidad estricta (WCAG 2.2 AA) y una narrativa técnica sólida para reclutadores e ingenieros de software.
 
-Construyo backends con Python y Flask — desde APIs REST hasta bots de Discord con persistencia real. Mi entorno es Arch Linux con Hyprland.
+- **Cero JS innecesario:** Arquitectura de islas estáticas que envía únicamente HTML y CSS optimizado por defecto. El bundle cliente de navegación fluida es de solo **5.31 KB gzipped**.
+- **Navegación tipo SPA sin recarga:** Implementación nativa de la View Transitions API de Astro (`<ClientRouter />`) con preservación del scroll nativo del navegador (`scrollbar-gutter: stable`).
+- **Sistema de diseño dual (Ghibli Aesthetic):** Paleta artesanal con modo Claro (*Ghibli Meadow*) y modo Oscuro (*Howl's Twilight Sky*), con prevención total de parpadeo (Anti-FOUC) y contrastes auditados (>7:1 para texto normal).
+- **Internacionalización limpia (Cero Spanglish):** Rutas `/es/` y `/en/` completamente segregadas con tipado estricto en Zod para casos de estudio y diccionarios de interfaz.
+
+---
+
+## Proyectos Documentados
+
+1. **[ArchForge](https://github.com/h3n-x/archforge) (v0.3.0 · Mantenimiento Activo):**
+   - Toolkit modular de post-instalación y endurecimiento para Arch Linux desarrollado en Bash.
+   - Modo dry-run seguro, backups por sesión y configuración de servicios de sistema (systemd, nftables).
+2. **[Repo Secret Auditor](https://github.com/h3n-x/repo-secret-auditor) (v0.1.0 · Tests >80% & CI/CD):**
+   - Motor backend en Python 3.12 y FastAPI para detección de credenciales expuestas y dependencias vulnerables.
+   - Exportador OASIS SARIF 2.1.0 e integración nativa con GitHub Code Scanning mediante policy gates de severidad.
+
+---
 
 ## Stack Tecnológico
 
-### Frontend
-| Tecnología | Versión | Rol |
+| Herramienta | Versión | Rol |
 |---|---|---|
-| React | 19 | UI library |
-| Vite | 8 | Build tool + dev server |
-| TailwindCSS | v4 | Estilos utilitarios (vía PostCSS, sin config file) |
-| Framer Motion | 12 | Animaciones y transiciones |
-| Lenis | 1.3 | Smooth scroll |
-| Lucide React | 0.577 | Iconos |
+| **Astro** | 5.x | Generador de sitios estáticos (SSG) y arquitectura de islas |
+| **Tailwind CSS** | v4 | Estilos utilitarios modernos vía `@theme` nativo en CSS |
+| **TypeScript** | 5.x | Tipado estricto para esquemas de contenido y utilidades i18n |
+| **@astrojs/sitemap** | Oficial | Generación automática de índices de sitemaps XML |
+| **Lucide** | Oficial | Iconografía vectorial inline accesible |
+| **CSpell** | Oficial | Comprobador ortográfico multilingüe (español e inglés) |
+| **Netlify** | CI/CD | Despliegue continuo con cabeceras de seguridad y caché optimizada |
 
-### Build & Deploy
-| Herramienta | Uso |
-|---|---|
-| PostCSS + cssnano | Optimización de CSS |
-| Terser | Minificación JS |
-| vite-plugin-compression | Compresión gzip/brotli |
-| Netlify | Hosting y CI/CD |
+---
 
 ## Estructura del Proyecto
 
 ```
 portfolio/
+├── netlify.toml              # Build, redirects 404, headers CSP y caché
+├── astro.config.mjs          # Configuración Astro 5 + Tailwind v4 + Sitemap
+├── tsconfig.json             # Tipado estricto
+├── cspell.json               # Configuración de corrector ortográfico ES/EN
 ├── public/
-│   ├── fonts/                  # Montserrat Variable + Lato (woff2, self-hosted)
-│   ├── images/
-│   │   ├── original/           # Fuentes originales
-│   │   ├── *-400.jpeg          # Móvil
-│   │   ├── *-640.jpeg          # Tablet pequeño
-│   │   ├── *-960.jpeg          # Tablet
-│   │   ├── *-1280.jpeg         # Desktop
-│   │   └── *-1920.jpeg         # HD
-│   ├── favicon.svg
-│   ├── manifest.json           # PWA manifest
-│   ├── robots.txt
-│   └── sitemap.xml
+│   ├── favicon.svg           # Favicon personalizado en SVG
+│   ├── robots.txt            # Reglas para crawlers y enlace al sitemap
+│   └── docs/
+│       └── cv-henry-pacheco.pdf # Currículum en PDF descargable
 ├── src/
+│   ├── assets/               # Imágenes optimizadas en tiempo de compilación
+│   │   └── archforge.png
+│   ├── content/              # Content Collections tipadas con Zod
+│   │   ├── config.ts
+│   │   ├── projects/         # Casos de estudio en ES y EN
+│   │   └── experience/       # Línea de tiempo profesional
+│   ├── i18n/                 # Diccionarios y utilidades de traducción
 │   ├── components/
-│   │   ├── Hero.jsx            # Sección principal con presentación
-│   │   ├── Header.jsx          # Navegación + language toggle
-│   │   ├── SobreMi.jsx         # Sobre mí
-│   │   ├── Proyectos.jsx       # Grid de proyectos
-│   │   ├── Experiencia.jsx     # Experiencia laboral
-│   │   ├── Formacion.jsx       # Educación y certificados
-│   │   ├── OptimizedImage.jsx  # Imágenes responsive con srcset
-│   │   ├── ScrollProgress.jsx  # Barra de progreso de scroll
-│   │   ├── SimpleCertificateModal.jsx
-│   │   └── icons/
-│   │       └── BrandIcons.jsx  # Iconos SVG de tecnologías
-│   ├── translations/
-│   │   ├── es.js               # Español
-│   │   ├── en.js               # Inglés
-│   │   └── index.js            # Hook useTranslation
-│   ├── LanguageContext.jsx     # Contexto global de idioma
-│   ├── LanguageToggle.jsx      # Botón ES/EN
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── index.css               # Variables CSS + estilos globales
-├── scripts/
-│   └── generate-images.js      # Genera variantes responsive (requiere sharp)
-├── netlify.toml                # Configuración de deploy
-├── .npmrc                      # legacy-peer-deps=true
-├── vite.config.js
-├── postcss.config.js
-└── package.json
-```
-
-## Instalación
-
-**Requisitos:** Node.js >= 20
-
-```bash
-# Clonar
-git clone https://github.com/h3n-x/portfolio.git
-cd portfolio
-
-# Instalar dependencias
-npm install
-
-# Desarrollo
-npm run dev
-
-# Build de producción
-npm run build
-
-# Preview del build
-npm run preview
-```
-
-### Generar variantes de imágenes (opcional)
-
-Las imágenes optimizadas ya están incluidas en `public/images/`. Si agregas imágenes nuevas:
-
-```bash
-# Instalar sharp temporalmente
-npm install sharp --save-dev
-
-# Generar variantes (400, 640, 960, 1280, 1920px)
-npm run generate-images
-```
-
-## Scripts
-
-| Script | Descripción |
-|---|---|
-| `dev` | Servidor de desarrollo con HMR |
-| `build` | Build optimizado para producción |
-| `preview` | Preview local del build |
-| `lint` | Análisis ESLint |
-| `generate-images` | Genera variantes responsive de imágenes |
-
-## Características
-
-- **Multilenguaje** — Español e Inglés con cambio instantáneo
-- **Imágenes responsive** — srcset con variantes 400-1920px
-- **Fuentes self-hosted** — Montserrat + Lato en woff2, sin dependencias externas
-- **Animaciones** — Framer Motion con reducción de movimiento respetada
-- **Scroll suavizado** — Lenis con integración nativa
-- **PWA** — Manifest configurado
-- **SEO** — robots.txt + sitemap.xml + meta tags
-
-## Deploy
-
-El deploy en Netlify se activa automáticamente con cada push a `main`. Configuración en `netlify.toml`:
-
-```toml
-[build]
-  command = "npm run build"
-  publish = "dist"
-
-[build.environment]
-  NODE_VERSION = "20"
+│   │   ├── common/           # Header, Footer, ThemeToggle, LangToggle, CopyEmail
+│   │   ├── icons/            # Iconos SVG personalizados accesibles
+│   │   └── sections/         # Hero, About, Projects, Experience, Skills, Education, Contact
+│   ├── layouts/
+│   │   └── BaseLayout.astro  # Layout HTML5, SEO, Open Graph y View Transitions
+│   ├── pages/
+│   │   ├── 404.astro         # Página de error 404 consistente y bilingüe
+│   │   ├── index.astro       # Detección de idioma y redirección inteligente
+│   │   ├── es/index.astro    # Landing page en español
+│   │   └── en/index.astro    # Landing page en inglés
+│   └── styles/
+│       └── global.css        # Tokens de diseño Ghibli, reset y accesibilidad
 ```
 
 ---
 
-<div align="center">
+## Comandos y Desarrollo
 
-[![Email](https://img.shields.io/badge/Email-h3n.eth@gmail.com-6366f1?style=flat-square)](mailto:h3n.eth@gmail.com)
-[![Portfolio](https://img.shields.io/badge/Portfolio-h3n--x.netlify.app-6366f1?style=flat-square)](https://h3n-x.netlify.app)
-[![GitHub](https://img.shields.io/badge/GitHub-h3n--x-6366f1?style=flat-square&logo=github)](https://github.com/h3n-x)
+```bash
+# Instalar dependencias
+npm install
 
-*Desarrollado por Henry Pacheco*
+# Servidor de desarrollo
+npm run dev
 
-</div>
+# Verificación de tipos TypeScript
+npx tsc --noEmit
+
+# Comprobación de ortografía multilingüe
+npx cspell "src/**/*.{astro,ts,md}"
+
+# Build optimizado para producción
+npm run build
+
+# Previsualización local del build de producción
+npm run preview
+```
+
+---
+
+## Métricas de Producción (Lighthouse)
+
+- **Performance:** 97 / 100
+- **Accessibility:** 100 / 100
+- **Best Practices:** 100 / 100
+- **SEO:** 100 / 100
+- **Core Web Vitals:** LCP: 1.6 s · CLS: 0.000 · TBT: 0 ms
+
+---
+
+## Contacto
+
+- **Correo:** [h3n.eth@gmail.com](mailto:h3n.eth@gmail.com)
+- **GitHub:** [@h3n-x](https://github.com/h3n-x)
+- **Portfolio Live:** [h3n-x.netlify.app](https://h3n-x.netlify.app)
