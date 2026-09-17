@@ -20,6 +20,10 @@ coverage
 # Producción
 /dist
 /build
+.astro/
+chrome-headless-shell/
+lighthouse-*.json
+screenshot-*.png
 
 # Misc
 .DS_Store

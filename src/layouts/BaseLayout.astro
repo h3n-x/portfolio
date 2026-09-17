@@ -1,0 +1,94 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import Header from '../components/common/Header.astro';
+import Footer from '../components/common/Footer.astro';
+import type { SupportedLang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: SupportedLang;
+}
+
+const { title, description, lang } = Astro.props;
+const t = useTranslations(lang);
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://h3n-x.netlify.app');
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Anti-FOUC Theme Script -->
+    <script is:inline>
+      (function () {
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      })();
+    </script>
+
+    <!-- SEO & Metadata -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Henry Pacheco (H3n)" />
+    <meta name="theme-color" content="#0E141D" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="Henry Pacheco (H3n) Portfolio" />
+    <meta property="og:locale" content={lang === 'es' ? 'es_CO' : 'en_US'} />
+    <meta property="og:image" content="https://h3n-x.netlify.app/images/original/archforge.png" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://h3n-x.netlify.app/images/original/archforge.png" />
+
+    <!-- Alternate Language Links for SEO -->
+    <link rel="alternate" hreflang="es" href="https://h3n-x.netlify.app/es/" />
+    <link rel="alternate" hreflang="en" href="https://h3n-x.netlify.app/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://h3n-x.netlify.app/es/" />
+
+    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <ClientRouter />
+  </head>
+  <body class="bg-(--bg-base) text-(--text-primary) transition-colors duration-200">
+    <!-- Skip to main content accessibility link -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 px-4 py-2 bg-(--accent-primary) text-white font-semibold rounded-lg shadow-lg focus:outline-none"
+    >
+      {t('accessibility.skipToContent')}
+    </a>
+
+    <Header lang={lang} />
+
+    <main id="main-content" class="flex-1 w-full max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12 flex flex-col gap-20 sm:gap-28">
+      <slot />
+    </main>
+
+    <Footer lang={lang} />
+  </body>
+</html>

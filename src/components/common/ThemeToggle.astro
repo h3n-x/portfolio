@@ -1,0 +1,48 @@
+---
+import { Sun, Moon } from '@lucide/astro';
+import { useTranslations } from '../../i18n/utils';
+import type { SupportedLang } from '../../i18n/ui';
+
+interface Props {
+  lang: SupportedLang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<button
+  type="button"
+  id="theme-toggle"
+  class="interactive-target relative rounded-full p-2.5 text-(--text-muted) hover:text-(--text-primary) hover:bg-(--bg-elevated) transition-colors"
+  aria-label={t('theme.toggle')}
+  title={t('theme.toggle')}
+>
+  <span class="dark:hidden flex items-center justify-center">
+    <Moon class="w-5 h-5 text-(--text-secondary)" aria-hidden="true" />
+  </span>
+  <span class="hidden dark:flex items-center justify-center">
+    <Sun class="w-5 h-5 text-(--accent-primary)" aria-hidden="true" />
+  </span>
+</button>
+
+<script is:inline>
+  function setupThemeToggle() {
+    const toggle = document.getElementById('theme-toggle');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      if (isDark) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+  }
+
+  setupThemeToggle();
+  document.addEventListener('astro:after-swap', setupThemeToggle);
+</script>

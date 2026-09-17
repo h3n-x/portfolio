@@ -1,0 +1,58 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import LangToggle from './LangToggle.astro';
+import type { SupportedLang } from '../../i18n/ui';
+import { useTranslations } from '../../i18n/utils';
+import { Terminal } from '@lucide/astro';
+
+interface Props {
+  lang: SupportedLang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const navItems = [
+  { href: '#sobre-mi', label: t('nav.about') },
+  { href: '#proyectos', label: t('nav.projects') },
+  { href: '#experiencia', label: t('nav.experience') },
+  { href: '#habilidades', label: t('nav.skills') },
+  { href: '#contacto', label: t('nav.contact') },
+];
+---
+
+<header class="sticky top-0 z-40 w-full backdrop-blur-md bg-(--bg-base)/85 border-b border-(--border-subtle) transition-colors">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <!-- Brand / Home Link -->
+    <a
+      href={`/${lang}/`}
+      class="interactive-target flex items-center gap-2.5 font-bold tracking-tight text-(--text-primary) hover:text-(--accent-primary) transition-colors"
+      aria-label="Henry Pacheco - Inicio"
+    >
+      <span class="w-8 h-8 rounded-lg bg-(--accent-forest-bg) border border-(--border-subtle) flex items-center justify-center text-(--accent-forest)">
+        <Terminal class="w-4 h-4" aria-hidden="true" />
+      </span>
+      <span class="text-sm font-semibold tracking-wide">
+        h3n<span class="text-(--accent-primary)">.dev</span>
+      </span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex items-center gap-1" aria-label="Navegación principal">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class="interactive-target px-3.5 py-1.5 rounded-lg text-xs font-medium text-(--text-secondary) hover:text-(--text-primary) hover:bg-(--bg-elevated) transition-colors"
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Controls: Language & Theme -->
+    <div class="flex items-center gap-2">
+      <LangToggle lang={lang} />
+      <ThemeToggle lang={lang} />
+    </div>
+  </div>
+</header>

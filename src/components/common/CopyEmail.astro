@@ -1,0 +1,78 @@
+---
+import { Mail, Check, Copy } from '@lucide/astro';
+import type { SupportedLang } from '../../i18n/ui';
+import { useTranslations } from '../../i18n/utils';
+
+interface Props {
+  lang: SupportedLang;
+  variant?: 'primary' | 'subtle';
+}
+
+const { lang, variant = 'primary' } = Astro.props;
+const t = useTranslations(lang);
+
+const baseClasses = "interactive-target px-5 py-2.5 rounded-xl font-medium text-sm transition-all duration-200 cursor-pointer flex items-center gap-2 relative shadow-xs";
+const primaryClasses = "bg-(--accent-primary) text-white hover:bg-(--accent-primary-hover) active:scale-98";
+const subtleClasses = "bg-(--bg-surface) text-(--text-primary) border border-(--border-default) hover:border-(--accent-primary) hover:text-(--accent-primary)";
+
+const buttonClasses = `${baseClasses} ${variant === 'primary' ? primaryClasses : subtleClasses}`;
+---
+
+<div class="inline-flex flex-col items-center">
+  <button
+    type="button"
+    class={`copy-email-btn ${buttonClasses}`}
+    data-email="h3n.eth@gmail.com"
+    data-copied-text={t('contact.copied')}
+    data-initial-text={t('contact.copyEmail')}
+    aria-label={t('contact.copyEmail')}
+  >
+    <span class="icon-mail flex items-center">
+      <Copy class="w-4 h-4" aria-hidden="true" />
+    </span>
+    <span class="icon-check hidden text-green-300 flex items-center">
+      <Check class="w-4 h-4" aria-hidden="true" />
+    </span>
+    <span class="btn-label">{t('contact.copyEmail')}</span>
+  </button>
+  <span class="sr-only live-feedback" aria-live="polite"></span>
+</div>
+
+<script is:inline>
+  function setupCopyEmail() {
+    const buttons = document.querySelectorAll('.copy-email-btn');
+    buttons.forEach((btn) => {
+      // Remove old listeners by cloning if necessary
+      btn.onclick = async () => {
+        const email = btn.getAttribute('data-email') || 'h3n.eth@gmail.com';
+        const copiedText = btn.getAttribute('data-copied-text') || 'Copiado';
+        const initialText = btn.getAttribute('data-initial-text') || 'Copiar';
+        const iconMail = btn.querySelector('.icon-mail');
+        const iconCheck = btn.querySelector('.icon-check');
+        const label = btn.querySelector('.btn-label');
+        const live = btn.parentElement?.querySelector('.live-feedback');
+
+        try {
+          await navigator.clipboard.writeText(email);
+          if (iconMail) iconMail.classList.add('hidden');
+          if (iconCheck) iconCheck.classList.remove('hidden');
+          if (label) label.textContent = copiedText;
+          if (live) live.textContent = copiedText;
+
+          setTimeout(() => {
+            if (iconMail) iconMail.classList.remove('hidden');
+            if (iconCheck) iconCheck.classList.add('hidden');
+            if (label) label.textContent = initialText;
+            if (live) live.textContent = '';
+          }, 2500);
+        } catch (e) {
+          // Fallback to mailto
+          window.location.href = `mailto:${email}`;
+        }
+      };
+    });
+  }
+
+  setupCopyEmail();
+  document.addEventListener('astro:after-swap', setupCopyEmail);
+</script>

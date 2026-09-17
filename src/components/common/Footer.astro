@@ -1,0 +1,58 @@
+---
+import type { SupportedLang } from '../../i18n/ui';
+import { useTranslations } from '../../i18n/utils';
+import { Mail, Heart } from '@lucide/astro';
+import GithubIcon from '../icons/GithubIcon.astro';
+import LinkedinIcon from '../icons/LinkedinIcon.astro';
+
+interface Props {
+  lang: SupportedLang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="w-full border-t border-(--border-subtle) bg-(--bg-card-subtle)/50 mt-20 py-12 transition-colors" role="contentinfo">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-(--text-muted)">
+    <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
+      <span class="font-medium text-(--text-secondary)">Henry Pacheco (H3n)</span>
+      <span class="hidden sm:inline" aria-hidden="true">·</span>
+      <span>© {currentYear} {t('footer.rights')}</span>
+    </div>
+
+    <!-- Quick social links -->
+    <div class="flex items-center gap-3">
+      <a
+        href="https://github.com/h3n-x"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="interactive-target p-2.5 rounded-lg text-(--text-muted) hover:text-(--text-primary) hover:bg-(--bg-elevated) transition-colors"
+        aria-label="GitHub (abre en nueva pestaña)"
+      >
+        <GithubIcon class="w-5 h-5" />
+      </a>
+      <a
+        href="https://linkedin.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="interactive-target p-2.5 rounded-lg text-(--text-muted) hover:text-(--text-primary) hover:bg-(--bg-elevated) transition-colors"
+        aria-label="LinkedIn (abre en nueva pestaña)"
+      >
+        <LinkedinIcon class="w-5 h-5" />
+      </a>
+      <a
+        href="mailto:h3n.eth@gmail.com"
+        class="interactive-target p-2.5 rounded-lg text-(--text-muted) hover:text-(--text-primary) hover:bg-(--bg-elevated) transition-colors"
+        aria-label="Enviar correo"
+      >
+        <Mail class="w-5 h-5" aria-hidden="true" />
+      </a>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 mt-6 pt-4 border-t border-(--border-subtle)/50 text-center text-xs text-(--text-muted)">
+    <p>{t('footer.quote')}</p>
+  </div>
+</footer>
