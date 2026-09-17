@@ -5,6 +5,12 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# Redirección de conveniencia para sitemap.xml hacia sitemap-index.xml
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/sitemap-index.xml"
+  status = 301
+
 # Redirección personalizada de error 404
 [[redirects]]
   from = "/*"
