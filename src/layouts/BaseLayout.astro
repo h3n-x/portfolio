@@ -23,6 +23,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://h3n-x.ne
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" sizes="32x32" href="/favicon-32.svg" />
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonicalUrl} />
 
@@ -59,13 +60,16 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://h3n-x.ne
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content="Henry Pacheco (H3n) Portfolio" />
     <meta property="og:locale" content={lang === 'es' ? 'es_CO' : 'en_US'} />
-    <meta property="og:image" content="https://h3n-x.netlify.app/images/original/archforge.png" />
+    <meta property="og:image" content="https://h3n-x.netlify.app/og-image.svg" />
+    <meta property="og:image:type" content="image/svg+xml" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://h3n-x.netlify.app/images/original/archforge.png" />
+    <meta name="twitter:image" content="https://h3n-x.netlify.app/og-image.svg" />
 
     <!-- Alternate Language Links for SEO -->
     <link rel="alternate" hreflang="es" href="https://h3n-x.netlify.app/es/" />

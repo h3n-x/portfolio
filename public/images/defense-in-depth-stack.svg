@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="530" viewBox="0 0 1200 530" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="ds-glow-mint" cx="90%" cy="20%" r="50%">
+      <stop offset="0%" stop-color="#5EBAA0" stop-opacity="0.09" />
+      <stop offset="100%" stop-color="#5EBAA0" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="ds-glow-amber" cx="90%" cy="50%" r="45%">
+      <stop offset="0%" stop-color="#F4A261" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#F4A261" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="ds-glow-sky" cx="90%" cy="75%" r="45%">
+      <stop offset="0%" stop-color="#64B5F6" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#64B5F6" stop-opacity="0" />
+    </radialGradient>
+    <style>
+      .layer-card {
+        transition: transform 0.2s ease, filter 0.2s ease;
+        cursor: pointer;
+      }
+      .layer-card:hover {
+        filter: brightness(1.08);
+      }
+      .layer-card:hover .accent-bar {
+        filter: drop-shadow(0 0 6px currentColor);
+      }
+    </style>
+  </defs>
+
+  <!-- Deep Canvas Background -->
+  <rect width="1200" height="530" fill="#0E141D" />
+  <rect width="1200" height="530" fill="url(#ds-glow-mint)" />
+  <rect width="1200" height="530" fill="url(#ds-glow-amber)" />
+  <rect width="1200" height="530" fill="url(#ds-glow-sky)" />
+
+  <!-- Connecting Spine Timeline -->
+  <line x1="76" y1="71" x2="76" y2="431" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" stroke-dasharray="4 4" />
+
+  <!-- ============================================================ -->
+  <!-- LAYER 4: Network & Application E2EE (Chat Anónimo v2.5) -->
+  <!-- ============================================================ -->
+  <g class="layer-card">
+    <a href="#chat-anonimo">
+      <!-- Spine Node -->
+      <circle cx="76" cy="71" r="8" fill="#5EBAA0" fill-opacity="0.2" />
+      <circle cx="76" cy="71" r="3.5" fill="#5EBAA0" />
+
+      <!-- Card Container -->
+      <rect x="108" y="23" width="1052" height="96" rx="12" fill="#151F2C" stroke="rgba(94,186,160,0.32)" stroke-width="1" />
+      <rect x="108" y="23" width="1052" height="96" rx="12" fill="rgba(94,186,160,0.06)" />
+
+      <!-- Level Chip -->
+      <rect x="126" y="58" width="46" height="26" rx="13" fill="#5EBAA0" fill-opacity="0.18" stroke="rgba(94,186,160,0.4)" stroke-width="1" />
+      <text x="149" y="72" text-anchor="middle" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#5EBAA0">L4</text>
+
+      <!-- Meta, Title & Badges -->
+      <text x="188" y="45" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600" fill="#94A3B8" letter-spacing="1.5">LAYER 4 · APEX</text>
+      <text x="188" y="69" dominant-baseline="central" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="19" font-weight="700" fill="#F3F6F9">Network &amp; Application E2EE</text>
+
+      <!-- Badges row -->
+      <rect x="188" y="87" width="160" height="20" rx="6" fill="#1D2A3B" stroke="rgba(255,255,255,0.12)" stroke-width="0.8" />
+      <text x="268" y="97" text-anchor="middle" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="500" fill="#CBD5E1">WebCrypto AES-256-GCM</text>
+
+      <rect x="356" y="87" width="94" height="20" rx="6" fill="#1D2A3B" stroke="rgba(255,255,255,0.12)" stroke-width="0.8" />
+      <text x="403" y="97" text-anchor="middle" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="500" fill="#CBD5E1">ECDH P-256</text>
+
+      <rect x="458" y="87" width="116" height="20" rx="6" fill="#1D2A3B" stroke="rgba(255,255,255,0.12)" stroke-width="0.8" />
+      <text x="516" y="97" text-anchor="middle" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="500" fill="#CBD5E1">Zero-Knowledge</text>
+
+      <rect x="582" y="87" width="134" height="20" rx="6" fill="#1D2A3B" stroke="rgba(255,255,255,0.12)" stroke-width="0.8" />
+      <text x="649" y="97" text-anchor="middle" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="500" fill="#CBD5E1">Pure In-RAM Relay</text>
+
+      <!-- Right Project Scope -->
+      <text x="1118" y="60" text-anchor="end" dominant-baseline="central" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="16" font-weight="700" fill="#5EBAA0">Chat Anónimo v2.5</text>
+      <text x="1118" y="80" text-anchor="end" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="500" fill="#94A3B8">Zero-Knowledge Blind Relay</text>
+      <rect class="accent-bar" x="1136" y="43" width="3.5" height="56" rx="1.75" fill="#5EBAA0" />
+    </a>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- LAYER 3: Container Runtime Security (DockerWard) -->
+  <!-- ============================================================ -->
+  <g class="layer-card">
+    <a href="#dockerward">
+      <!-- Spine Node -->
+      <circle cx="76" cy="191" r="8" fill="#F4A261" fill-opacity="0.2" />
+      <circle cx="76" cy="191" r="3.5" fill="#F4A261" />
+
+      <!-- Card Container -->
+      <rect x="108" y="143" width="1052" height="96" rx="12" fill="#151F2C" stroke="rgba(244,162,97,0.32)" stroke-width="1" />
+      <rect x="108" y="143" width="1052" height="96" rx="12" fill="rgba(244,162,97,0.06)" />
+
+      <!-- Level Chip -->
+      <rect x="126" y="178" width="46" height="26" rx="13" fill="#F4A261" fill-opacity="0.18" stroke="rgba(244,162,97,0.4)" stroke-width="1" />
+      <text x="149" y="192" text-anchor="middle" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#F4A261">L3</text>
+
+      <!-- Meta, Title & Badges -->
+      <text x="188" y="165" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600" fill="#94A3B8" letter-spacing="1.5">LAYER 3 · RUNTIME</text>
+      <text x="188" y="189" dominant-baseline="central" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="19" font-weight="700" fill="#F3F6F9">Container Runtime Security</text>
+
+      <!-- Badges row -->
+      <rect x="188" y="207" width="148" height="20" rx="6" fill="#1D2A3B" stroke="rgba(255,255,255,0.12)" stroke-width="0.8" />
+      <text x="262" y="217" text-anchor="middle" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="500" fill="#CBD5E1">CIS Benchmark v1.6.0</text>
+
+      <rect x="344" y="207" width="142" height="20" rx="6" fill="#1D2A3B" stroke="rgba(255,255,255,0.12)" stroke-width="0.8" />
+      <text x="415" y="217" text-anchor="middle" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="500" fill="#CBD5E1">Seccomp &amp; AppArmor</text>
+
+      <rect x="494" y="207" width="144" height="20" rx="6" fill="#1D2A3B" stroke="rgba(255,255,255,0.12)" stroke-width="0.8" />
+      <text x="566" y="217" text-anchor="middle" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="500" fill="#CBD5E1">Unmapped Namespaces</text>
+
+      <rect x="646" y="207" width="134" height="20" rx="6" fill="#1D2A3B" stroke="rgba(255,255,255,0.12)" stroke-width="0.8" />
+      <text x="713" y="217" text-anchor="middle" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="500" fill="#CBD5E1">Daemon Hardening</text>
+
+      <!-- Right Project Scope -->
+      <text x="1118" y="180" text-anchor="end" dominant-baseline="central" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="16" font-weight="700" fill="#F4A261">DockerWard</text>
+      <text x="1118" y="200" text-anchor="end" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="500" fill="#94A3B8">CIS Benchmark Engine</text>
+      <rect class="accent-bar" x="1136" y="163" width="3.5" height="56" rx="1.75" fill="#F4A261" />
+    </a>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- LAYER 2: CI/CD Policy Gate & Secrets (Repo Secret Auditor) -->
+  <!-- ============================================================ -->
+  <g class="layer-card">
+    <a href="#repo-secret-auditor">
+      <!-- Spine Node -->
+      <circle cx="76" cy="311" r="8" fill="#64B5F6" fill-opacity="0.2" />
+      <circle cx="76" cy="311" r="3.5" fill="#64B5F6" />
+
+      <!-- Card Container -->
+      <rect x="108" y="263" width="1052" height="96" rx="12" fill="#151F2C" stroke="rgba(100,181,246,0.32)" stroke-width="1" />
+      <rect x="108" y="263" width="1052" height="96" rx="12" fill="rgba(100,181,246,0.06)" />
+
+      <!-- Level Chip -->
+      <rect x="126" y="298" width="46" height="26" rx="13" fill="#64B5F6" fill-opacity="0.18" stroke="rgba(100,181,246,0.4)" stroke-width="1" />
+      <text x="149" y="312" text-anchor="middle" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#64B5F6">L2</text>
+
+      <!-- Meta, Title & Badges -->
+      <text x="188" y="285" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600" fill="#94A3B8" letter-spacing="1.5">LAYER 2 · CI/CD PIPELINE</text>
+      <text x="188" y="309" dominant-baseline="central" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="19" font-weight="700" fill="#F3F6F9">CI/CD Policy Gate &amp; Secrets</text>
+
+      <!-- Badges row -->
+      <rect x="188" y="327" width="126" height="20" rx="6" fill="#1D2A3B" stroke="rgba(255,255,255,0.12)" stroke-width="0.8" />
+      <text x="251" y="337" text-anchor="middle" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="500" fill="#CBD5E1">OASIS SARIF 2.1.0</text>
+
+      <rect x="322" y="327" width="148" height="20" rx="6" fill="#1D2A3B" stroke="rgba(255,255,255,0.12)" stroke-width="0.8" />
+      <text x="396" y="337" text-anchor="middle" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="500" fill="#CBD5E1">AST Secret Detection</text>
+
+      <rect x="478" y="327" width="118" height="20" rx="6" fill="#1D2A3B" stroke="rgba(255,255,255,0.12)" stroke-width="0.8" />
+      <text x="537" y="337" text-anchor="middle" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="500" fill="#CBD5E1">Lockfile Audits</text>
+
+      <rect x="604" y="327" width="156" height="20" rx="6" fill="#1D2A3B" stroke="rgba(255,255,255,0.12)" stroke-width="0.8" />
+      <text x="682" y="337" text-anchor="middle" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="500" fill="#CBD5E1">GitHub Actions Gate</text>
+
+      <!-- Right Project Scope -->
+      <text x="1118" y="300" text-anchor="end" dominant-baseline="central" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="16" font-weight="700" fill="#64B5F6">Repo Secret Auditor</text>
+      <text x="1118" y="320" text-anchor="end" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="500" fill="#94A3B8">Automated CI/CD Scanner</text>
+      <rect class="accent-bar" x="1136" y="283" width="3.5" height="56" rx="1.75" fill="#64B5F6" />
+    </a>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- LAYER 1: Host & OS Hardening (ArchForge) -->
+  <!-- ============================================================ -->
+  <g class="layer-card">
+    <a href="#archforge">
+      <!-- Spine Node -->
+      <circle cx="76" cy="431" r="8" fill="#5EBAA0" fill-opacity="0.2" />
+      <circle cx="76" cy="431" r="3.5" fill="#5EBAA0" />
+
+      <!-- Card Container -->
+      <rect x="108" y="383" width="1052" height="96" rx="12" fill="#151F2C" stroke="rgba(94,186,160,0.32)" stroke-width="1" />
+      <rect x="108" y="383" width="1052" height="96" rx="12" fill="rgba(94,186,160,0.06)" />
+
+      <!-- Level Chip -->
+      <rect x="126" y="418" width="46" height="26" rx="13" fill="#5EBAA0" fill-opacity="0.18" stroke="rgba(94,186,160,0.4)" stroke-width="1" />
+      <text x="149" y="432" text-anchor="middle" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#5EBAA0">L1</text>
+
+      <!-- Meta, Title & Badges -->
+      <text x="188" y="405" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600" fill="#94A3B8" letter-spacing="1.5">LAYER 1 · HOST &amp; OS</text>
+      <text x="188" y="429" dominant-baseline="central" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="19" font-weight="700" fill="#F3F6F9">Host &amp; Operating System Hardening</text>
+
+      <!-- Badges row -->
+      <rect x="188" y="447" width="134" height="20" rx="6" fill="#1D2A3B" stroke="rgba(255,255,255,0.12)" stroke-width="0.8" />
+      <text x="255" y="457" text-anchor="middle" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="500" fill="#CBD5E1">Arch Linux System</text>
+
+      <rect x="330" y="447" width="130" height="20" rx="6" fill="#1D2A3B" stroke="rgba(255,255,255,0.12)" stroke-width="0.8" />
+      <text x="395" y="457" text-anchor="middle" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="500" fill="#CBD5E1">Kernel Hardening</text>
+
+      <rect x="468" y="447" width="144" height="20" rx="6" fill="#1D2A3B" stroke="rgba(255,255,255,0.12)" stroke-width="0.8" />
+      <text x="540" y="457" text-anchor="middle" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="500" fill="#CBD5E1">Idempotent Provisioning</text>
+
+      <rect x="620" y="447" width="160" height="20" rx="6" fill="#1D2A3B" stroke="rgba(255,255,255,0.12)" stroke-width="0.8" />
+      <text x="700" y="457" text-anchor="middle" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="500" fill="#CBD5E1">Modular Shell Framework</text>
+
+      <!-- Right Project Scope -->
+      <text x="1118" y="420" text-anchor="end" dominant-baseline="central" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="16" font-weight="700" fill="#5EBAA0">ArchForge</text>
+      <text x="1118" y="440" text-anchor="end" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="500" fill="#94A3B8">Modular Arch Automation</text>
+      <rect class="accent-bar" x="1136" y="403" width="3.5" height="56" rx="1.75" fill="#5EBAA0" />
+    </a>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- Footer Caption -->
+  <!-- ============================================================ -->
+  <text x="600" y="510" text-anchor="middle" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="500" fill="#64748B" letter-spacing="1.8">DEFENSE-IN-DEPTH ARCHITECTURE — HENRY PACHECO (H3N) · H3N-X.NETLIFY.APP</text>
+</svg>

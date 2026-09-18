@@ -29,9 +29,13 @@ const navItems = [
       class="interactive-target flex items-center gap-2.5 font-bold tracking-tight text-(--text-primary) hover:text-(--accent-primary) transition-colors"
       aria-label={`h3n.dev - ${lang === 'es' ? 'Inicio' : 'Home'}`}
     >
-      <span class="w-8 h-8 rounded-lg bg-(--accent-forest-bg) border border-(--border-subtle) flex items-center justify-center text-(--accent-forest)">
-        <Terminal class="w-4 h-4" aria-hidden="true" />
-      </span>
+      <img
+        src="/brand/brandmark-h3n.svg"
+        alt="H3n Brandmark"
+        width="32"
+        height="32"
+        class="w-8 h-8 rounded-lg object-contain shadow-xs border border-(--border-subtle)"
+      />
       <span class="text-sm font-semibold tracking-wide">
         h3n<span class="text-(--accent-primary)">.dev</span>
       </span>

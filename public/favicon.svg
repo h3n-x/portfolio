@@ -1,8 +1,2 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <rect width="64" height="64" rx="16" fill="#0E141D"/>
-  <rect x="1" y="1" width="62" height="62" rx="15" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>
-  <!-- Terminal Prompt > -->
-  <path d="M18 20L30 32L18 44" stroke="#F4A261" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Cursor _ -->
-  <line x1="36" y1="44" x2="48" y2="44" stroke="#5EBAA0" stroke-width="5" stroke-linecap="round"/>
-</svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" data-fg-d3bl40=":0:/src/app/App.tsx:109:5:4826:730:e:svg:etetetetete:1" data-fgid-d3bl40=":rtj:" data-fg-callsite-d3bl491=""><defs data-fg-d3bl41=":0:/src/app/App.tsx:110:7:4932:209:e:defs:e"><linearGradient id="fav-grad" x1="0%" y1="0%" x2="0%" y2="100%" data-fg-d3bl42=":0:/src/app/App.tsx:111:9:4947:180:e:linearGradient:ete"><stop offset="0%" stop-color="#F4A261" data-fg-d3bl43=":0:/src/app/App.tsx:112:11:5022:33:e:stop"/><stop offset="100%" stop-color="#5EBAA0" data-fg-d3bl44=":0:/src/app/App.tsx:113:11:5066:35:e:stop"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="#151F2C" data-fg-d3bl45=":0:/src/app/App.tsx:116:7:5148:47:e:rect"/><path d="M32.0,5.0L54.5,18.0L54.5,44.0L32.0,57.0L9.5,44.0L9.5,18.0Z" fill="url(#fav-grad)" data-fg-d3bl46=":0:/src/app/App.tsx:117:7:5202:49:e:path"/><path d="M32.0,11.0L49.3,21.0L49.3,41.0L32.0,51.0L14.7,41.0L14.7,21.0Z" fill="#151F2C" data-fg-d3bl47=":0:/src/app/App.tsx:118:7:5258:36:e:path"/><text x="32" y="32" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="500" fill="#F4A261" data-fg-d3bl48=":0:/src/app/App.tsx:119:7:5301:159:e:text:s">&gt;_</text><rect width="64" height="64" rx="14" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="1" data-fg-d3bl50=":0:/src/app/App.tsx:123:7:5467:78:e:rect"/></svg>

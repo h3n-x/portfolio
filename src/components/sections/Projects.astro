@@ -1,11 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
 import type { SupportedLang } from '../../i18n/ui';
 import { useTranslations } from '../../i18n/utils';
 import { ShieldAlert, Layers, BookOpen, Terminal, ShieldCheck, Container, Lock, ExternalLink } from '@lucide/astro';
 import GithubIcon from '../icons/GithubIcon.astro';
-import archforgeImg from '../../assets/archforge.png';
 
 interface Props {
   lang: SupportedLang;
@@ -116,6 +114,32 @@ const projects = (await getCollection('projects', ({ id }) => id.startsWith(`${l
     </ol>
   </nav>
 
+  <!-- Defense-in-Depth Architecture Visual Diagram -->
+  <div class="rounded-2xl overflow-hidden border border-(--border-subtle) bg-[#0E141D] shadow-sm">
+    <div class="px-4 py-3 bg-(--bg-surface) border-b border-(--border-subtle) flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-(--accent-forest) shadow-xs animate-pulse"></span>
+        <span class="text-xs font-bold text-(--text-primary)">
+          {lang === 'es' ? 'Mapa de Arquitectura: Defensa en Profundidad' : 'Architecture Map: 4-Layer Defense in Depth'}
+        </span>
+        <span class="text-[11px] text-(--text-muted) hidden md:inline">· {lang === 'es' ? 'Haz clic en cualquier capa para inspeccionar su caso de estudio' : 'Click any tier to inspect its case study'}</span>
+      </div>
+      <span class="text-[11px] font-mono font-semibold text-(--accent-forest) px-2.5 py-0.5 rounded-full bg-(--accent-forest-bg) border border-(--border-subtle)">
+        L1 ➔ L2 ➔ L3 ➔ L4
+      </span>
+    </div>
+    <div class="relative w-full overflow-x-auto">
+      <img
+        src="/images/defense-in-depth-stack.svg"
+        alt="Diagrama de Arquitectura de Defensa en Profundidad en 4 Capas — Henry Pacheco (H3n)"
+        width="1200"
+        height="530"
+        class="w-full min-w-[760px] h-auto block"
+        loading="lazy"
+      />
+    </div>
+  </div>
+
   <div class="flex flex-col gap-10">
     {projects.map((project) => {
       const projectAnchor = project.slug.split('/').pop() || project.slug;
@@ -178,144 +202,17 @@ const projects = (await getCollection('projects', ({ id }) => id.startsWith(`${l
             </div>
           </div>
 
-          <!-- Visual Demonstration / Screenshot / Terminal Preview -->
-          {isArchforge ? (
-            <div class="rounded-xl overflow-hidden border border-(--border-subtle) bg-(--bg-elevated) relative group">
-              <Image
-                src={archforgeImg}
-                alt="Captura de pantalla de la interfaz CLI de ArchForge mostrando sus módulos"
-                widths={[480, 800, 1280]}
-                sizes="(max-width: 640px) 480px, (max-width: 1024px) 800px, 1280px"
-                format="webp"
-                quality={85}
-                loading="lazy"
-                class="w-full h-auto object-cover object-top transition-transform duration-300 group-hover:scale-[1.01]"
-              />
-            </div>
-          ) : isDockerward ? (
-            <div class="rounded-xl overflow-hidden border border-(--border-subtle) bg-(--bg-elevated) p-5 font-mono text-xs text-(--text-secondary) flex flex-col gap-3 shadow-inner">
-              <!-- Window control dots -->
-              <div class="flex items-center justify-between pb-3 border-b border-(--border-subtle)">
-                <div class="flex items-center gap-2">
-                  <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
-                  <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
-                  <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
-                  <span class="text-xs text-(--text-muted) ml-2">dockerward · Runtime Security Audit & CIS Benchmark Engine</span>
-                </div>
-                <span class="text-[11px] text-(--accent-sky) px-2 py-0.5 rounded bg-(--accent-sky-bg) font-semibold">
-                  Python 3.12+ · Docker API
-                </span>
-              </div>
-
-              <!-- Terminal simulation output -->
-              <div class="flex flex-col gap-1.5 leading-relaxed overflow-x-auto">
-                <p class="text-(--text-muted)">
-                  <span class="text-(--accent-forest)">$</span> dockerward audit --format table --fail-on HIGH
-                </p>
-                <p class="text-(--text-primary) font-semibold">
-                  [AUDIT] ward-victim-privileged (86929020fc49) — 8 Finding(s) detected:
-                </p>
-                <p class="text-(--text-secondary) pl-3">
-                  • <span class="text-(--accent-primary-hover) font-bold">[CRITICAL]</span> WARD-002: Container running in privileged mode (lifts device cgroups)
-                </p>
-                <p class="text-(--text-secondary) pl-3">
-                  • <span class="text-(--accent-primary-hover) font-bold">[CRITICAL]</span> WARD-003: Docker socket mounted READ-WRITE (/var/run/docker.sock)
-                </p>
-                <p class="text-(--text-secondary) pl-3">
-                  • <span class="text-(--accent-sky) font-bold">[HIGH]</span> WARD-001: Process executing as root (UID 0 in unmapped namespace)
-                </p>
-                <p class="text-(--text-secondary) pl-3">
-                  • <span class="text-(--accent-sky) font-bold">[HIGH]</span> WARD-006: Seccomp profile unconfined (300+ syscalls exposed)
-                </p>
-                <p class="text-(--accent-forest) font-semibold pt-1">
-                  ✓ ward-victim-hardened (cec3debbc93f): Conforms to audited CIS benchmarks (0 findings).
-                </p>
-                <p class="text-(--accent-sky)">
-                  [REPORT] Exported OASIS SARIF 2.1.0 -> results.sarif (GitHub Code Scanning ready)
-                </p>
-              </div>
-            </div>
-          ) : isChatAnonimo ? (
-            <div class="rounded-xl overflow-hidden border border-(--border-subtle) bg-(--bg-elevated) p-5 font-mono text-xs text-(--text-secondary) flex flex-col gap-3 shadow-inner">
-              <!-- Window control dots -->
-              <div class="flex items-center justify-between pb-3 border-b border-(--border-subtle)">
-                <div class="flex items-center gap-2">
-                  <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
-                  <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
-                  <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
-                  <span class="text-xs text-(--text-muted) ml-2">chat-anonimo · Zero-Knowledge E2EE Blind Relay v2.5</span>
-                </div>
-                <span class="text-[11px] text-(--accent-forest) px-2 py-0.5 rounded bg-(--accent-forest-bg) font-semibold">
-                  WebCrypto · AES-256-GCM + ECDH + FLAG_SECURE
-                </span>
-              </div>
-
-              <!-- Cryptographic exchange preview -->
-              <div class="flex flex-col gap-1.5 leading-relaxed overflow-x-auto">
-                <p class="text-(--text-muted)">
-                  <span class="text-(--accent-forest)">[HANDSHAKE]</span> Ephemeral ECDH (P-256) Key Agreement Initiated via Hash Fragment (RFC 3986)
-                </p>
-                <p class="text-(--text-secondary) pl-3">
-                  • <span class="text-(--accent-sky) font-bold">[CLIENT-A]</span> Generated 256-bit AES-GCM RoomKey in volatile browser RAM (CSPRNG)
-                </p>
-                <p class="text-(--text-secondary) pl-3">
-                  • <span class="text-(--accent-forest) font-bold">[AUTH]</span> Short Authentication String (SAS): <span class="text-(--accent-forest) font-bold">ZENITH-TITAN-AURORA-MIRAGE</span> (Out-of-band MITM Verified)
-                </p>
-                <p class="text-(--text-secondary) pl-3">
-                  • <span class="text-(--accent-sky) font-bold">[VOICE]</span> Web Audio Scrambler: Formants modulated (Deep Pitch) — Acoustic profiling neutralized
-                </p>
-                <p class="text-(--text-secondary) pl-3">
-                  • <span class="text-(--accent-sky) font-bold">[FILE]</span> Metadata Sanitizer: Stripped EXIF/GPS tags -> Assigned SHA-256 hash payload
-                </p>
-                <p class="text-(--text-secondary) pl-3">
-                  • <span class="text-(--accent-primary) font-bold">[ANTI-FORENSIC]</span> Duress Armed (PIN 9999 -> Decoy Room) · LSB Steganography · Clipboard 30s auto-wipe
-                </p>
-                <p class="text-(--accent-forest) font-semibold pt-1">
-                  ✓ [ANDROID KERNEL] FLAG_SECURE enforced — Hardware screenshots (Power+Vol-) & screen recorders blocked.
-                </p>
-                <p class="text-(--accent-primary) font-semibold">
-                  [BLIND RELAY] Retransmitting opaque AEAD packets (AAD: "room:WDQDJ7") — 0 keys stored, 0 logs, 0 persistent bytes.
-                </p>
-              </div>
-            </div>
-          ) : (
-            <div class="rounded-xl overflow-hidden border border-(--border-subtle) bg-(--bg-elevated) p-5 font-mono text-xs text-(--text-secondary) flex flex-col gap-3 shadow-inner">
-              <!-- Window control dots -->
-              <div class="flex items-center justify-between pb-3 border-b border-(--border-subtle)">
-                <div class="flex items-center gap-2">
-                  <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
-                  <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
-                  <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
-                  <span class="text-xs text-(--text-muted) ml-2">repo-secret-auditor · CI Policy Gate & SARIF Exporter</span>
-                </div>
-                <span class="text-[11px] text-(--accent-forest) px-2 py-0.5 rounded bg-(--accent-forest-bg)">
-                  FastAPI · Python 3.12+
-                </span>
-              </div>
-
-              <!-- Terminal simulation output -->
-              <div class="flex flex-col gap-1.5 leading-relaxed">
-                <p class="text-(--text-muted)">
-                  <span class="text-(--accent-primary)">$</span> python scripts/run_security_scan.py --project-root . --summary artifacts/summary.json --sarif artifacts/findings.sarif
-                </p>
-                <p class="text-(--text-secondary)">
-                  [INFO] Initializing scan runner for repository workspace...
-                </p>
-                <p class="text-(--text-secondary)">
-                  [INFO] Running AST secret detectors: Checking API keys, RSA/ECDSA private tokens, high-entropy strings...
-                </p>
-                <p class="text-(--text-secondary)">
-                  [INFO] Auditing Python & Node dependency lockfiles against vulnerability advisories...
-                </p>
-                <p class="text-(--accent-forest) font-semibold">
-                  [SUCCESS] Exported OASIS SARIF 2.1.0 report -> artifacts/findings.sarif
-                </p>
-                <p class="text-(--accent-forest)">
-                  [GATE PASSED] 0 High / 0 Critical findings. GitHub Code Scanning action workflow gate passed!
-                </p>
-              </div>
-            </div>
-          )}
+          <!-- Visual Demonstration / Architecture Hero Card -->
+          <div class="rounded-xl overflow-hidden border border-(--border-subtle) bg-(--bg-elevated) relative group shadow-sm">
+            <img
+              src={`/images/projects/card-${projectAnchor}.svg`}
+              alt={`Demostración técnica y arquitectura de ${project.data.title}`}
+              width="1200"
+              height="675"
+              class="w-full h-auto object-cover object-top transition-transform duration-300 group-hover:scale-[1.008]"
+              loading="lazy"
+            />
+          </div>
 
           <!-- Technical Case Study Breakdown -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
