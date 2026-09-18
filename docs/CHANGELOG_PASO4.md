@@ -35,7 +35,7 @@ Cerrar la fase final con:
 
 ### Lint
 Comando:
-- `npm --prefix /home/h3n/Desktop/Claude-Projects/portfolio run lint`
+- `npm --prefix /home/h3n/Portfolio/portfolio run lint`
 
 Resultado:
 - Exitoso, sin errores ni warnings.
