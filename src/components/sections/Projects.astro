@@ -148,8 +148,8 @@ const projects = (await getCollection('projects', ({ id }) => id.startsWith(`${l
               <Image
                 src={archforgeImg}
                 alt="Captura de pantalla de la interfaz CLI de ArchForge mostrando sus módulos"
-                width={1280}
-                height={720}
+                widths={[480, 800, 1280]}
+                sizes="(max-width: 640px) 480px, (max-width: 1024px) 800px, 1280px"
                 format="webp"
                 quality={85}
                 loading="lazy"
