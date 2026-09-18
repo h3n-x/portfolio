@@ -1,14 +1,15 @@
 ---
-title: "Chat Anónimo v2.0"
-tagline: "Ephemeral messaging system with real End-to-End Encryption (E2EE) and Zero-Knowledge Blind Relay architecture"
-description: "Anonymous communication platform rewritten from the ground up to eradicate weak fallbacks and server-side decryption, featuring native WebCrypto (AES-256-GCM + ECDH P-256), Zero-Knowledge invitation links via RFC 3986, and 15MB bounded encrypted file streaming."
+title: "Chat Anónimo v2.1"
+tagline: "Ephemeral messaging system with real End-to-End Encryption (E2EE), traffic analysis resistance, and Zero-Knowledge Blind Relay architecture"
+description: "Anonymous communication platform featuring native WebCrypto (AES-256-GCM + ECDH P-256), fixed-length cryptographic padding, burn-after-reading timers, E2EE voice notes, anti-capture defenses, and a RAM zero-wipe panic button."
 role: "Project Author & Developer"
-status: "v2.0.0 · 27 Backend Tests (93% cov) · Native WebCrypto"
+status: "v2.1.0 · 28 Backend Tests · 5 Frontend Tests · Native WebCrypto"
 technologies:
   - "WebCrypto API"
   - "AES-256-GCM"
   - "ECDH (P-256)"
-  - "Python 3.12+"
+  - "Web Audio API"
+  - "MediaRecorder E2EE"
   - "FastAPI"
   - "WebSockets"
   - "React 19"
@@ -21,17 +22,18 @@ demoUrl: "https://chat-zk.netlify.app"
 featured: true
 order: 4
 category: "Cryptography & E2EE Networks"
-problemSolved: "Traditional chat platforms and the legacy v1.0 of this project relied on a flawed premise: the server generated and distributed symmetric keys, decrypted messages in transit, and silently degraded to XOR fallbacks using Math.random(). Furthermore, unauthenticated admin endpoints and unbounded file uploads exposed the server to DoS memory exhaustion."
+problemSolved: "Traditional chat applications and the legacy v1.0 of this project relied on a flawed premise where the server managed keys and decrypted in transit. Furthermore, packet length analysis exposed message patterns, and browser sessions lacked defenses against shoulder-surfing, screenshot leaks, or residual memory persistence."
 architectureHighlights:
-  - "Zero-Knowledge Blind Relay architecture: the FastAPI server acts as a blind packet router; the implementation does not store, log, or transmit private or symmetric key material, strictly isolating all cryptographic operations on the client."
-  - "Key exchange via RFC 3986 URL Hash Fragment: room keys are shared in the URL hash fragment (#room=XYZ&key=BASE64), which per RFC 3986 standard is never transmitted across the network or sent to the server."
-  - "Asymmetric key agreement with ECDH (P-256): supports room code joining via ephemeral Diffie-Hellman handshake and HKDF-SHA256 key wrapping for RoomKey distribution."
-  - "In-memory file encryption with chunked streaming: clients encrypt files locally with AES-256-GCM and stream 64 KB blocks to the relay with a hard 15 MB cutoff (HTTP 413) and 10-minute auto-destruction TTL."
-  - "Strict Fail-Closed policy: if the browser or network lacks WebCrypto (e.g. non-secure HTTP), the UI is blocked immediately with zero silent degradation to weak ciphers."
+  - "Zero-Knowledge Blind Relay architecture: the FastAPI server acts as a blind packet router without storing, logging, or transmitting key material, isolating cryptography 100% in the client."
+  - "Traffic Analysis Resistance (256-byte Padding): messages are padded with CSPRNG noise and length-prefixed before encryption, ensuring identical ciphertext sizes regardless of message length."
+  - "Burn-after-reading Timers: visual countdown timers that automatically purge and scramble messages and in-memory object URLs upon expiration."
+  - "In-Memory Voice Notes & Encrypted Files: streaming binary uploads via MediaRecorder and AES-256-GCM with memory-only playback and lightbox previews, leaving zero traces on disk."
+  - "Anti-Shoulder Surfing & Panic Nuke: automatic blackout overlay on app switch/blur, clipboard sanitization on PrintScreen, and a triple-Esc keyboard shortcut to nuke RAM instantly."
+  - "Zero-Knowledge Sharing via RFC 3986 Hash Fragment & Local QR: in-memory SVG QR code generator and direct hash fragment links that bypass external API requests."
 keyLearnings:
-  - "Clear technical distinction between Transport Layer Security (TLS) and genuine End-to-End Encryption (E2EE) with AAD binding room IDs to prevent cross-room replay attacks."
-  - "Mitigating Man-in-the-Middle (MITM) attacks through visual 4-word Short Authentication Strings (SAS) derived from cryptographic key hashes."
-  - "Bounded asynchronous streaming in FastAPI to prevent memory exhaustion (OOM DoS) while handling opaque binary payloads without server-side inspection."
+  - "Implementing cryptographic padding to eliminate packet size fingerprinting by passive network adversaries."
+  - "Designing a fail-closed in-memory lifecycle that revokes Blob URLs and clears symmetric keys instantly during panic events."
+  - "Asymmetric key agreement with ECDH P-256 and visual Short Authentication String (SAS) verification to defend against MITM attacks."
 ---
 
 Chat Anónimo v2.0 represents a rigorous security audit and architectural overhaul of an abandoned 2025 project. Rather than applying superficial UI patches, the rewrite confronted a critical vulnerability: the self-described 'E2EE encryption' of the initial version was fundamentally broken, as the server acted as an active decryptor and key distributor.
