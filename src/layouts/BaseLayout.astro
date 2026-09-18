@@ -26,16 +26,24 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://h3n-x.ne
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonicalUrl} />
 
-    <!-- Anti-FOUC Theme Script -->
+    <!-- Anti-FOUC Theme Script & View Transitions Theme Sync -->
     <script is:inline>
-      (function () {
+      function applyTheme() {
         const storedTheme = localStorage.getItem('theme');
-        if (storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        const isDark = storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (isDark) {
           document.documentElement.classList.add('dark');
         } else {
           document.documentElement.classList.remove('dark');
         }
-      })();
+        const meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) {
+          meta.setAttribute('content', isDark ? '#0E141D' : '#FBF9F4');
+        }
+      }
+
+      applyTheme();
+      document.addEventListener('astro:after-swap', applyTheme);
     </script>
 
     <!-- SEO & Metadata -->

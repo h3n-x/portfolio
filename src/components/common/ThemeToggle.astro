@@ -31,16 +31,20 @@ const t = useTranslations(lang);
     const toggle = document.getElementById('theme-toggle');
     if (!toggle) return;
 
-    toggle.addEventListener('click', () => {
+    toggle.onclick = () => {
       const isDark = document.documentElement.classList.contains('dark');
-      if (isDark) {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      } else {
+      const nextTheme = isDark ? 'light' : 'dark';
+      localStorage.setItem('theme', nextTheme);
+      if (nextTheme === 'dark') {
         document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.classList.remove('dark');
       }
-    });
+      const meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) {
+        meta.setAttribute('content', nextTheme === 'dark' ? '#0E141D' : '#FBF9F4');
+      }
+    };
   }
 
   setupThemeToggle();
