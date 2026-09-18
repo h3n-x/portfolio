@@ -27,7 +27,7 @@ const navItems = [
     <a
       href={`/${lang}/`}
       class="interactive-target flex items-center gap-2.5 font-bold tracking-tight text-(--text-primary) hover:text-(--accent-primary) transition-colors"
-      aria-label="Henry Pacheco - Inicio"
+      aria-label={`h3n.dev - ${lang === 'es' ? 'Inicio' : 'Home'}`}
     >
       <span class="w-8 h-8 rounded-lg bg-(--accent-forest-bg) border border-(--border-subtle) flex items-center justify-center text-(--accent-forest)">
         <Terminal class="w-4 h-4" aria-hidden="true" />

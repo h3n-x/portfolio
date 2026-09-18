@@ -2,7 +2,7 @@
 title: "Repo Secret Auditor"
 tagline: "Backend secret & dependency scanner engine with native SARIF 2.1.0 integration"
 description: "A Python and FastAPI backend service and CI/CD runner engineered to audit Git repositories for leaked secrets and vulnerable dependencies, natively integrating into GitHub Code Scanning via severity-based policy gates."
-role: "Backend Architect & Author"
+role: "Author & Backend Developer"
 status: "v0.1.0 · Tests (>80% cov) & Active CI/CD"
 technologies:
   - "Python"
