@@ -243,29 +243,38 @@ const projects = (await getCollection('projects', ({ id }) => id.startsWith(`${l
                   <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
                   <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
                   <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
-                  <span class="text-xs text-(--text-muted) ml-2">chat-anonimo · Zero-Knowledge E2EE Blind Relay</span>
+                  <span class="text-xs text-(--text-muted) ml-2">chat-anonimo · Zero-Knowledge E2EE Blind Relay v2.5</span>
                 </div>
                 <span class="text-[11px] text-(--accent-forest) px-2 py-0.5 rounded bg-(--accent-forest-bg) font-semibold">
-                  WebCrypto · AES-256-GCM + ECDH
+                  WebCrypto · AES-256-GCM + ECDH + FLAG_SECURE
                 </span>
               </div>
 
               <!-- Cryptographic exchange preview -->
               <div class="flex flex-col gap-1.5 leading-relaxed overflow-x-auto">
                 <p class="text-(--text-muted)">
-                  <span class="text-(--accent-forest)">[HANDSHAKE]</span> Ephemeral ECDH (P-256) Key Agreement Initiated
+                  <span class="text-(--accent-forest)">[HANDSHAKE]</span> Ephemeral ECDH (P-256) Key Agreement Initiated via Hash Fragment (RFC 3986)
                 </p>
                 <p class="text-(--text-secondary) pl-3">
-                  • <span class="text-(--accent-sky) font-bold">[CLIENT-A]</span> Generated 256-bit AES-GCM RoomKey in browser RAM (CSPRNG)
+                  • <span class="text-(--accent-sky) font-bold">[CLIENT-A]</span> Generated 256-bit AES-GCM RoomKey in volatile browser RAM (CSPRNG)
                 </p>
                 <p class="text-(--text-secondary) pl-3">
-                  • <span class="text-(--accent-sky) font-bold">[CLIENT-B]</span> Sent KEY_REQUEST (pk_Bob: 64B Base64) via WebSocket relay
+                  • <span class="text-(--accent-forest) font-bold">[AUTH]</span> Short Authentication String (SAS): <span class="text-(--accent-forest) font-bold">ZENITH-TITAN-AURORA-MIRAGE</span> (Out-of-band MITM Verified)
                 </p>
                 <p class="text-(--text-secondary) pl-3">
-                  • <span class="text-(--accent-forest) font-bold">[AUTH]</span> Short Authentication String (SAS): <span class="text-(--accent-forest) font-bold">COBALT-SHADOW-ORBIT-AURORA</span> (MITM Verified)
+                  • <span class="text-(--accent-sky) font-bold">[VOICE]</span> Web Audio Scrambler: Formants modulated (Deep Pitch) — Acoustic profiling neutralized
                 </p>
-                <p class="text-(--accent-primary) font-semibold pt-1">
-                  [BLIND RELAY] Retransmitting opaque AEAD packets (AAD: "room:K7M9P2") — 0 keys stored, 0 messages decrypted.
+                <p class="text-(--text-secondary) pl-3">
+                  • <span class="text-(--accent-sky) font-bold">[FILE]</span> Metadata Sanitizer: Stripped EXIF/GPS tags -> Assigned SHA-256 hash payload
+                </p>
+                <p class="text-(--text-secondary) pl-3">
+                  • <span class="text-(--accent-primary) font-bold">[ANTI-FORENSIC]</span> Duress Armed (PIN 9999 -> Decoy Room) · LSB Steganography · Clipboard 30s auto-wipe
+                </p>
+                <p class="text-(--accent-forest) font-semibold pt-1">
+                  ✓ [ANDROID KERNEL] FLAG_SECURE enforced — Hardware screenshots (Power+Vol-) & screen recorders blocked.
+                </p>
+                <p class="text-(--accent-primary) font-semibold">
+                  [BLIND RELAY] Retransmitting opaque AEAD packets (AAD: "room:WDQDJ7") — 0 keys stored, 0 logs, 0 persistent bytes.
                 </p>
               </div>
             </div>
