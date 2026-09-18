@@ -3,7 +3,7 @@ title: "Chat Anónimo v2.0"
 tagline: "Ephemeral messaging system with real End-to-End Encryption (E2EE) and Zero-Knowledge Blind Relay architecture"
 description: "Anonymous communication platform rewritten from the ground up to eradicate weak fallbacks and server-side decryption, featuring native WebCrypto (AES-256-GCM + ECDH P-256), Zero-Knowledge invitation links via RFC 3986, and 15MB bounded encrypted file streaming."
 role: "Project Author & Developer"
-status: "v2.0.0 · 25 Backend Tests (93% cov) · Native WebCrypto"
+status: "v2.0.0 · 27 Backend Tests (93% cov) · Native WebCrypto"
 technologies:
   - "WebCrypto API"
   - "AES-256-GCM"
@@ -17,13 +17,13 @@ technologies:
   - "Pytest"
   - "Vitest"
 githubUrl: "https://github.com/h3n-x/chat-anonimo"
-demoUrl: "https://write-ghost.netlify.app"
+demoUrl: "https://chat-zk.netlify.app"
 featured: true
 order: 4
 category: "Cryptography & E2EE Networks"
 problemSolved: "Traditional chat platforms and the legacy v1.0 of this project relied on a flawed premise: the server generated and distributed symmetric keys, decrypted messages in transit, and silently degraded to XOR fallbacks using Math.random(). Furthermore, unauthenticated admin endpoints and unbounded file uploads exposed the server to DoS memory exhaustion."
 architectureHighlights:
-  - "Zero-Knowledge Blind Relay architecture: the FastAPI server acts as a blind packet router that never generates, derives, or stores keys, making it mathematically impossible to decrypt messages or files."
+  - "Zero-Knowledge Blind Relay architecture: the FastAPI server acts as a blind packet router; the implementation does not store, log, or transmit private or symmetric key material, strictly isolating all cryptographic operations on the client."
   - "Key exchange via RFC 3986 URL Hash Fragment: room keys are shared in the URL hash fragment (#room=XYZ&key=BASE64), which per RFC 3986 standard is never transmitted across the network or sent to the server."
   - "Asymmetric key agreement with ECDH (P-256): supports room code joining via ephemeral Diffie-Hellman handshake and HKDF-SHA256 key wrapping for RoomKey distribution."
   - "In-memory file encryption with chunked streaming: clients encrypt files locally with AES-256-GCM and stream 64 KB blocks to the relay with a hard 15 MB cutoff (HTTP 413) and 10-minute auto-destruction TTL."
