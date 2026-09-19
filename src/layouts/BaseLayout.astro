@@ -45,6 +45,54 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://h3n-x.ne
 
       applyTheme();
       document.addEventListener('astro:after-swap', applyTheme);
+
+      // Restore scroll position when switching languages
+      function restoreScrollPosition() {
+        try {
+          const savedY = sessionStorage.getItem('preferred_scroll_y');
+          if (savedY !== null) {
+            sessionStorage.removeItem('preferred_scroll_y');
+            const targetY = parseFloat(savedY);
+            if (!isNaN(targetY) && targetY > 0) {
+              if ('scrollRestoration' in history) {
+                history.scrollRestoration = 'manual';
+              }
+              const html = document.documentElement;
+              const originalBehavior = html.style.scrollBehavior;
+              html.style.scrollBehavior = 'auto';
+
+              const doScroll = () => {
+                window.scrollTo({ top: targetY, left: 0, behavior: 'instant' });
+              };
+
+              doScroll();
+
+              if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', doScroll, { once: true });
+              }
+
+              requestAnimationFrame(doScroll);
+              setTimeout(doScroll, 50);
+              setTimeout(doScroll, 150);
+
+              window.addEventListener('load', () => {
+                doScroll();
+                setTimeout(() => {
+                  html.style.scrollBehavior = originalBehavior;
+                  if ('scrollRestoration' in history) {
+                    history.scrollRestoration = 'auto';
+                  }
+                }, 100);
+              }, { once: true });
+            }
+          }
+        } catch (e) {
+          // Ignore storage access errors
+        }
+      }
+
+      restoreScrollPosition();
+      document.addEventListener('astro:page-load', restoreScrollPosition);
     </script>
 
     <!-- SEO & Metadata -->

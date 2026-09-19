@@ -16,8 +16,10 @@ const label = lang === 'es' ? 'EN' : 'ES';
 ---
 
 <a
+  id="lang-toggle"
   href={targetHref}
   data-astro-reload
+  onclick="try { sessionStorage.setItem('preferred_scroll_y', window.scrollY.toString()); } catch(e) {}"
   class="interactive-target px-3 py-1.5 rounded-full text-xs font-semibold tracking-wide border border-(--border-subtle) bg-(--bg-surface) text-(--text-secondary) hover:text-(--text-primary) hover:border-(--border-default) transition-all flex items-center gap-1.5"
   aria-label={t('lang.toggle')}
   title={t('lang.toggle')}

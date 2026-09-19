@@ -11,7 +11,9 @@
     "astro": "astro",
     "check": "astro check",
     "test:theme": "node scripts/test-theme-lang.mjs",
-    "test:modals": "node scripts/test-modals.mjs"
+    "test:modals": "node scripts/test-modals.mjs",
+    "test:scroll": "node scripts/test-scroll-lang.mjs",
+    "test": "npm run test:theme && npm run test:modals && npm run test:scroll"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
