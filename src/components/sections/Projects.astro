@@ -321,10 +321,11 @@ const projects = (await getCollection('projects', ({ id }) => id.startsWith(`${l
     return (
       <dialog
         id={`modal-${projectAnchor}`}
-        class="project-modal fixed inset-0 m-auto w-[94vw] max-w-4xl max-h-[90vh] rounded-2xl bg-(--bg-surface) text-(--text-primary) border border-(--border-default) shadow-2xl p-0 overflow-hidden z-50 flex flex-col focus:outline-none"
+        class="project-modal fixed inset-0 m-auto w-[94vw] max-w-4xl max-h-[90vh] rounded-2xl bg-(--bg-surface) text-(--text-primary) border border-(--border-default) shadow-2xl p-0 overflow-hidden z-50 focus:outline-none"
         aria-labelledby={`modal-title-${projectAnchor}`}
         aria-modal="true"
       >
+        <div class="flex flex-col w-full h-full max-h-[90vh] overflow-hidden">
         <!-- Modal Top Sticky Bar -->
         <header class="sticky top-0 z-20 px-6 py-4 bg-(--bg-surface)/95 backdrop-blur-sm border-b border-(--border-subtle) flex items-center justify-between gap-4">
           <div class="flex items-center gap-2.5 flex-wrap">
@@ -476,6 +477,7 @@ const projects = (await getCollection('projects', ({ id }) => id.startsWith(`${l
             </a>
           </div>
         </footer>
+        </div>
       </dialog>
     );
   })}
@@ -485,12 +487,21 @@ const projects = (await getCollection('projects', ({ id }) => id.startsWith(`${l
   function setupProjectModals() {
     let lastActiveElement: HTMLElement | null = null;
 
+    // Ensure all modals start closed on load
+    const modals = document.querySelectorAll<HTMLDialogElement>('dialog.project-modal');
+    modals.forEach((modal) => {
+      if (modal.hasAttribute('open')) {
+        modal.close();
+      }
+    });
+
     // Helper to open modal
     function openModal(modalId: string, triggerEl?: HTMLElement) {
       const modal = document.getElementById(modalId) as HTMLDialogElement | null;
       if (!modal) return;
       lastActiveElement = triggerEl || (document.activeElement as HTMLElement);
       document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
       modal.showModal();
     }
 
@@ -498,6 +509,7 @@ const projects = (await getCollection('projects', ({ id }) => id.startsWith(`${l
     function closeModal(modal: HTMLDialogElement) {
       modal.close();
       document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
       if (lastActiveElement && typeof lastActiveElement.focus === 'function') {
         lastActiveElement.focus();
       }
@@ -526,19 +538,23 @@ const projects = (await getCollection('projects', ({ id }) => id.startsWith(`${l
     });
 
     // Handle dialog events
-    const modals = document.querySelectorAll<HTMLDialogElement>('dialog.project-modal');
     modals.forEach((modal) => {
       // Close buttons
       const closeButtons = modal.querySelectorAll('.modal-close-btn');
       closeButtons.forEach((btn) => {
         btn.addEventListener('click', (e) => {
           e.preventDefault();
+          e.stopPropagation();
           closeModal(modal);
         });
       });
 
-      // Backdrop click closes dialog
+      // Backdrop click closes dialog (e.target is dialog when clicking backdrop)
       modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          closeModal(modal);
+          return;
+        }
         const rect = modal.getBoundingClientRect();
         const isInDialog =
           rect.top <= e.clientY &&
@@ -553,10 +569,22 @@ const projects = (await getCollection('projects', ({ id }) => id.startsWith(`${l
       // Restore scroll when closed
       modal.addEventListener('close', () => {
         document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
         if (lastActiveElement && typeof lastActiveElement.focus === 'function') {
           lastActiveElement.focus();
         }
       });
+    });
+
+    // Global Escape key listener fallback
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const openModalEl = document.querySelector<HTMLDialogElement>('dialog.project-modal[open]');
+        if (openModalEl) {
+          e.preventDefault();
+          closeModal(openModalEl);
+        }
+      }
     });
   }
 

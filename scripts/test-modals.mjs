@@ -71,10 +71,14 @@ async function run() {
     for (const slug of projectSlugs) {
       const cardExists = await evaluate(`!!document.querySelector('#${slug}')`);
       const modalExists = await evaluate(`!!document.querySelector('#modal-${slug}')`);
+      const isVisible = await evaluate(`window.getComputedStyle(document.querySelector('#modal-${slug}')).display !== 'none'`);
+      if (isVisible) {
+        throw new Error(`Modal for ${slug} is visible on page load! Computed display is not 'none'`);
+      }
       if (!cardExists || !modalExists) {
         throw new Error(`Card or modal missing for ${slug}: card=${cardExists}, modal=${modalExists}`);
       }
-      console.log(`  ✓ Found card & modal for: ${slug}`);
+      console.log(`  ✓ Found card & modal for ${slug} (correctly hidden initially)`);
     }
 
     // Test SecuScan API modal interactive open and close
@@ -89,14 +93,28 @@ async function run() {
       throw new Error(`SecuScan modal failed to open cleanly. open=${isOpen}, overflow=${overflow}`);
     }
 
-    // Close via close button
+    // Test Escape key
+    console.log('\n[2b] Testing Escape key closes modal...');
+    await evaluate(`document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', code: 'Escape', bubbles: true }))`);
+    await new Promise(r => setTimeout(r, 300));
+    isOpen = await evaluate(`document.querySelector('#modal-secuscan-api')?.open`);
+    overflow = await evaluate(`document.documentElement.style.overflow`);
+    if (isOpen || overflow !== '') {
+      throw new Error(`Modal failed to close on Escape key! open=${isOpen}, overflow=${overflow}`);
+    }
+    console.log('  ✓ Modal closed on Escape key successfully');
+
+    // Reopen and test close button
+    console.log('\n[2c] Testing Close Button (X and Close)...');
+    await evaluate(`document.querySelector('#secuscan-api').click()`);
+    await new Promise(r => setTimeout(r, 300));
     await evaluate(`document.querySelector('#modal-secuscan-api .modal-close-btn').click()`);
     await new Promise(r => setTimeout(r, 300));
     isOpen = await evaluate(`document.querySelector('#modal-secuscan-api')?.open`);
     overflow = await evaluate(`document.documentElement.style.overflow`);
-    console.log(`  Modal closed: ${!isOpen}, body overflow restored: "${overflow}"`);
+    console.log(`  Modal closed via button: ${!isOpen}, body overflow restored: "${overflow}"`);
     if (isOpen || overflow !== '') {
-      throw new Error(`SecuScan modal failed to close. open=${isOpen}, overflow=${overflow}`);
+      throw new Error(`SecuScan modal failed to close via button. open=${isOpen}, overflow=${overflow}`);
     }
 
     // Test Layer 5 navigation button opening SecuScan modal
