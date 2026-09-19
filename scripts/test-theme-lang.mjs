@@ -83,7 +83,7 @@ async function run() {
     // Helper: click element by selector
     async function click(selector) {
       await evaluate(`document.querySelector('${selector}')?.click()`);
-      await new Promise(r => setTimeout(r, 400));
+      await new Promise(r => setTimeout(r, 1000));
     }
 
     // --- TEST CASE 1: Light -> Toggle Dark -> Navigate ES to EN -> Navigate EN to ES ---

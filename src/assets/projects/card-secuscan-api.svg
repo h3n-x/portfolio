@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="secuscan-glow" cx="25%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00D2B4" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#00D2B4" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="675" fill="#0E141D"/>
+  <rect width="1200" height="675" fill="url(#secuscan-glow)"/>
+  
+  <!-- Terminal Window Left -->
+  <g>
+    <rect x="48" y="80" width="520" height="500" rx="10" fill="#0B111A" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+    <rect x="48" y="80" width="520" height="30" rx="10" fill="#1D2A3B"/>
+    <rect x="48" y="100" width="520" height="10" fill="#1D2A3B"/>
+    <circle cx="66" cy="95" r="5" fill="#EF4444" fill-opacity="0.6"/>
+    <circle cx="82" cy="95" r="5" fill="#F59E0B" fill-opacity="0.6"/>
+    <circle cx="98" cy="95" r="5" fill="#22C55E" fill-opacity="0.6"/>
+    <text x="308" y="96" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="500" fill="#00D2B4">secuscan-api — perimeter &amp; easm audit</text>
+  </g>
+
+  <!-- Terminal Content -->
+  <text x="72" y="136" font-family="'JetBrains Mono', monospace" font-size="12" fill="#CBD5E1">
+    <tspan fill="#5EBAA0" fill-opacity="0.7">$ </tspan>
+    <tspan fill="#F3F6F9">secuscan audit --target domain.org --sarif</tspan>
+  </text>
+  <text x="72" y="158" font-family="'JetBrains Mono', monospace" font-size="12" fill="#00D2B4">Target: domain.org · Passive Recon: crt.sh (12 subdomains)</text>
+  <text x="72" y="180" font-family="'JetBrains Mono', monospace" font-size="12" fill="#94A3B8">──────────────────────────────────────────</text>
+
+  <g>
+    <rect x="72" y="196" width="460" height="28" rx="6" fill="rgba(0,210,180,0.10)" fill-opacity="0.6"/>
+    <text x="88" y="210" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#94A3B8">DNS</text>
+    <text x="138" y="210" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#CBD5E1">SPF strict -all · DMARC p=reject</text>
+    <text x="500" y="210" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#00D2B4">PASS</text>
+  </g>
+
+  <g>
+    <rect x="72" y="232" width="460" height="28" rx="6" fill="rgba(0,210,180,0.10)" fill-opacity="0.6"/>
+    <text x="88" y="246" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#94A3B8">TLS</text>
+    <text x="138" y="246" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#CBD5E1">TLS 1.3 · Valid Cert · 284 days</text>
+    <text x="500" y="246" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#00D2B4">A+</text>
+  </g>
+
+  <g>
+    <rect x="72" y="268" width="460" height="28" rx="6" fill="rgba(0,210,180,0.10)" fill-opacity="0.6"/>
+    <text x="88" y="282" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#94A3B8">HDR</text>
+    <text x="138" y="282" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#CBD5E1">HSTS preload · CSP strict · X-Frame</text>
+    <text x="500" y="282" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#00D2B4">PASS</text>
+  </g>
+
+  <g>
+    <rect x="72" y="304" width="460" height="28" rx="6" fill="rgba(0,210,180,0.10)" fill-opacity="0.6"/>
+    <text x="88" y="318" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#94A3B8">PORT</text>
+    <text x="138" y="318" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#CBD5E1">TCP 80/443 open · Anti-DNS Rebind socket</text>
+    <text x="500" y="318" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#00D2B4">SECURE</text>
+  </g>
+
+  <g>
+    <rect x="72" y="340" width="460" height="28" rx="6" fill="rgba(0,210,180,0.10)" fill-opacity="0.6"/>
+    <text x="88" y="354" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#94A3B8">SSRF</text>
+    <text x="138" y="354" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#CBD5E1">Target Guard 3xx Hop-by-Hop Filter</text>
+    <text x="500" y="354" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#00D2B4">BLOCKED</text>
+  </g>
+
+  <g>
+    <rect x="72" y="376" width="460" height="28" rx="6" fill="rgba(0,210,180,0.10)" fill-opacity="0.6"/>
+    <text x="88" y="390" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#94A3B8">AUTH</text>
+    <text x="138" y="390" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#CBD5E1">_secuscan-challenge TXT crypt verified</text>
+    <text x="500" y="390" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#00D2B4">OWNED</text>
+  </g>
+
+  <text x="72" y="422" font-family="'JetBrains Mono', monospace" font-size="12" fill="#94A3B8">──────────────────────────────────────────</text>
+  <text x="72" y="446" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="700" fill="#00D2B4">Posture Score: 98 / 100  ●  Grade A+ (Optimal)</text>
+  <text x="72" y="470" font-family="'JetBrains Mono', monospace" font-size="12" fill="#5EBAA0">✓  Report: SARIF 2.1.0 + Executive Markdown generated</text>
+  <text x="72" y="492" font-family="'JetBrains Mono', monospace" font-size="12" fill="#CBD5E1">86 tests passed (100%) · 0 CVEs · Non-root container</text>
+  <text x="72" y="526" font-family="'JetBrains Mono', monospace" font-size="12" fill="#00D2B4">$ █</text>
+
+  <!-- Right Hero Showcase -->
+  <g>
+    <rect x="632" y="100" width="240" height="26" rx="13" fill="rgba(0,210,180,0.12)" stroke="rgba(0,210,180,0.28)" stroke-width="1"/>
+    <text x="752" y="113" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600" fill="#00D2B4">PERIMETER &amp; ATTACK SURFACE</text>
+    <text x="632" y="162" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="52" font-weight="800" fill="#F3F6F9" letter-spacing="-2">SecuScan</text>
+    <text x="632" y="220" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="52" font-weight="800" fill="#00D2B4" letter-spacing="-2">API</text>
+
+    <g>
+      <circle cx="646" cy="266" r="3" fill="#00D2B4" fill-opacity="0.7"/>
+      <text x="660" y="266" dominant-baseline="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1">Passive crt.sh Certificate Transparency recon</text>
+    </g>
+    <g>
+      <circle cx="646" cy="298" r="3" fill="#00D2B4" fill-opacity="0.7"/>
+      <text x="660" y="298" dominant-baseline="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1">TLS/SSL deep inspection &amp; HTTP security headers</text>
+    </g>
+    <g>
+      <circle cx="646" cy="330" r="3" fill="#00D2B4" fill-opacity="0.7"/>
+      <text x="660" y="330" dominant-baseline="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1">Anti-SSRF 3xx inspection &amp; Anti-DNS Rebinding</text>
+    </g>
+    <g>
+      <circle cx="646" cy="362" r="3" fill="#00D2B4" fill-opacity="0.7"/>
+      <text x="660" y="362" dominant-baseline="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1">Cryptographic TXT domain ownership check</text>
+    </g>
+    <g>
+      <circle cx="646" cy="394" r="3" fill="#00D2B4" fill-opacity="0.7"/>
+      <text x="660" y="394" dominant-baseline="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1">Security Posture Score (0-100) &amp; SARIF 2.1.0</text>
+    </g>
+
+    <!-- Tech Pills -->
+    <g>
+      <rect x="632" y="442" width="166" height="26" rx="13" fill="#1D2A3B" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+      <text x="715" y="455" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="#94A3B8">Python 3.12</text>
+    </g>
+    <g>
+      <rect x="812" y="442" width="166" height="26" rx="13" fill="#1D2A3B" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+      <text x="895" y="455" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="#94A3B8">FastAPI</text>
+    </g>
+    <g>
+      <rect x="632" y="480" width="166" height="26" rx="13" fill="#1D2A3B" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+      <text x="715" y="493" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="#94A3B8">SARIF 2.1.0</text>
+    </g>
+    <g>
+      <rect x="812" y="480" width="166" height="26" rx="13" fill="#1D2A3B" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+      <text x="895" y="493" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="#94A3B8">PostgreSQL</text>
+    </g>
+
+    <text x="632" y="536" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="500" fill="#00D2B4" fill-opacity="0.8">github.com/h3n-x/secuscan-api</text>
+    
+    <path d="M1100.0,532.0L1141.6,556.0L1141.6,604.0L1100.0,628.0L1058.4,604.0L1058.4,556.0Z" fill="rgba(0,210,180,0.12)" stroke="rgba(0,210,180,0.28)" stroke-width="1"/>
+    <text x="1100" y="581" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="500" fill="#00D2B4">🛡️</text>
+  </g>
+
+  <rect x="0.5" y="0.5" width="1199" height="674" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+</svg>

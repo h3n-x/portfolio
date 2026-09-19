@@ -10,7 +10,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
-    "test:theme": "node scripts/test-theme-lang.mjs"
+    "test:theme": "node scripts/test-theme-lang.mjs",
+    "test:modals": "node scripts/test-modals.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

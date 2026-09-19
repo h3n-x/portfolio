@@ -203,5 +203,5 @@
   <!-- ============================================================ -->
   <!-- Footer Caption -->
   <!-- ============================================================ -->
-  <text x="600" y="510" text-anchor="middle" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="500" fill="#64748B" letter-spacing="1.8">DEFENSE-IN-DEPTH ARCHITECTURE — HENRY PACHECO (H3N) · H3N-X.NETLIFY.APP</text>
+  <text x="600" y="510" text-anchor="middle" dominant-baseline="central" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="500" fill="#64748B" letter-spacing="1.8">DEFENSE-IN-DEPTH ARCHITECTURE</text>
 </svg>

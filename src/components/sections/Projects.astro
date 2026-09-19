@@ -2,7 +2,20 @@
 import { getCollection } from 'astro:content';
 import type { SupportedLang } from '../../i18n/ui';
 import { useTranslations } from '../../i18n/utils';
-import { ShieldAlert, Layers, BookOpen, Terminal, ShieldCheck, Container, Lock, ExternalLink } from '@lucide/astro';
+import {
+  ShieldAlert,
+  Layers,
+  BookOpen,
+  Terminal,
+  ShieldCheck,
+  Container,
+  Lock,
+  Globe,
+  ExternalLink,
+  Sparkles,
+  X,
+  ArrowUpRight
+} from '@lucide/astro';
 import GithubIcon from '../icons/GithubIcon.astro';
 
 interface Props {
@@ -33,83 +46,117 @@ const projects = (await getCollection('projects', ({ id }) => id.startsWith(`${l
     </p>
   </div>
 
-  <!-- Semantic Progression: 4-Layer Infrastructure Defense in Depth -->
+  <!-- 2026 Interactive Click Incitement Banner -->
+  <div class="flex items-center gap-3 p-3.5 rounded-xl bg-(--bg-card-subtle)/70 border border-(--border-subtle) text-xs text-(--text-secondary) shadow-2xs">
+    <span class="p-1.5 rounded-lg bg-(--accent-forest-bg) text-(--accent-forest) shrink-0">
+      <Sparkles class="w-4 h-4" />
+    </span>
+    <span class="leading-relaxed">
+      {t('projects.clickHint')}
+    </span>
+  </div>
+
+  <!-- Semantic Progression: 5-Layer Infrastructure Defense in Depth -->
   <nav aria-label={t('projects.layerNav')} class="w-full">
-    <ol class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 w-full" role="list">
+    <ol class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 w-full" role="list">
       <li class="flex">
-        <a
-          href="#archforge"
-          class="interactive-target w-full p-3.5 rounded-xl bg-(--bg-surface) border border-(--border-subtle) hover:border-(--accent-forest) transition-all flex flex-col gap-1 group shadow-xs focus-visible:outline-2 focus-visible:outline-(--accent-forest)"
+        <button
+          type="button"
+          data-modal-target="modal-archforge"
+          class="interactive-target text-left w-full p-3 rounded-xl bg-(--bg-surface) border border-(--border-subtle) hover:border-(--accent-forest) transition-all flex flex-col gap-1 group shadow-xs focus-visible:outline-2 focus-visible:outline-(--accent-forest) cursor-pointer"
         >
-          <div class="flex items-center justify-between text-xs text-(--text-muted)">
+          <div class="flex items-center justify-between text-xs text-(--text-muted) w-full">
             <span class="font-semibold text-(--accent-forest)">{lang === 'es' ? 'Capa 1' : 'Layer 1'}</span>
-            <span class="text-[11px] font-mono text-(--text-muted)">Host / OS</span>
+            <span class="text-[10px] font-mono text-(--text-muted)">Host / OS</span>
           </div>
-          <span class="text-sm font-bold text-(--text-primary) group-hover:text-(--accent-forest) transition-colors flex items-center gap-1.5">
-            <Terminal class="w-3.5 h-3.5 text-(--accent-forest)" aria-hidden="true" />
-            <span>ArchForge</span>
+          <span class="text-xs font-bold text-(--text-primary) group-hover:text-(--accent-forest) transition-colors flex items-center gap-1.5">
+            <Terminal class="w-3.5 h-3.5 text-(--accent-forest) shrink-0" aria-hidden="true" />
+            <span class="truncate">ArchForge</span>
           </span>
-          <span class="text-xs text-(--text-secondary) line-clamp-1">
+          <span class="text-[11px] text-(--text-secondary) line-clamp-1">
             {t('projects.layer1Desc')}
           </span>
-        </a>
+        </button>
       </li>
 
       <li class="flex">
-        <a
-          href="#repo-secret-auditor"
-          class="interactive-target w-full p-3.5 rounded-xl bg-(--bg-surface) border border-(--border-subtle) hover:border-(--accent-sky) transition-all flex flex-col gap-1 group shadow-xs focus-visible:outline-2 focus-visible:outline-(--accent-sky)"
+        <button
+          type="button"
+          data-modal-target="modal-repo-secret-auditor"
+          class="interactive-target text-left w-full p-3 rounded-xl bg-(--bg-surface) border border-(--border-subtle) hover:border-(--accent-sky) transition-all flex flex-col gap-1 group shadow-xs focus-visible:outline-2 focus-visible:outline-(--accent-sky) cursor-pointer"
         >
-          <div class="flex items-center justify-between text-xs text-(--text-muted)">
+          <div class="flex items-center justify-between text-xs text-(--text-muted) w-full">
             <span class="font-semibold text-(--accent-sky)">{lang === 'es' ? 'Capa 2' : 'Layer 2'}</span>
-            <span class="text-[11px] font-mono text-(--text-muted)">CI/CD Pipeline</span>
+            <span class="text-[10px] font-mono text-(--text-muted)">CI/CD Pipeline</span>
           </div>
-          <span class="text-sm font-bold text-(--text-primary) group-hover:text-(--accent-sky) transition-colors flex items-center gap-1.5">
-            <ShieldCheck class="w-3.5 h-3.5 text-(--accent-sky)" aria-hidden="true" />
-            <span>Repo Secret Auditor</span>
+          <span class="text-xs font-bold text-(--text-primary) group-hover:text-(--accent-sky) transition-colors flex items-center gap-1.5">
+            <ShieldCheck class="w-3.5 h-3.5 text-(--accent-sky) shrink-0" aria-hidden="true" />
+            <span class="truncate">Secret Auditor</span>
           </span>
-          <span class="text-xs text-(--text-secondary) line-clamp-1">
+          <span class="text-[11px] text-(--text-secondary) line-clamp-1">
             {t('projects.layer2Desc')}
           </span>
-        </a>
+        </button>
       </li>
 
       <li class="flex">
-        <a
-          href="#dockerward"
-          class="interactive-target w-full p-3.5 rounded-xl bg-(--bg-surface) border border-(--border-subtle) hover:border-(--accent-primary) transition-all flex flex-col gap-1 group shadow-xs focus-visible:outline-2 focus-visible:outline-(--accent-primary)"
+        <button
+          type="button"
+          data-modal-target="modal-dockerward"
+          class="interactive-target text-left w-full p-3 rounded-xl bg-(--bg-surface) border border-(--border-subtle) hover:border-(--accent-primary) transition-all flex flex-col gap-1 group shadow-xs focus-visible:outline-2 focus-visible:outline-(--accent-primary) cursor-pointer"
         >
-          <div class="flex items-center justify-between text-xs text-(--text-muted)">
+          <div class="flex items-center justify-between text-xs text-(--text-muted) w-full">
             <span class="font-semibold text-(--accent-primary)">{lang === 'es' ? 'Capa 3' : 'Layer 3'}</span>
-            <span class="text-[11px] font-mono text-(--text-muted)">Container Runtime</span>
+            <span class="text-[10px] font-mono text-(--text-muted)">Containers</span>
           </div>
-          <span class="text-sm font-bold text-(--text-primary) group-hover:text-(--accent-primary) transition-colors flex items-center gap-1.5">
-            <Container class="w-3.5 h-3.5 text-(--accent-primary)" aria-hidden="true" />
-            <span>DockerWard</span>
+          <span class="text-xs font-bold text-(--text-primary) group-hover:text-(--accent-primary) transition-colors flex items-center gap-1.5">
+            <Container class="w-3.5 h-3.5 text-(--accent-primary) shrink-0" aria-hidden="true" />
+            <span class="truncate">DockerWard</span>
           </span>
-          <span class="text-xs text-(--text-secondary) line-clamp-1">
+          <span class="text-[11px] text-(--text-secondary) line-clamp-1">
             {t('projects.layer3Desc')}
           </span>
-        </a>
+        </button>
       </li>
 
       <li class="flex">
-        <a
-          href="#chat-anonimo"
-          class="interactive-target w-full p-3.5 rounded-xl bg-(--bg-surface) border border-(--border-subtle) hover:border-(--accent-forest) transition-all flex flex-col gap-1 group shadow-xs focus-visible:outline-2 focus-visible:outline-(--accent-forest)"
+        <button
+          type="button"
+          data-modal-target="modal-chat-anonimo"
+          class="interactive-target text-left w-full p-3 rounded-xl bg-(--bg-surface) border border-(--border-subtle) hover:border-(--accent-forest) transition-all flex flex-col gap-1 group shadow-xs focus-visible:outline-2 focus-visible:outline-(--accent-forest) cursor-pointer"
         >
-          <div class="flex items-center justify-between text-xs text-(--text-muted)">
+          <div class="flex items-center justify-between text-xs text-(--text-muted) w-full">
             <span class="font-semibold text-(--accent-forest)">{lang === 'es' ? 'Capa 4' : 'Layer 4'}</span>
-            <span class="text-[11px] font-mono text-(--text-muted)">Network / E2EE</span>
+            <span class="text-[10px] font-mono text-(--text-muted)">Network / E2EE</span>
           </div>
-          <span class="text-sm font-bold text-(--text-primary) group-hover:text-(--accent-forest) transition-colors flex items-center gap-1.5">
-            <Lock class="w-3.5 h-3.5 text-(--accent-forest)" aria-hidden="true" />
-            <span>Chat Anónimo</span>
+          <span class="text-xs font-bold text-(--text-primary) group-hover:text-(--accent-forest) transition-colors flex items-center gap-1.5">
+            <Lock class="w-3.5 h-3.5 text-(--accent-forest) shrink-0" aria-hidden="true" />
+            <span class="truncate">Chat Anónimo</span>
           </span>
-          <span class="text-xs text-(--text-secondary) line-clamp-1">
+          <span class="text-[11px] text-(--text-secondary) line-clamp-1">
             {t('projects.layer4Desc')}
           </span>
-        </a>
+        </button>
+      </li>
+
+      <li class="flex col-span-2 sm:col-span-1">
+        <button
+          type="button"
+          data-modal-target="modal-secuscan-api"
+          class="interactive-target text-left w-full p-3 rounded-xl bg-(--bg-surface) border border-(--border-subtle) hover:border-(--accent-sky) transition-all flex flex-col gap-1 group shadow-xs focus-visible:outline-2 focus-visible:outline-(--accent-sky) cursor-pointer"
+        >
+          <div class="flex items-center justify-between text-xs text-(--text-muted) w-full">
+            <span class="font-semibold text-(--accent-sky)">{lang === 'es' ? 'Capa 5' : 'Layer 5'}</span>
+            <span class="text-[10px] font-mono text-(--text-muted)">Perimeter / EASM</span>
+          </div>
+          <span class="text-xs font-bold text-(--text-primary) group-hover:text-(--accent-sky) transition-colors flex items-center gap-1.5">
+            <Globe class="w-3.5 h-3.5 text-(--accent-sky) shrink-0" aria-hidden="true" />
+            <span class="truncate">SecuScan API</span>
+          </span>
+          <span class="text-[11px] text-(--text-secondary) line-clamp-1">
+            {t('projects.layer5Desc')}
+          </span>
+        </button>
       </li>
     </ol>
   </nav>
@@ -120,18 +167,18 @@ const projects = (await getCollection('projects', ({ id }) => id.startsWith(`${l
       <div class="flex items-center gap-2">
         <span class="w-2.5 h-2.5 rounded-full bg-(--accent-forest) shadow-xs animate-pulse"></span>
         <span class="text-xs font-bold text-(--text-primary)">
-          {lang === 'es' ? 'Mapa de Arquitectura: Defensa en Profundidad' : 'Architecture Map: 4-Layer Defense in Depth'}
+          {lang === 'es' ? 'Mapa de Arquitectura: Defensa en Profundidad' : 'Architecture Map: Defense in Depth'}
         </span>
-        <span class="text-[11px] text-(--text-muted) hidden md:inline">· {lang === 'es' ? 'Haz clic en cualquier capa para inspeccionar su caso de estudio' : 'Click any tier to inspect its case study'}</span>
+        <span class="text-[11px] text-(--text-muted) hidden md:inline">· {lang === 'es' ? 'Inspecciona los proyectos para ver la implementación de cada capa' : 'Inspect projects below for implementation details'}</span>
       </div>
       <span class="text-[11px] font-mono font-semibold text-(--accent-forest) px-2.5 py-0.5 rounded-full bg-(--accent-forest-bg) border border-(--border-subtle)">
-        L1 ➔ L2 ➔ L3 ➔ L4
+        L1 ➔ L2 ➔ L3 ➔ L4 ➔ L5
       </span>
     </div>
     <div class="relative w-full overflow-x-auto">
       <img
         src="/images/defense-in-depth-stack.svg"
-        alt="Diagrama de Arquitectura de Defensa en Profundidad en 4 Capas — Henry Pacheco (H3n)"
+        alt={lang === 'es' ? 'Diagrama de Arquitectura de Defensa en Profundidad' : 'Defense-in-Depth Architecture Diagram'}
         width="1200"
         height="530"
         class="w-full min-w-[760px] h-auto block"
@@ -140,103 +187,225 @@ const projects = (await getCollection('projects', ({ id }) => id.startsWith(`${l
     </div>
   </div>
 
-  <div class="flex flex-col gap-10">
+  <!-- 2026 Modern Project Grid (Streamlined & Clickable) -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     {projects.map((project) => {
       const projectAnchor = project.slug.split('/').pop() || project.slug;
       const isArchforge = projectAnchor === 'archforge';
       const isDockerward = projectAnchor === 'dockerward';
       const isChatAnonimo = projectAnchor === 'chat-anonimo';
-      return (
-        <article id={projectAnchor} class="ghibli-card p-6 sm:p-8 flex flex-col gap-8 bg-(--bg-surface) scroll-mt-24">
-          <!-- Top Overview: Title, Category & GitHub Link -->
-          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-            <div class="flex flex-col gap-2">
-              <div class="flex flex-wrap items-center gap-3">
-                <h3 class="text-2xl sm:text-3xl font-bold text-(--text-primary)">
-                  {project.data.title}
-                </h3>
-                <span class="text-xs px-2.5 py-0.5 rounded-full bg-(--accent-sky-bg) text-(--accent-sky) font-medium border border-(--border-subtle) flex items-center gap-1.5">
-                  {isArchforge ? (
-                    <Terminal class="w-3.5 h-3.5" aria-hidden="true" />
-                  ) : isDockerward ? (
-                    <Container class="w-3.5 h-3.5" aria-hidden="true" />
-                  ) : isChatAnonimo ? (
-                    <Lock class="w-3.5 h-3.5" aria-hidden="true" />
-                  ) : (
-                    <ShieldCheck class="w-3.5 h-3.5" aria-hidden="true" />
-                  )}
-                  <span>{project.data.category}</span>
-                </span>
-                <span class="text-xs px-2.5 py-0.5 rounded-full bg-(--accent-forest-bg) text-(--accent-forest) font-semibold border border-(--border-subtle)">
-                  {project.data.status}
-                </span>
-              </div>
-              <p class="text-base text-(--text-secondary) max-w-2xl font-medium">
-                {project.data.tagline}
-              </p>
-            </div>
+      const isSecuscan = projectAnchor === 'secuscan-api';
 
-            <div class="flex items-center gap-2 self-start shrink-0">
+      return (
+        <article
+          id={projectAnchor}
+          class="project-card ghibli-card p-5 sm:p-6 flex flex-col justify-between gap-5 bg-(--bg-surface) rounded-2xl border border-(--border-subtle) hover:border-(--border-strong) transition-all duration-300 group cursor-pointer scroll-mt-24 shadow-xs hover:shadow-md"
+          data-modal-target={`modal-${projectAnchor}`}
+          role="button"
+          tabindex="0"
+          aria-haspopup="dialog"
+          aria-label={`${lang === 'es' ? 'Abrir caso de estudio de' : 'Open case study for'} ${project.data.title}`}
+        >
+          <!-- Top Row: Category & Status Badges -->
+          <div class="flex items-center justify-between gap-2 flex-wrap">
+            <span class="text-xs px-2.5 py-1 rounded-full bg-(--accent-sky-bg) text-(--accent-sky) font-medium border border-(--border-subtle) flex items-center gap-1.5">
+              {isArchforge ? (
+                <Terminal class="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+              ) : isDockerward ? (
+                <Container class="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+              ) : isChatAnonimo ? (
+                <Lock class="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+              ) : isSecuscan ? (
+                <Globe class="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+              ) : (
+                <ShieldCheck class="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+              )}
+              <span>{project.data.category}</span>
+            </span>
+
+            <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-(--accent-forest-bg) text-(--accent-forest) border border-(--border-subtle) font-mono">
+              {project.data.status}
+            </span>
+          </div>
+
+          <!-- Visual Cover with Hover Overlay -->
+          <div class="rounded-xl overflow-hidden border border-(--border-subtle) bg-(--bg-elevated) relative aspect-[16/9] flex items-center justify-center">
+            <img
+              src={`/images/projects/card-${projectAnchor}.svg`}
+              alt={`Demostración técnica de ${project.data.title}`}
+              width="1200"
+              height="675"
+              class="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center backdrop-blur-xs">
+              <span class="px-3.5 py-1.5 rounded-xl bg-(--bg-surface)/95 text-xs font-semibold text-(--text-primary) shadow-lg border border-(--border-default) flex items-center gap-1.5 transform translate-y-1 group-hover:translate-y-0 transition-transform">
+                <ArrowUpRight class="w-3.5 h-3.5 text-(--accent-forest)" />
+                <span>{t('projects.inspectCta')}</span>
+              </span>
+            </div>
+          </div>
+
+          <!-- Project Title & Tagline -->
+          <div class="flex flex-col gap-2">
+            <h3 class="text-xl font-bold text-(--text-primary) group-hover:text-(--accent-forest) transition-colors flex items-center justify-between">
+              <span>{project.data.title}</span>
+              <ArrowUpRight class="w-4 h-4 opacity-0 group-hover:opacity-100 text-(--accent-forest) transition-opacity shrink-0" />
+            </h3>
+            <p class="text-sm text-(--text-secondary) leading-relaxed line-clamp-2">
+              {project.data.tagline}
+            </p>
+          </div>
+
+          <!-- Tech Stack Pills (Preview top 4) -->
+          <div class="flex flex-wrap items-center gap-1.5 pt-2 border-t border-(--border-subtle)">
+            {project.data.technologies.slice(0, 4).map((tech) => (
+              <span class="px-2 py-0.5 rounded-md text-[11px] font-medium bg-(--bg-elevated) text-(--text-secondary) border border-(--border-subtle)">
+                {tech}
+              </span>
+            ))}
+            {project.data.technologies.length > 4 && (
+              <span class="px-2 py-0.5 rounded-md text-[11px] font-medium text-(--text-muted)">
+                +{project.data.technologies.length - 4}
+              </span>
+            )}
+          </div>
+
+          <!-- Action Footer: Trigger Button + External Links -->
+          <div class="flex items-center justify-between pt-3 border-t border-(--border-subtle)">
+            <button
+              type="button"
+              data-modal-target={`modal-${projectAnchor}`}
+              class="interactive-target text-xs font-semibold text-(--accent-forest) hover:text-(--text-primary) flex items-center gap-1 group-hover:translate-x-0.5 transition-all"
+            >
+              <span>{t('projects.inspectCta')}</span>
+              <ArrowUpRight class="w-3.5 h-3.5" />
+            </button>
+
+            <div class="flex items-center gap-2" onclick="event.stopPropagation()">
               {project.data.demoUrl && (
                 <a
                   href={project.data.demoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="interactive-target px-3.5 py-2 rounded-xl text-sm font-semibold bg-(--accent-forest-bg) text-(--accent-forest) border border-(--border-subtle) hover:border-(--accent-forest) transition-all flex items-center gap-1.5 shadow-xs"
-                  aria-label={`${t('projects.viewDemo')} (abre en nueva pestaña)`}
+                  class="interactive-target p-2 rounded-lg text-(--text-muted) hover:text-(--accent-forest) hover:bg-(--bg-elevated) transition-colors"
+                  aria-label={`${t('projects.viewDemo')} (${project.data.title})`}
                 >
-                  <ExternalLink class="w-3.5 h-3.5" />
-                  <span>{t('projects.viewDemo')}</span>
+                  <ExternalLink class="w-4 h-4" />
                 </a>
               )}
               <a
                 href={project.data.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="interactive-target px-4 py-2 rounded-xl text-sm font-semibold bg-(--bg-elevated) text-(--text-primary) border border-(--border-default) hover:border-(--accent-primary) hover:text-(--accent-primary) transition-all flex items-center gap-2 shadow-xs shrink-0"
-                aria-label={`${t('projects.viewCode')} (abre en nueva pestaña)`}
+                class="interactive-target p-2 rounded-lg text-(--text-muted) hover:text-(--text-primary) hover:bg-(--bg-elevated) transition-colors"
+                aria-label={`${t('projects.viewCode')} (${project.data.title})`}
               >
                 <GithubIcon class="w-4 h-4" />
-                <span>{t('projects.viewCode')}</span>
               </a>
             </div>
           </div>
+        </article>
+      );
+    })}
+  </div>
 
-          <!-- Visual Demonstration / Architecture Hero Card -->
-          <div class="rounded-xl overflow-hidden border border-(--border-subtle) bg-(--bg-elevated) relative group shadow-sm">
+  <!-- Interactive Case Study Modals (Pop-ups for Each Project) -->
+  {projects.map((project) => {
+    const projectAnchor = project.slug.split('/').pop() || project.slug;
+    const isArchforge = projectAnchor === 'archforge';
+    const isDockerward = projectAnchor === 'dockerward';
+    const isChatAnonimo = projectAnchor === 'chat-anonimo';
+    const isSecuscan = projectAnchor === 'secuscan-api';
+
+    return (
+      <dialog
+        id={`modal-${projectAnchor}`}
+        class="project-modal fixed inset-0 m-auto w-[94vw] max-w-4xl max-h-[90vh] rounded-2xl bg-(--bg-surface) text-(--text-primary) border border-(--border-default) shadow-2xl p-0 overflow-hidden z-50 flex flex-col focus:outline-none"
+        aria-labelledby={`modal-title-${projectAnchor}`}
+        aria-modal="true"
+      >
+        <!-- Modal Top Sticky Bar -->
+        <header class="sticky top-0 z-20 px-6 py-4 bg-(--bg-surface)/95 backdrop-blur-sm border-b border-(--border-subtle) flex items-center justify-between gap-4">
+          <div class="flex items-center gap-2.5 flex-wrap">
+            <span class="text-xs px-2.5 py-0.5 rounded-full bg-(--accent-sky-bg) text-(--accent-sky) font-medium border border-(--border-subtle) flex items-center gap-1.5">
+              {isArchforge ? (
+                <Terminal class="w-3.5 h-3.5" aria-hidden="true" />
+              ) : isDockerward ? (
+                <Container class="w-3.5 h-3.5" aria-hidden="true" />
+              ) : isChatAnonimo ? (
+                <Lock class="w-3.5 h-3.5" aria-hidden="true" />
+              ) : isSecuscan ? (
+                <Globe class="w-3.5 h-3.5" aria-hidden="true" />
+              ) : (
+                <ShieldCheck class="w-3.5 h-3.5" aria-hidden="true" />
+              )}
+              <span>{project.data.category}</span>
+            </span>
+            <span class="text-xs px-2.5 py-0.5 rounded-full bg-(--accent-forest-bg) text-(--accent-forest) font-mono font-semibold border border-(--border-subtle)">
+              {project.data.status}
+            </span>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button
+              type="button"
+              class="modal-close-btn interactive-target p-2 rounded-xl text-(--text-muted) hover:text-(--text-primary) hover:bg-(--bg-elevated) transition-colors flex items-center gap-1.5 cursor-pointer border border-(--border-subtle)"
+              aria-label={t('projects.modalClose')}
+            >
+              <span class="text-xs font-mono text-(--text-muted) px-1.5 py-0.5 rounded bg-(--bg-elevated) hidden sm:inline">ESC</span>
+              <X class="w-4 h-4" />
+            </button>
+          </div>
+        </header>
+
+        <!-- Modal Scrollable Content -->
+        <div class="overflow-y-auto px-6 py-6 sm:px-8 sm:py-8 flex flex-col gap-6">
+          <!-- Title & Tagline -->
+          <div class="flex flex-col gap-2">
+            <h3 id={`modal-title-${projectAnchor}`} class="text-2xl sm:text-3xl font-extrabold text-(--text-primary)">
+              {project.data.title}
+            </h3>
+            <p class="text-base text-(--text-secondary) font-medium leading-relaxed">
+              {project.data.tagline}
+            </p>
+          </div>
+
+          <!-- Project Demonstration Visual -->
+          <div class="rounded-xl overflow-hidden border border-(--border-subtle) bg-(--bg-elevated) shadow-xs">
             <img
               src={`/images/projects/card-${projectAnchor}.svg`}
-              alt={`Demostración técnica y arquitectura de ${project.data.title}`}
+              alt={`Demostración técnica de ${project.data.title}`}
               width="1200"
               height="675"
-              class="w-full h-auto object-cover object-top transition-transform duration-300 group-hover:scale-[1.008]"
+              class="w-full h-auto block object-cover object-top"
               loading="lazy"
             />
           </div>
 
-          <!-- Technical Case Study Breakdown -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+          <!-- 3-Pillar Technical Deep Dive -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
             <!-- 1. Problem Statement -->
-            <div class="flex flex-col gap-3 p-5 rounded-xl bg-(--bg-card-subtle)/50 border border-(--border-subtle)">
-              <div class="flex items-center gap-2 text-(--accent-primary) font-semibold text-sm">
-                <ShieldAlert class="w-4 h-4" aria-hidden="true" />
+            <div class="flex flex-col gap-3 p-5 rounded-xl bg-(--bg-card-subtle)/70 border border-(--border-subtle)">
+              <div class="flex items-center gap-2 text-(--accent-primary) font-bold text-sm">
+                <ShieldAlert class="w-4 h-4 shrink-0" aria-hidden="true" />
                 <h4>{t('projects.problemTitle')}</h4>
               </div>
-              <p class="text-sm text-(--text-muted) leading-relaxed">
+              <p class="text-xs sm:text-sm text-(--text-muted) leading-relaxed">
                 {project.data.problemSolved}
               </p>
             </div>
 
-            <!-- 2. Key Architecture Decisions -->
-            <div class="flex flex-col gap-3 p-5 rounded-xl bg-(--bg-card-subtle)/50 border border-(--border-subtle)">
-              <div class="flex items-center gap-2 text-(--accent-forest) font-semibold text-sm">
-                <Layers class="w-4 h-4" aria-hidden="true" />
+            <!-- 2. Architecture Decisions -->
+            <div class="flex flex-col gap-3 p-5 rounded-xl bg-(--bg-card-subtle)/70 border border-(--border-subtle)">
+              <div class="flex items-center gap-2 text-(--accent-forest) font-bold text-sm">
+                <Layers class="w-4 h-4 shrink-0" aria-hidden="true" />
                 <h4>{t('projects.architectureTitle')}</h4>
               </div>
               <ul class="flex flex-col gap-2 text-xs text-(--text-muted) leading-relaxed" role="list">
                 {project.data.architectureHighlights.map((item) => (
                   <li class="flex items-start gap-1.5">
-                    <span class="text-(--accent-forest) mt-0.5">•</span>
+                    <span class="text-(--accent-forest) font-bold shrink-0">•</span>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -244,15 +413,15 @@ const projects = (await getCollection('projects', ({ id }) => id.startsWith(`${l
             </div>
 
             <!-- 3. Technical Learnings -->
-            <div class="flex flex-col gap-3 p-5 rounded-xl bg-(--bg-card-subtle)/50 border border-(--border-subtle)">
-              <div class="flex items-center gap-2 text-(--accent-sky) font-semibold text-sm">
-                <BookOpen class="w-4 h-4" aria-hidden="true" />
+            <div class="flex flex-col gap-3 p-5 rounded-xl bg-(--bg-card-subtle)/70 border border-(--border-subtle)">
+              <div class="flex items-center gap-2 text-(--accent-sky) font-bold text-sm">
+                <BookOpen class="w-4 h-4 shrink-0" aria-hidden="true" />
                 <h4>{t('projects.learningsTitle')}</h4>
               </div>
               <ul class="flex flex-col gap-2 text-xs text-(--text-muted) leading-relaxed" role="list">
                 {project.data.keyLearnings.map((item) => (
                   <li class="flex items-start gap-1.5">
-                    <span class="text-(--accent-sky) mt-0.5">•</span>
+                    <span class="text-(--accent-sky) font-bold shrink-0">•</span>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -260,19 +429,138 @@ const projects = (await getCollection('projects', ({ id }) => id.startsWith(`${l
             </div>
           </div>
 
-          <!-- Tech Stack Badges -->
-          <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-(--border-subtle)">
-            <span class="text-xs font-semibold text-(--text-muted) mr-1">
+          <!-- Full Tech Stack Tags -->
+          <div class="flex flex-col gap-2 pt-2 border-t border-(--border-subtle)">
+            <span class="text-xs font-semibold text-(--text-muted)">
               {t('projects.techLabel')}:
             </span>
-            {project.data.technologies.map((tech) => (
-              <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-(--bg-elevated) text-(--text-secondary) border border-(--border-subtle)">
-                {tech}
-              </span>
-            ))}
+            <div class="flex flex-wrap items-center gap-2">
+              {project.data.technologies.map((tech) => (
+                <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-(--bg-elevated) text-(--text-secondary) border border-(--border-subtle)">
+                  {tech}
+                </span>
+              ))}
+            </div>
           </div>
-        </article>
-      );
-    })}
-  </div>
+        </div>
+
+        <!-- Modal Bottom Actions Bar -->
+        <footer class="sticky bottom-0 z-20 px-6 py-4 bg-(--bg-surface)/95 backdrop-blur-sm border-t border-(--border-subtle) flex items-center justify-between gap-3">
+          <button
+            type="button"
+            class="modal-close-btn interactive-target px-4 py-2 rounded-xl text-xs font-semibold bg-(--bg-elevated) text-(--text-secondary) hover:text-(--text-primary) border border-(--border-default) transition-colors cursor-pointer"
+          >
+            {t('projects.modalClose')}
+          </button>
+
+          <div class="flex items-center gap-2">
+            {project.data.demoUrl && (
+              <a
+                href={project.data.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="interactive-target px-4 py-2 rounded-xl text-xs font-semibold bg-(--accent-forest-bg) text-(--accent-forest) border border-(--border-subtle) hover:border-(--accent-forest) transition-all flex items-center gap-1.5 shadow-xs"
+              >
+                <ExternalLink class="w-3.5 h-3.5" />
+                <span>{t('projects.viewDemo')}</span>
+              </a>
+            )}
+            <a
+              href={project.data.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="interactive-target px-4 py-2 rounded-xl text-xs font-semibold bg-(--bg-elevated) text-(--text-primary) border border-(--border-default) hover:border-(--accent-primary) hover:text-(--accent-primary) transition-all flex items-center gap-2 shadow-xs"
+            >
+              <GithubIcon class="w-3.5 h-3.5" />
+              <span>{t('projects.viewCode')}</span>
+            </a>
+          </div>
+        </footer>
+      </dialog>
+    );
+  })}
 </section>
+
+<script>
+  function setupProjectModals() {
+    let lastActiveElement: HTMLElement | null = null;
+
+    // Helper to open modal
+    function openModal(modalId: string, triggerEl?: HTMLElement) {
+      const modal = document.getElementById(modalId) as HTMLDialogElement | null;
+      if (!modal) return;
+      lastActiveElement = triggerEl || (document.activeElement as HTMLElement);
+      document.documentElement.style.overflow = 'hidden';
+      modal.showModal();
+    }
+
+    // Helper to close modal
+    function closeModal(modal: HTMLDialogElement) {
+      modal.close();
+      document.documentElement.style.overflow = '';
+      if (lastActiveElement && typeof lastActiveElement.focus === 'function') {
+        lastActiveElement.focus();
+      }
+    }
+
+    // Bind triggers (card clicks & buttons)
+    const triggers = document.querySelectorAll<HTMLElement>('[data-modal-target]');
+    triggers.forEach((trigger) => {
+      const targetId = trigger.getAttribute('data-modal-target');
+      if (!targetId) return;
+
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal(targetId, trigger);
+      });
+
+      // Also support Enter/Space on role="button" articles
+      if (trigger.getAttribute('role') === 'button') {
+        trigger.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openModal(targetId, trigger);
+          }
+        });
+      }
+    });
+
+    // Handle dialog events
+    const modals = document.querySelectorAll<HTMLDialogElement>('dialog.project-modal');
+    modals.forEach((modal) => {
+      // Close buttons
+      const closeButtons = modal.querySelectorAll('.modal-close-btn');
+      closeButtons.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          closeModal(modal);
+        });
+      });
+
+      // Backdrop click closes dialog
+      modal.addEventListener('click', (e) => {
+        const rect = modal.getBoundingClientRect();
+        const isInDialog =
+          rect.top <= e.clientY &&
+          e.clientY <= rect.top + rect.height &&
+          rect.left <= e.clientX &&
+          e.clientX <= rect.left + rect.width;
+        if (!isInDialog) {
+          closeModal(modal);
+        }
+      });
+
+      // Restore scroll when closed
+      modal.addEventListener('close', () => {
+        document.documentElement.style.overflow = '';
+        if (lastActiveElement && typeof lastActiveElement.focus === 'function') {
+          lastActiveElement.focus();
+        }
+      });
+    });
+  }
+
+  // Run on initial page load and after Astro View Transitions swap
+  setupProjectModals();
+  document.addEventListener('astro:page-load', setupProjectModals);
+</script>
