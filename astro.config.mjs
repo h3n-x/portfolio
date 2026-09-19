@@ -13,6 +13,10 @@ export default defineConfig({
       redirectToDefaultLocale: false,
     },
   },
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'viewport',
+  },
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],

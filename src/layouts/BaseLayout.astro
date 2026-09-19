@@ -92,6 +92,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://h3n-x.ne
       }
 
       restoreScrollPosition();
+      document.addEventListener('astro:after-swap', restoreScrollPosition);
       document.addEventListener('astro:page-load', restoreScrollPosition);
     </script>
 
