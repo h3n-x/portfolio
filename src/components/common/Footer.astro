@@ -11,15 +11,12 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const currentYear = new Date().getFullYear();
 ---
 
 <footer class="w-full border-t border-(--border-subtle) bg-(--bg-card-subtle)/50 mt-20 py-12 transition-colors" role="contentinfo">
   <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-(--text-muted)">
     <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
       <span class="font-medium text-(--text-secondary)">Henry Pacheco (H3n)</span>
-      <span class="hidden sm:inline" aria-hidden="true">·</span>
-      <span>© {currentYear} {t('footer.rights')}</span>
     </div>
 
     <!-- Quick social links -->

@@ -117,17 +117,24 @@ async function run() {
       throw new Error(`SecuScan modal failed to close via button. open=${isOpen}, overflow=${overflow}`);
     }
 
-    // Test Layer 5 navigation button opening SecuScan modal
-    console.log('\n[3] Testing Layer 5 navigation trigger...');
-    await evaluate(`document.querySelector('button[data-modal-target="modal-secuscan-api"]').click()`);
+    // Test Card CTA button opening SecuScan modal
+    console.log('\n[3] Testing Card CTA action button...');
+    await evaluate(`document.querySelector('#secuscan-api button[data-modal-target="modal-secuscan-api"]').click()`);
     await new Promise(r => setTimeout(r, 300));
     isOpen = await evaluate(`document.querySelector('#modal-secuscan-api')?.open`);
-    if (!isOpen) throw new Error(`Layer 5 trigger failed to open SecuScan modal`);
-    console.log('  ✓ Layer 5 nav trigger opened modal successfully');
+    if (!isOpen) throw new Error(`Card CTA button failed to open SecuScan modal`);
+    console.log('  ✓ Card CTA button opened modal successfully');
 
     // Close with backdrop click
     await evaluate(`document.querySelector('#modal-secuscan-api').close()`);
     await new Promise(r => setTimeout(r, 200));
+
+    // Verify footer has no copyright
+    const footerHasCopyright = await evaluate(`document.querySelector('footer')?.innerText.includes('All rights reserved') || document.querySelector('footer')?.innerText.includes('©')`);
+    if (footerHasCopyright) {
+      throw new Error(`Footer still contains copyright text!`);
+    }
+    console.log('  ✓ Verified footer has no copyright or rights reserved text');
 
     console.log('\n[4] Navigating to /en/ and testing English modals...');
     await send('Page.navigate', { url: `${BASE_URL}/en/` });
