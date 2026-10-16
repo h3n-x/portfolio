@@ -1,126 +1,146 @@
-# Portfolio — Henry Pacheco (H3n)
+<h3 align="center">
+  <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png" height="30" width="0"/>
+  Portfolio
+  <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png" height="30" width="0"/>
+  <br/>
+  <a href="https://github.com/h3n-x/portfolio">Henry Pacheco (h3n-x): backend and Linux developer, built with Astro 5 and Tailwind CSS v4</a>
+  <br/><br/>
+  <p>
+    🌐 <strong>English</strong> · <a href="README.es.md">Español</a>
+  </p>
+</h3>
 
-> **Desarrollador Backend & Linux** · Colombia  
-> Especializado en sistemas Linux, automatización modular con Bash y desarrollo de servicios backend en Python.
+<p align="center">
+  <img src="https://img.shields.io/badge/Astro-5-fab387?style=for-the-badge&logo=astro&logoColor=d9e0ee&labelColor=363a4f" alt="Astro"/>
+  <img src="https://img.shields.io/badge/Tailwind-v4-94e2d5?style=for-the-badge&logo=tailwindcss&logoColor=d9e0ee&labelColor=363a4f" alt="Tailwind"/>
+  <img src="https://img.shields.io/badge/TypeScript-5-74c7ec?style=for-the-badge&logo=typescript&logoColor=d9e0ee&labelColor=363a4f" alt="TypeScript"/>
+</p>
 
-[![Astro](https://img.shields.io/badge/Astro-5.x-BC52EE?style=flat-square&logo=astro&logoColor=white)](https://astro.build/)
-[![TailwindCSS](https://img.shields.io/badge/Tailwind-v4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Lighthouse](https://img.shields.io/badge/Lighthouse-100%20SEO%20%7C%20100%20A11y-22C55E?style=flat-square)](https://h3n-x.netlify.app)
-[![Netlify](https://img.shields.io/badge/Deploy-Netlify-00C7B7?style=flat-square&logo=netlify&logoColor=white)](https://h3n-x.netlify.app)
+<p align="center">
+  <img src="https://img.shields.io/badge/Lighthouse-100_SEO_%C2%B7_100_A11y-a6e3a1?style=for-the-badge&logo=lighthouse&logoColor=d9e0ee&labelColor=363a4f" alt="Lighthouse"/>
+  <img src="https://img.shields.io/badge/deploy-Netlify-89dceb?style=for-the-badge&logo=netlify&logoColor=d9e0ee&labelColor=363a4f" alt="deploy"/>
+  <img src="https://img.shields.io/badge/license-MIT-a6e3a1?style=for-the-badge&labelColor=363a4f" alt="license"/>
+</p>
 
----
+<p align="center">
+  <a href="https://h3n-x.netlify.app">Live site</a>
+  ·
+  <a href="#-documented-projects">Projects</a>
+  ·
+  <a href="#%EF%B8%8F-development">Development</a>
+  ·
+  <a href="LICENSE">License</a>
+</p>
 
-## Descripción
+&nbsp;
 
-Portfolio personal reconstruido desde cero con **Astro 5** y **Tailwind CSS v4**, diseñado bajo la premisa de rendimiento extremo, accesibilidad estricta (WCAG 2.2 AA) y una narrativa técnica sólida para reclutadores e ingenieros de software.
+## 🪄 About
 
-- **Cero JS innecesario:** Arquitectura de islas estáticas que envía únicamente HTML y CSS optimizado por defecto. El bundle cliente de navegación fluida es de solo **5.31 KB gzipped**.
-- **Navegación tipo SPA sin recarga:** Implementación nativa de la View Transitions API de Astro (`<ClientRouter />`) con preservación del scroll nativo del navegador (`scrollbar-gutter: stable`).
-- **Sistema de diseño dual (Ghibli Aesthetic):** Paleta artesanal con modo Claro (*Ghibli Meadow*) y modo Oscuro (*Howl's Twilight Sky*), con prevención total de parpadeo (Anti-FOUC) y contrastes auditados (>7:1 para texto normal).
-- **Internacionalización limpia (Cero Spanglish):** Rutas `/es/` y `/en/` completamente segregadas con tipado estricto en Zod para casos de estudio y diccionarios de interfaz.
+My personal portfolio, rebuilt from scratch with **Astro 5** and **Tailwind CSS v4** around extreme performance, strict
+accessibility (WCAG 2.2 AA) and a solid technical narrative for recruiters and engineers. Backend and Linux developer from
+Colombia, focused on Linux systems, modular Bash automation and Python backend services.
 
----
+| | |
+|---|---|
+| 🪶 **No unnecessary JS** | Static islands ship optimized HTML and CSS by default; the client bundle for smooth navigation is just **5.31 KB gzipped**. |
+| 🔁 **SPA-like navigation** | Astro's native View Transitions (`<ClientRouter />`) with the browser's own scroll preserved (`scrollbar-gutter: stable`). |
+| 🎨 **Dual design system** | A hand-made palette with a light mode (*Ghibli Meadow*) and a dark mode (*Howl's Twilight Sky*), no flash on load (anti-FOUC) and audited contrast (>7:1 for body text). |
+| 🌍 **Clean i18n** | Fully separate `/es/` and `/en/` routes, with Zod-typed case studies and interface dictionaries. |
 
-## Proyectos Documentados
+&nbsp;
 
-1. **[ArchForge](https://github.com/h3n-x/archforge) (v0.3.0 · Mantenimiento Activo):**
-   - Toolkit modular de post-instalación y endurecimiento para Arch Linux desarrollado en Bash.
-   - Modo dry-run seguro, backups por sesión y configuración de servicios de sistema (systemd, nftables).
-2. **[Repo Secret Auditor](https://github.com/h3n-x/repo-secret-auditor) (v0.1.0 · Tests >80% & CI/CD):**
-   - Motor backend en Python 3.12 y FastAPI para detección de credenciales expuestas y dependencias vulnerables.
-   - Exportador OASIS SARIF 2.1.0 e integración nativa con GitHub Code Scanning mediante policy gates de severidad.
+## 📂 Documented projects
 
----
+| Project | Description |
+|---|---|
+| [**archforge**](https://github.com/h3n-x/archforge) · v0.3.0, actively maintained | Modular post-installation and hardening toolkit for Arch Linux in Bash: safe dry runs, per-session backups and system services (systemd, nftables). |
+| [**Repo Secret Auditor**](https://github.com/h3n-x/repo-secret-auditor) · v0.1.0, tests >80% and CI/CD | Python 3.12 + FastAPI engine that detects exposed credentials and vulnerable dependencies, with SARIF 2.1.0 export and GitHub Code Scanning severity gates. |
 
-## Stack Tecnológico
+&nbsp;
 
-| Herramienta | Versión | Rol |
+## 🧰 Stack
+
+| Tool | Version | Role |
 |---|---|---|
-| **Astro** | 5.x | Generador de sitios estáticos (SSG) y arquitectura de islas |
-| **Tailwind CSS** | v4 | Estilos utilitarios modernos vía `@theme` nativo en CSS |
-| **TypeScript** | 5.x | Tipado estricto para esquemas de contenido y utilidades i18n |
-| **@astrojs/sitemap** | Oficial | Generación automática de índices de sitemaps XML |
-| **Lucide** | Oficial | Iconografía vectorial inline accesible |
-| **CSpell** | Oficial | Comprobador ortográfico multilingüe (español e inglés) |
-| **Netlify** | CI/CD | Despliegue continuo con cabeceras de seguridad y caché optimizada |
+| **Astro** | 5.x | Static site generator with an islands architecture |
+| **Tailwind CSS** | v4 | Utility styles through native CSS `@theme` |
+| **TypeScript** | 5.x | Strict typing for content schemas and i18n utilities |
+| **@astrojs/sitemap** | Official | Automatic XML sitemaps |
+| **Lucide** | Official | Accessible inline vector icons |
+| **CSpell** | Official | Spell checking in Spanish and English |
+| **Netlify** | CI/CD | Continuous deployment with security headers and tuned caching |
 
----
-
-## Estructura del Proyecto
+<details>
+<summary><b>Project structure</b></summary>
 
 ```
 portfolio/
-├── netlify.toml              # Build, redirects 404, headers CSP y caché
-├── astro.config.mjs          # Configuración Astro 5 + Tailwind v4 + Sitemap
-├── tsconfig.json             # Tipado estricto
-├── cspell.json               # Configuración de corrector ortográfico ES/EN
+├── netlify.toml              # build, 404 redirects, CSP and cache headers
+├── astro.config.mjs          # Astro 5 + Tailwind v4 + sitemap
+├── tsconfig.json             # strict typing
+├── cspell.json               # ES/EN spell checker
 ├── public/
-│   ├── favicon.svg           # Favicon personalizado en SVG
-│   ├── robots.txt            # Reglas para crawlers y enlace al sitemap
-│   └── docs/
-│       └── cv-henry-pacheco.pdf # Currículum en PDF descargable
-├── src/
-│   ├── assets/               # Imágenes optimizadas en tiempo de compilación
-│   │   └── archforge.png
-│   ├── content/              # Content Collections tipadas con Zod
-│   │   ├── config.ts
-│   │   ├── projects/         # Casos de estudio en ES y EN
-│   │   └── experience/       # Línea de tiempo profesional
-│   ├── i18n/                 # Diccionarios y utilidades de traducción
-│   ├── components/
-│   │   ├── common/           # Header, Footer, ThemeToggle, LangToggle, CopyEmail
-│   │   ├── icons/            # Iconos SVG personalizados accesibles
-│   │   └── sections/         # Hero, About, Projects, Experience, Skills, Education, Contact
-│   ├── layouts/
-│   │   └── BaseLayout.astro  # Layout HTML5, SEO, Open Graph y View Transitions
-│   ├── pages/
-│   │   ├── 404.astro         # Página de error 404 consistente y bilingüe
-│   │   ├── index.astro       # Detección de idioma y redirección inteligente
-│   │   ├── es/index.astro    # Landing page en español
-│   │   └── en/index.astro    # Landing page en inglés
-│   └── styles/
-│       └── global.css        # Tokens de diseño Ghibli, reset y accesibilidad
+│   ├── favicon.svg
+│   ├── robots.txt            # crawler rules and sitemap link
+│   └── docs/cv-henry-pacheco.pdf
+└── src/
+    ├── assets/               # images optimized at build time
+    ├── content/              # Zod-typed content collections
+    │   ├── projects/         # case studies in ES and EN
+    │   └── experience/       # professional timeline
+    ├── i18n/                 # dictionaries and translation helpers
+    ├── components/
+    │   ├── common/           # Header, Footer, ThemeToggle, LangToggle, CopyEmail
+    │   ├── icons/            # accessible custom SVG icons
+    │   └── sections/         # Hero, About, Projects, Experience, Skills, Education, Contact
+    ├── layouts/BaseLayout.astro   # HTML5, SEO, Open Graph and View Transitions
+    ├── pages/                # 404, language detection, /es/ and /en/
+    └── styles/global.css     # Ghibli design tokens, reset and accessibility
 ```
 
----
+</details>
 
-## Comandos y Desarrollo
+&nbsp;
+
+## ⚙️ Development
 
 ```bash
-# Instalar dependencias
 npm install
-
-# Servidor de desarrollo
-npm run dev
-
-# Verificación de tipos TypeScript
-npx tsc --noEmit
-
-# Comprobación de ortografía multilingüe
-npx cspell "src/**/*.{astro,ts,md}"
-
-# Build optimizado para producción
-npm run build
-
-# Previsualización local del build de producción
-npm run preview
+npm run dev                              # development server
+npx tsc --noEmit                         # TypeScript check
+npx cspell "src/**/*.{astro,ts,md}"      # spell check (ES/EN)
+npm run build                            # production build
+npm run preview                          # preview the production build
 ```
 
----
+&nbsp;
 
-## Métricas de Producción (Lighthouse)
+## 📊 Lighthouse
 
-- **Performance:** 97 / 100
-- **Accessibility:** 100 / 100
-- **Best Practices:** 100 / 100
-- **SEO:** 100 / 100
-- **Core Web Vitals:** LCP: 1.6 s · CLS: 0.000 · TBT: 0 ms
+| Performance | Accessibility | Best practices | SEO |
+|:---:|:---:|:---:|:---:|
+| **97** | **100** | **100** | **100** |
 
----
+Core Web Vitals: LCP 1.6 s · CLS 0.000 · TBT 0 ms.
 
-## Contacto
+&nbsp;
 
-- **Correo:** [h3n.eth@gmail.com](mailto:h3n.eth@gmail.com)
+## 📬 Contact
+
+- **Email:** [h3n.eth@gmail.com](mailto:h3n.eth@gmail.com)
 - **GitHub:** [@h3n-x](https://github.com/h3n-x)
-- **Portfolio Live:** [h3n-x.netlify.app](https://h3n-x.netlify.app)
+- **Live site:** [h3n-x.netlify.app](https://h3n-x.netlify.app)
+
+&nbsp;
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/footers/gray0_ctp_on_line.svg?sanitize=true" alt=""/>
+</p>
+
+<p align="center">
+  Copyright © 2026 <a href="https://github.com/h3n-x">h3n-x</a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/h3n-x/portfolio/blob/main/LICENSE"><img src="https://img.shields.io/static/v1?style=for-the-badge&message=MIT&logoColor=d9e0ee&label=License&labelColor=363a4f&color=a6e3a1" alt="MIT License"/></a>
+</p>
