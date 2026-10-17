@@ -14,7 +14,10 @@ import {
   ExternalLink,
   Sparkles,
   X,
-  ArrowUpRight
+  ArrowUpRight,
+  Palette,
+  Music,
+  Download
 } from '@lucide/astro';
 import GithubIcon from '../icons/GithubIcon.astro';
 
@@ -28,6 +31,17 @@ const t = useTranslations(lang);
 // Load projects from content collection matching current language and sort by order
 const projects = (await getCollection('projects', ({ id }) => id.startsWith(`${lang}/`)))
   .sort((a, b) => a.data.order - b.data.order);
+
+// Icon of each project's category badge (card and modal); any other project gets ShieldCheck.
+const categoryIcons: Record<string, typeof ShieldCheck> = {
+  archforge: Terminal,
+  dockerward: Container,
+  'chat-anonimo': Lock,
+  'secuscan-api': Globe,
+  'hyprland-dotfiles': Palette,
+  'yt-cli': Music,
+  'downloader-sh': Download,
+};
 ---
 
 <section id="proyectos" class="flex flex-col gap-8" aria-labelledby="projects-title">
@@ -61,10 +75,7 @@ const projects = (await getCollection('projects', ({ id }) => id.startsWith(`${l
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     {projects.map((project) => {
       const projectAnchor = project.slug.split('/').pop() || project.slug;
-      const isArchforge = projectAnchor === 'archforge';
-      const isDockerward = projectAnchor === 'dockerward';
-      const isChatAnonimo = projectAnchor === 'chat-anonimo';
-      const isSecuscan = projectAnchor === 'secuscan-api';
+      const CategoryIcon = categoryIcons[projectAnchor] ?? ShieldCheck;
 
       return (
         <article
@@ -79,17 +90,7 @@ const projects = (await getCollection('projects', ({ id }) => id.startsWith(`${l
           <!-- Top Row: Category & Status Badges -->
           <div class="flex items-center justify-between gap-2 flex-wrap">
             <span class="text-xs px-2.5 py-1 rounded-full bg-(--accent-sky-bg) text-(--accent-sky) font-medium border border-(--border-subtle) flex items-center gap-1.5">
-              {isArchforge ? (
-                <Terminal class="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-              ) : isDockerward ? (
-                <Container class="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-              ) : isChatAnonimo ? (
-                <Lock class="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-              ) : isSecuscan ? (
-                <Globe class="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-              ) : (
-                <ShieldCheck class="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
-              )}
+              <CategoryIcon class="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
               <span>{project.data.category}</span>
             </span>
 
@@ -183,10 +184,7 @@ const projects = (await getCollection('projects', ({ id }) => id.startsWith(`${l
   <!-- Interactive Case Study Modals (Pop-ups for Each Project) -->
   {projects.map((project) => {
     const projectAnchor = project.slug.split('/').pop() || project.slug;
-    const isArchforge = projectAnchor === 'archforge';
-    const isDockerward = projectAnchor === 'dockerward';
-    const isChatAnonimo = projectAnchor === 'chat-anonimo';
-    const isSecuscan = projectAnchor === 'secuscan-api';
+    const CategoryIcon = categoryIcons[projectAnchor] ?? ShieldCheck;
 
     return (
       <dialog
@@ -200,17 +198,7 @@ const projects = (await getCollection('projects', ({ id }) => id.startsWith(`${l
         <header class="sticky top-0 z-20 px-6 py-4 bg-(--bg-surface)/95 backdrop-blur-sm border-b border-(--border-subtle) flex items-center justify-between gap-4">
           <div class="flex items-center gap-2.5 flex-wrap">
             <span class="text-xs px-2.5 py-0.5 rounded-full bg-(--accent-sky-bg) text-(--accent-sky) font-medium border border-(--border-subtle) flex items-center gap-1.5">
-              {isArchforge ? (
-                <Terminal class="w-3.5 h-3.5" aria-hidden="true" />
-              ) : isDockerward ? (
-                <Container class="w-3.5 h-3.5" aria-hidden="true" />
-              ) : isChatAnonimo ? (
-                <Lock class="w-3.5 h-3.5" aria-hidden="true" />
-              ) : isSecuscan ? (
-                <Globe class="w-3.5 h-3.5" aria-hidden="true" />
-              ) : (
-                <ShieldCheck class="w-3.5 h-3.5" aria-hidden="true" />
-              )}
+              <CategoryIcon class="w-3.5 h-3.5" aria-hidden="true" />
               <span>{project.data.category}</span>
             </span>
             <span class="text-xs px-2.5 py-0.5 rounded-full bg-(--accent-forest-bg) text-(--accent-forest) font-mono font-semibold border border-(--border-subtle)">

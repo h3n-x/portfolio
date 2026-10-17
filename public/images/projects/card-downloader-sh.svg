@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="downloader-sh-glow" cx="25%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFC857" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#FFC857" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="675" fill="#0E141D"/>
+  <rect width="1200" height="675" fill="url(#downloader-sh-glow)"/>
+  <!-- Terminal Window Left -->
+  <g>
+    <rect x="48" y="80" width="520" height="500" rx="10" fill="#0B111A" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+    <rect x="48" y="80" width="520" height="30" rx="10" fill="#1D2A3B"/>
+    <rect x="48" y="100" width="520" height="10" fill="#1D2A3B"/>
+    <circle cx="66" cy="95" r="5" fill="#EF4444" fill-opacity="0.6"/>
+    <circle cx="82" cy="95" r="5" fill="#F59E0B" fill-opacity="0.6"/>
+    <circle cx="98" cy="95" r="5" fill="#22C55E" fill-opacity="0.6"/>
+    <text x="308" y="96" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="500" fill="#FFC857">downloader.sh — job lifecycle</text>
+    <text x="72" y="136" font-family="'JetBrains Mono', monospace" font-size="12" fill="#CBD5E1">POST /api/inspect  {&quot;url&quot;: &quot;https://youtu.be/…&quot;}</text>
+    <text x="72" y="158" font-family="'JetBrains Mono', monospace" font-size="12" fill="#FFC857">extractor: youtube · allowlisted · 6 real qualities</text>
+    <rect x="72" y="174" width="460" height="28" rx="6" fill="rgba(255,200,87,0.1)" fill-opacity="0.6"/>
+    <text x="88" y="188" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#94A3B8">job</text>
+    <text x="188" y="188" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#CBD5E1">queued · bounded in-memory manager</text>
+    <text x="500" y="188" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#FFC857">TTL</text>
+    <rect x="72" y="210" width="460" height="28" rx="6" fill="rgba(255,200,87,0.1)" fill-opacity="0.6"/>
+    <text x="88" y="224" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#94A3B8">worker</text>
+    <text x="188" y="224" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#CBD5E1">own subprocess · rlimits · session</text>
+    <text x="500" y="224" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#22C55E">ISOLATED</text>
+    <rect x="72" y="246" width="460" height="28" rx="6" fill="rgba(255,200,87,0.1)" fill-opacity="0.6"/>
+    <text x="88" y="260" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#94A3B8">egress</text>
+    <text x="188" y="260" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#CBD5E1">per-job token · ports 80/443</text>
+    <text x="500" y="260" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#FFC857">PROXY</text>
+    <rect x="72" y="282" width="460" height="28" rx="6" fill="rgba(255,200,87,0.1)" fill-opacity="0.6"/>
+    <text x="88" y="296" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#94A3B8">network</text>
+    <text x="188" y="296" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#CBD5E1">public IP pinned · no LAN</text>
+    <text x="500" y="296" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#EF4444">BLOCKED</text>
+    <rect x="72" y="318" width="460" height="28" rx="6" fill="rgba(255,200,87,0.1)" fill-opacity="0.6"/>
+    <text x="88" y="332" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#94A3B8">budget</text>
+    <text x="188" y="332" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#CBD5E1">412 MB of 2 GB byte budget</text>
+    <text x="500" y="332" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#22C55E">OK</text>
+    <rect x="72" y="354" width="460" height="28" rx="6" fill="rgba(255,200,87,0.1)" fill-opacity="0.6"/>
+    <text x="88" y="368" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#94A3B8">progress</text>
+    <text x="188" y="368" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#CBD5E1">SSE · same origin · strict CSP</text>
+    <text x="500" y="368" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#22C55E">100%</text>
+    <text x="72" y="410" font-family="'JetBrains Mono', monospace" font-size="12" fill="#22C55E">✓ ready: video.mp4 · 1080p · no accounts, no trackers</text>
+    <text x="72" y="432" font-family="'JetBrains Mono', monospace" font-size="12" fill="#94A3B8">219 backend tests · E2E with axe</text>
+    <text x="72" y="556" font-family="'JetBrains Mono', monospace" font-size="12" fill="#FFC857">$ █</text>
+  </g>
+  <rect x="632" y="100" width="201" height="26" rx="13" fill="rgba(255,200,87,0.12)" stroke="rgba(255,200,87,0.28)" stroke-width="1"/>
+  <text x="732" y="113" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600" fill="#FFC857">WEB · SSRF-SAFE DOWNLOADS</text>
+  <text x="632" y="162" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="52" font-weight="800" fill="#F3F6F9" letter-spacing="-2">downloader</text>
+  <text x="632" y="220" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="52" font-weight="800" fill="#FFC857" letter-spacing="-2">.sh</text>
+  <circle cx="646" cy="266" r="3" fill="#FFC857" fill-opacity="0.7"/>
+  <text x="660" y="266" dominant-baseline="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1">Public links from 12 platforms, real qualities</text>
+  <circle cx="646" cy="298" r="3" fill="#FFC857" fill-opacity="0.7"/>
+  <text x="660" y="298" dominant-baseline="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1">Every job in an isolated worker process</text>
+  <circle cx="646" cy="330" r="3" fill="#FFC857" fill-opacity="0.7"/>
+  <text x="660" y="330" dominant-baseline="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1">Egress proxy as an SSRF barrier</text>
+  <circle cx="646" cy="362" r="3" fill="#FFC857" fill-opacity="0.7"/>
+  <text x="660" y="362" dominant-baseline="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1">Static Astro site with a Svelte island</text>
+  <circle cx="646" cy="394" r="3" fill="#FFC857" fill-opacity="0.7"/>
+  <text x="660" y="394" dominant-baseline="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1">No accounts, no cookies, no trackers</text>
+  <rect x="632" y="442" width="166" height="26" rx="13" fill="#1D2A3B" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+  <text x="715" y="455" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="#94A3B8">Python 3.13</text>
+  <rect x="812" y="442" width="166" height="26" rx="13" fill="#1D2A3B" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+  <text x="895" y="455" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="#94A3B8">FastAPI · SSE</text>
+  <rect x="632" y="480" width="166" height="26" rx="13" fill="#1D2A3B" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+  <text x="715" y="493" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="#94A3B8">Astro · Svelte</text>
+  <rect x="812" y="480" width="166" height="26" rx="13" fill="#1D2A3B" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+  <text x="895" y="493" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="#94A3B8">yt-dlp · FFmpeg</text>
+  <text x="632" y="536" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="500" fill="#FFC857" fill-opacity="0.8">github.com/h3n-x/Downloader.sh</text>
+  <path d="M1100.0,532.0L1141.6,556.0L1141.6,604.0L1100.0,628.0L1058.4,604.0L1058.4,556.0Z" fill="rgba(255,200,87,0.12)" stroke="rgba(255,200,87,0.28)" stroke-width="1"/>
+  <text x="1100" y="581" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="500" fill="#FFC857">⇩</text>
+</svg>

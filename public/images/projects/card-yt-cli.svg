@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="yt-cli-glow" cx="25%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FF6B6B" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#FF6B6B" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="675" fill="#0E141D"/>
+  <rect width="1200" height="675" fill="url(#yt-cli-glow)"/>
+  <!-- Terminal Window Left -->
+  <g>
+    <rect x="48" y="80" width="520" height="500" rx="10" fill="#0B111A" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+    <rect x="48" y="80" width="520" height="30" rx="10" fill="#1D2A3B"/>
+    <rect x="48" y="100" width="520" height="10" fill="#1D2A3B"/>
+    <circle cx="66" cy="95" r="5" fill="#EF4444" fill-opacity="0.6"/>
+    <circle cx="82" cy="95" r="5" fill="#F59E0B" fill-opacity="0.6"/>
+    <circle cx="98" cy="95" r="5" fill="#22C55E" fill-opacity="0.6"/>
+    <text x="308" y="96" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="500" fill="#FF6B6B">yt-cli — audio</text>
+    <text x="72" y="136" font-family="'JetBrains Mono', monospace" font-size="12" fill="#CBD5E1">$ yt-cli audio &quot;https://music.youtube.com/playlist?list=…&quot; \</text>
+    <text x="72" y="158" font-family="'JetBrains Mono', monospace" font-size="12" fill="#CBD5E1">    -f opus -q best --archive</text>
+    <text x="72" y="180" font-family="'JetBrains Mono', monospace" font-size="12" fill="#FF6B6B">Playlist · 24 entries · opus · scope detected from URL</text>
+    <rect x="72" y="196" width="460" height="28" rx="6" fill="rgba(255,107,107,0.1)" fill-opacity="0.6"/>
+    <text x="88" y="210" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#94A3B8">01–09</text>
+    <text x="188" y="210" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#CBD5E1">downloaded · cover + metadata</text>
+    <text x="500" y="210" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#22C55E">DONE</text>
+    <rect x="72" y="232" width="460" height="28" rx="6" fill="rgba(255,107,107,0.1)" fill-opacity="0.6"/>
+    <text x="88" y="246" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#94A3B8">10</text>
+    <text x="188" y="246" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#CBD5E1">already in archive</text>
+    <text x="500" y="246" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#94A3B8">SKIP</text>
+    <rect x="72" y="268" width="460" height="28" rx="6" fill="rgba(255,107,107,0.1)" fill-opacity="0.6"/>
+    <text x="88" y="282" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#94A3B8">11–17</text>
+    <text x="188" y="282" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#CBD5E1">downloaded · chapters embedded</text>
+    <text x="500" y="282" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#22C55E">DONE</text>
+    <rect x="72" y="304" width="460" height="28" rx="6" fill="rgba(255,107,107,0.1)" fill-opacity="0.6"/>
+    <text x="88" y="318" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#94A3B8">18</text>
+    <text x="188" y="318" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#CBD5E1">Video unavailable → removed by uploader</text>
+    <text x="500" y="318" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#EF4444">FAIL</text>
+    <rect x="72" y="340" width="460" height="28" rx="6" fill="rgba(255,107,107,0.1)" fill-opacity="0.6"/>
+    <text x="88" y="354" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#94A3B8">19–24</text>
+    <text x="188" y="354" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" fill="#CBD5E1">downloaded · SponsorBlock trimmed</text>
+    <text x="500" y="354" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#22C55E">DONE</text>
+    <text x="72" y="396" font-family="'JetBrains Mono', monospace" font-size="12" fill="#CBD5E1">22 downloaded · 1 skipped · 1 failed (listed with its cause)</text>
+    <text x="72" y="418" font-family="'JetBrains Mono', monospace" font-size="12" fill="#F59E0B">exit 3 · partial collection</text>
+    <text x="72" y="556" font-family="'JetBrains Mono', monospace" font-size="12" fill="#FF6B6B">$ █</text>
+  </g>
+  <rect x="632" y="100" width="231" height="26" rx="13" fill="rgba(255,107,107,0.12)" stroke="rgba(255,107,107,0.28)" stroke-width="1"/>
+  <text x="747" y="113" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600" fill="#FF6B6B">CLI · YOUTUBE &amp; YOUTUBE MUSIC</text>
+  <text x="632" y="162" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="52" font-weight="800" fill="#F3F6F9" letter-spacing="-2">yt</text>
+  <text x="632" y="220" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="52" font-weight="800" fill="#FF6B6B" letter-spacing="-2">cli</text>
+  <circle cx="646" cy="266" r="3" fill="#FF6B6B" fill-opacity="0.7"/>
+  <text x="660" y="266" dominant-baseline="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1">Video, audio, playlists, albums and channels</text>
+  <circle cx="646" cy="298" r="3" fill="#FF6B6B" fill-opacity="0.7"/>
+  <text x="660" y="298" dominant-baseline="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1">Failures never stop the rest of a playlist</text>
+  <circle cx="646" cy="330" r="3" fill="#FF6B6B" fill-opacity="0.7"/>
+  <text x="660" y="330" dominant-baseline="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1">yt-dlp errors explained with a concrete action</text>
+  <circle cx="646" cy="362" r="3" fill="#FF6B6B" fill-opacity="0.7"/>
+  <text x="660" y="362" dominant-baseline="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1">Profiles, archive sync and concurrent batches</text>
+  <circle cx="646" cy="394" r="3" fill="#FF6B6B" fill-opacity="0.7"/>
+  <text x="660" y="394" dominant-baseline="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="400" fill="#CBD5E1">doctor, --json, completions and a man page</text>
+  <rect x="632" y="442" width="166" height="26" rx="13" fill="#1D2A3B" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+  <text x="715" y="455" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="#94A3B8">Python 3.13</text>
+  <rect x="812" y="442" width="166" height="26" rx="13" fill="#1D2A3B" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+  <text x="895" y="455" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="#94A3B8">yt-dlp API</text>
+  <rect x="632" y="480" width="166" height="26" rx="13" fill="#1D2A3B" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+  <text x="715" y="493" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="#94A3B8">Typer · Rich</text>
+  <rect x="812" y="480" width="166" height="26" rx="13" fill="#1D2A3B" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+  <text x="895" y="493" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="#94A3B8">Arch PKGBUILD</text>
+  <text x="632" y="536" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="500" fill="#FF6B6B" fill-opacity="0.8">github.com/h3n-x/yt-cli</text>
+  <path d="M1100.0,532.0L1141.6,556.0L1141.6,604.0L1100.0,628.0L1058.4,604.0L1058.4,556.0Z" fill="rgba(255,107,107,0.12)" stroke="rgba(255,107,107,0.28)" stroke-width="1"/>
+  <text x="1100" y="581" text-anchor="middle" dominant-baseline="middle" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="500" fill="#FF6B6B">♪</text>
+</svg>

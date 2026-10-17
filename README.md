@@ -54,7 +54,13 @@ Colombia, focused on Linux systems, modular Bash automation and Python backend s
 | Project | Description |
 |---|---|
 | [**archforge**](https://github.com/h3n-x/archforge) · v0.3.0, actively maintained | Modular post-installation and hardening toolkit for Arch Linux in Bash: safe dry runs, per-session backups and system services (systemd, nftables). |
-| [**Repo Secret Auditor**](https://github.com/h3n-x/repo-secret-auditor) · v0.1.0, tests >80% and CI/CD | Python 3.12 + FastAPI engine that detects exposed credentials and vulnerable dependencies, with SARIF 2.1.0 export and GitHub Code Scanning severity gates. |
+| [**Repo Secret Auditor**](https://github.com/h3n-x/repo-secret-auditor) · v0.2.0, 91% coverage, 0 CVEs | Secret and dependency scanner for CI/CD: Gitleaks-compatible rules, commit history, OSV, CycloneDX SBOM and SARIF 2.1.0 for GitHub Code Scanning. |
+| [**DockerWard**](https://github.com/h3n-x/DockerWard) · v0.1.0, 71 tests | Runtime security auditing for Docker containers with native SARIF 2.1.0 reports. |
+| [**Chat Anónimo**](https://github.com/h3n-x/chat-anonimo) · v2.5.0, zero persistence | Ephemeral messaging with a zero-knowledge blind relay, voice scrambling, LSB steganography and an Android app. |
+| [**SecuScan API**](https://github.com/h3n-x/secuscan-api) · v0.1.0, 86 tests, non-root | Backend API for perimeter security auditing and external attack surface management (EASM). |
+| [**Hyprland Dotfiles**](https://github.com/h3n-x/hyprland-dotfiles) · installer tested on 6 distros | A complete Hyprland desktop where every color comes from the wallpaper, with its own QML shell, a settings center and a cross-distro installer. |
+| [**yt-cli**](https://github.com/h3n-x/yt-cli) · v0.4.0 beta, 218 tests | YouTube and YouTube Music downloader for Linux on yt-dlp's Python API, with explained errors and a git/uv/cargo/gh-style UX. |
+| [**downloader.sh**](https://github.com/h3n-x/Downloader.sh) · MVP, 219 backend tests | Web downloader for public links: isolated worker processes, an egress proxy against SSRF, no accounts and no trackers. |
 
 &nbsp;
 

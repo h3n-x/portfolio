@@ -54,7 +54,13 @@ de Colombia, especializado en sistemas Linux, automatización modular con Bash y
 | Proyecto | Descripción |
 |---|---|
 | [**archforge**](https://github.com/h3n-x/archforge) · v0.3.0, mantenimiento activo | Toolkit modular de post-instalación y endurecimiento para Arch Linux en Bash: modo dry-run seguro, backups por sesión y servicios del sistema (systemd, nftables). |
-| [**Repo Secret Auditor**](https://github.com/h3n-x/repo-secret-auditor) · v0.1.0, tests >80 % y CI/CD | Motor en Python 3.12 + FastAPI que detecta credenciales expuestas y dependencias vulnerables, con exportación SARIF 2.1.0 y gates de severidad para GitHub Code Scanning. |
+| [**Repo Secret Auditor**](https://github.com/h3n-x/repo-secret-auditor) · v0.2.0, cobertura 91 %, 0 CVEs | Escáner de secretos y dependencias para CI/CD: reglas compatibles con Gitleaks, historial de commits, OSV, SBOM CycloneDX y SARIF 2.1.0 para GitHub Code Scanning. |
+| [**DockerWard**](https://github.com/h3n-x/DockerWard) · v0.1.0, 71 tests | Auditoría de seguridad en runtime para contenedores Docker con reportes SARIF 2.1.0 nativos. |
+| [**Chat Anónimo**](https://github.com/h3n-x/chat-anonimo) · v2.5.0, cero persistencia | Mensajería efímera con relay ciego zero-knowledge, ofuscación de voz, esteganografía LSB y app Android. |
+| [**SecuScan API**](https://github.com/h3n-x/secuscan-api) · v0.1.0, 86 tests, sin root | API backend para auditoría perimetral y gestión de la superficie de ataque externa (EASM). |
+| [**Hyprland Dotfiles**](https://github.com/h3n-x/hyprland-dotfiles) · instalador probado en 6 distros | Un escritorio Hyprland completo donde cada color sale del wallpaper, con shell propia en QML, centro de configuración e instalador para varias distros. |
+| [**yt-cli**](https://github.com/h3n-x/yt-cli) · v0.4.0 beta, 218 tests | Descargador de YouTube y YouTube Music para Linux sobre la API Python de yt-dlp, con errores explicados y una UX al estilo git/uv/cargo/gh. |
+| [**downloader.sh**](https://github.com/h3n-x/Downloader.sh) · MVP, 219 tests de backend | Descargador web de enlaces públicos: workers aislados, proxy de salida contra SSRF, sin cuentas y sin rastreadores. |
 
 &nbsp;
 
