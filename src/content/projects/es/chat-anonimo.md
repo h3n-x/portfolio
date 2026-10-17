@@ -19,9 +19,10 @@ technologies:
   - "Vitest (12 Suites)"
 githubUrl: "https://github.com/h3n-x/chat-anonimo"
 demoUrl: "https://chat-zk.netlify.app"
-featured: true
+featured: false
 order: 4
 category: "Criptografía & Anti-Vigilancia"
+areas: ["security", "web"]
 problemSolved: "Las aplicaciones de mensajería populares (WhatsApp, Telegram, Signal) comprometen la seguridad del usuario al exigir números telefónicos, retener historiales en servidores cloud o indexar metadatos masivos. Además, los chats cifrados comunes carecen de defensas contra coacción física directa, inspección forense de metadatos en archivos adjuntos, reconocimiento de huella vocal o análisis de tráfico pasivo en el ISP."
 architectureHighlights:
   - "Arquitectura Zero-Knowledge Blind Relay: El servidor FastAPI es técnicamente incapaz de descifrar tramas, almacenar mensajes o retener claves (demostrado formalmente en test_server_inability.py); toda la criptografía vive aislada en memoria RAM volátil sin tocar disco."

@@ -15,6 +15,7 @@ githubUrl: "https://github.com/h3n-x/archforge"
 featured: true
 order: 1
 category: "Systems & Automation"
+areas: ["linux", "security"]
 problemSolved: "Setting up a clean Arch Linux workstation manually takes hours of error-prone configuration steps, frequently leading to environment drift, insecure firewall presets, and forgotten system daemons."
 architectureHighlights:
   - "Domain-driven modularity: decoupled modules for system security, networking, power management, graphics, and core CLI utilities."

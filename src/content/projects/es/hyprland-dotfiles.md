@@ -16,6 +16,7 @@ githubUrl: "https://github.com/h3n-x/hyprland-dotfiles"
 featured: true
 order: 6
 category: "Escritorio Linux y Theming"
+areas: ["linux"]
 problemSolved: "Los rices de escritorio suelen fijar un único esquema de colores y una única máquina: al cambiar el wallpaper, las apps, la terminal y las pantallas de arranque quedan desincronizadas, e instalarlos en otro equipo falla con otra GPU, otro init o otro gestor de arranque."
 architectureHighlights:
   - "Pipeline de theming guiado por el wallpaper: un worker con cola (gana la última elección) genera colores de estado fijos y una paleta de código con el contraste resuelto, y matugen recolorea ~20 apps en vivo en un segundo; un pase del sistema diferido aplica el tema a SDDM, Plymouth y GRUB mediante scripts de root con reglas sudoers acotadas."

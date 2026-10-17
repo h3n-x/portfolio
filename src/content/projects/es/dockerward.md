@@ -16,6 +16,7 @@ githubUrl: "https://github.com/h3n-x/DockerWard"
 featured: true
 order: 3
 category: "Contenedores & Runtime"
+areas: ["security"]
 problemSolved: "Los escáneres estáticos de imágenes (como Trivy o Grype) detectan CVEs en paquetes de disco, pero son ciegos ante la postura de ejecución en producción: una imagen 100% segura se convierte en una brecha crítica si se inicia con --privileged, con el socket de Docker montado, sin límites de recursos en cgroups o con seccomp deshabilitado."
 architectureHighlights:
   - "Colector desacoplado sobre Docker Engine API: extrae telemetría directa por socket Unix con modelos tipados en Pydantic v2, evitando subshells o llamadas frágiles al comando docker."

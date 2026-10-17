@@ -1,7 +1,7 @@
 ---
 import type { SupportedLang } from '../../i18n/ui';
 import { useTranslations } from '../../i18n/utils';
-import { GraduationCap, Award, ExternalLink } from '@lucide/astro';
+import { GraduationCap, Award, Clock } from '@lucide/astro';
 
 interface Props {
   lang: SupportedLang;
@@ -10,32 +10,44 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
+// Same order and data as the CV: the degree first (full width), then certifications, newest first
 const educationItems = [
   {
     title: t('education.degreeTitle'),
     institution: t('education.degreeInst'),
     description: t('education.degreeDesc'),
-    period: 'En curso',
+    period: t('education.inProgress'),
     icon: GraduationCap,
+    wide: true,
   },
   {
     title: t('education.certGoogleTitle'),
     institution: t('education.certGoogleInst'),
     description: t('education.certGoogleDesc'),
     period: '2024',
+    hours: 132,
     icon: Award,
   },
   {
-    title: t('education.certHack4uTitle'),
-    institution: t('education.certHack4uInst'),
-    description: t('education.certHack4uDesc'),
-    period: '2023',
+    title: t('education.certTalentoTitle'),
+    institution: t('education.certTalentoInst'),
+    description: t('education.certTalentoDesc'),
+    period: '2024',
+    hours: 159,
     icon: Award,
   },
   {
     title: t('education.certOneTitle'),
     institution: t('education.certOneInst'),
     description: t('education.certOneDesc'),
+    period: '2023',
+    hours: 343,
+    icon: Award,
+  },
+  {
+    title: t('education.certHack4uTitle'),
+    institution: t('education.certHack4uInst'),
+    description: t('education.certHack4uDesc'),
     period: '2023',
     icon: Award,
   },
@@ -57,15 +69,23 @@ const educationItems = [
     {educationItems.map((item) => {
       const IconComp = item.icon;
       return (
-        <article class="ghibli-card p-6 flex flex-col justify-between gap-4 bg-(--bg-surface)">
+        <article class:list={['ghibli-card p-6 flex flex-col justify-between gap-4 bg-(--bg-surface)', item.wide && 'sm:col-span-2']}>
           <div class="flex flex-col gap-2">
             <div class="flex items-center justify-between gap-2">
               <span class="w-8 h-8 rounded-lg bg-(--accent-forest-bg) text-(--accent-forest) flex items-center justify-center">
                 <IconComp class="w-4 h-4" aria-hidden="true" />
               </span>
-              <span class="text-xs font-semibold px-2 py-0.5 rounded-md bg-(--bg-elevated) text-(--text-muted) border border-(--border-subtle)">
-                {item.period}
-              </span>
+              <div class="flex items-center gap-1.5">
+                {item.hours && (
+                  <span class="text-xs font-semibold px-2 py-0.5 rounded-md bg-(--bg-elevated) text-(--text-muted) border border-(--border-subtle) flex items-center gap-1">
+                    <Clock class="w-3 h-3" aria-hidden="true" />
+                    {t('education.hours').replace('{n}', String(item.hours))}
+                  </span>
+                )}
+                <span class="text-xs font-semibold px-2 py-0.5 rounded-md bg-(--bg-elevated) text-(--text-muted) border border-(--border-subtle)">
+                  {item.period}
+                </span>
+              </div>
             </div>
 
             <h3 class="text-base font-bold text-(--text-primary) pt-1">

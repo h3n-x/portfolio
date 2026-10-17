@@ -19,9 +19,10 @@ technologies:
   - "Vitest (12 Suites)"
 githubUrl: "https://github.com/h3n-x/chat-anonimo"
 demoUrl: "https://chat-zk.netlify.app"
-featured: true
+featured: false
 order: 4
 category: "Cryptography & Anti-Surveillance"
+areas: ["security", "web"]
 problemSolved: "Mainstream messaging platforms (WhatsApp, Telegram, Signal) compromise user sovereignty by mandating phone numbers, storing message histories on cloud servers, or harvesting vast communication metadata. Furthermore, standard E2EE tools lack defenses against direct physical coercion, forensic metadata leakage in attachments, biometric voiceprint profiling, or passive ISP traffic analysis."
 architectureHighlights:
   - "Zero-Knowledge Blind Relay Architecture: The FastAPI server is technically incapable of decrypting frames, storing messages, or retaining keys (formally proven in test_server_inability.py); all cryptography is strictly isolated in volatile client RAM without disk storage."

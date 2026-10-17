@@ -13,9 +13,10 @@ technologies:
   - "Playwright y axe"
   - "uv y pnpm"
 githubUrl: "https://github.com/h3n-x/Downloader.sh"
-featured: true
+featured: false
 order: 8
 category: "Web y Seguridad"
+areas: ["web", "backend", "security"]
 problemSolved: "Los descargadores en línea están llenos de rastreadores, botones falsos y cookies de terceros, y ofrecer yt-dlp como servicio público es riesgoso: las URLs de los usuarios pueden usarse para llegar a redes internas, agotar recursos o descargar mucho más de lo previsto."
 architectureHighlights:
   - "Workers aislados: cada trabajo ejecuta yt-dlp en su propio subproceso con límites de recursos y sesión propia, intercambiando JSONL por stdin/stdout con un gestor de trabajos acotado en memoria."

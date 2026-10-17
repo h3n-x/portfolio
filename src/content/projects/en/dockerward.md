@@ -16,6 +16,7 @@ githubUrl: "https://github.com/h3n-x/DockerWard"
 featured: true
 order: 3
 category: "Containers & Runtime"
+areas: ["security"]
 problemSolved: "Static image scanners (such as Trivy or Grype) detect package CVEs at build time but remain completely blind to runtime execution: a vulnerability-free image becomes an immediate host compromise vector if executed with --privileged, a bind-mounted Docker socket, unconstrained cgroups, or disabled seccomp syscall filters."
 architectureHighlights:
   - "Decoupled Docker Engine API collector: streams runtime telemetry over Unix domain sockets into typed Pydantic v2 models without shell wrapping or CLI subprocess dependencies."

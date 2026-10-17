@@ -14,6 +14,8 @@ const projectsCollection = defineCollection({
     featured: z.boolean().default(false),
     order: z.number().default(1),
     category: z.string().default('Systems & Automation'),
+    // Areas for the section filters (a project can be in several).
+    areas: z.array(z.enum(['security', 'linux', 'backend', 'web'])).min(1),
     problemSolved: z.string(),
     architectureHighlights: z.array(z.string()),
     keyLearnings: z.array(z.string()),

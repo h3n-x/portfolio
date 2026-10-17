@@ -15,6 +15,7 @@ githubUrl: "https://github.com/h3n-x/archforge"
 featured: true
 order: 1
 category: "Sistemas & Automatización"
+areas: ["linux", "security"]
 problemSolved: "Configurar un entorno Arch Linux desde cero suele tomar horas de comandos manuales repetitivos y es propenso a desajustes de configuración (drift), errores en reglas de red/firewall y olvidos en la habilitación de servicios de energía y seguridad."
 architectureHighlights:
   - "Estructura modular por dominios: módulos aislados para seguridad, red, energía, gráficos y herramientas esenciales."

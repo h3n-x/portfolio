@@ -13,9 +13,10 @@ technologies:
   - "mypy y Ruff"
   - "PKGBUILD"
 githubUrl: "https://github.com/h3n-x/yt-cli"
-featured: true
+featured: false
 order: 7
 category: "Herramientas CLI"
+areas: ["linux"]
 problemSolved: "Usar yt-dlp directamente obliga a memorizar decenas de flags, un solo video no disponible puede abortar una playlist entera y los errores crudos no dicen qué hacer. Sincronizar una biblioteca de música o un canal vuelve a bajar lo que ya tienes."
 architectureHighlights:
   - "Arquitectura en capas: una CLI con Typer + Rich sobre servicios de descarga, cola, historial y cache, encima de un núcleo que habla con yt-dlp por su API Python en lugar de invocar la shell."

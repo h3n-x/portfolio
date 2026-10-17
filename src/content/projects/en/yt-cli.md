@@ -13,9 +13,10 @@ technologies:
   - "mypy & Ruff"
   - "PKGBUILD"
 githubUrl: "https://github.com/h3n-x/yt-cli"
-featured: true
+featured: false
 order: 7
 category: "CLI Tools"
+areas: ["linux"]
 problemSolved: "Using yt-dlp directly means memorizing dozens of flags, and one unavailable video can abort a whole playlist while the raw errors give no hint of what to do. Syncing a music library or downloading a channel repeatedly downloads what you already have."
 architectureHighlights:
   - "Layered architecture: a Typer + Rich CLI over download, queue, history and cache services, on top of a downloader core that talks to yt-dlp through its Python API instead of shelling out."

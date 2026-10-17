@@ -18,6 +18,7 @@ githubUrl: "https://github.com/h3n-x/repo-secret-auditor"
 featured: true
 order: 2
 category: "Backend & Seguridad"
+areas: ["security", "backend"]
 problemSolved: "La exposición accidental de secretos (tokens, llaves privadas, credenciales) y dependencias vulnerables en repositorios Git representa uno de los mayores riesgos en DevSecOps. Muchas organizaciones carecen de un motor local y ligero que audite el código en CI sin depender de SaaS externos invasivos."
 architectureHighlights:
   - "Motor de detección de secretos configurable mediante reglas TOML (compatible con Gitleaks) con filtros heurísticos de entropía de Shannon para minimizar falsos positivos."

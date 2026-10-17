@@ -15,9 +15,10 @@ technologies:
   - "Docker Hardened"
   - "Pytest (86 Tests)"
 githubUrl: "https://github.com/h3n-x/secuscan-api"
-featured: true
+featured: false
 order: 5
 category: "Perímetro & EASM"
+areas: ["security", "backend"]
 problemSolved: "Las organizaciones enfrentan una superficie de ataque perimetral en continua expansión (subdominios huérfanos, servicios expuestos sin cifrado robusto, cabeceras HTTP permisivas y configuraciones de correo propensas a suplantación). Muchas herramientas de EASM son servicios comerciales costosos o scripts invasivos que carecen de defensas contra abusos como SSRF y DNS rebinding."
 architectureHighlights:
   - "Descubrimiento pasivo de subdominios: Mapeo de superficie de ataque consultando Certificate Transparency (`crt.sh`) sin emitir tráfico intrusivo hacia el objetivo."

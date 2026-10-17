@@ -16,6 +16,7 @@ githubUrl: "https://github.com/h3n-x/hyprland-dotfiles"
 featured: true
 order: 6
 category: "Linux Desktop & Theming"
+areas: ["linux"]
 problemSolved: "Desktop rices usually hardcode one color scheme and one machine: changing the wallpaper leaves apps, terminals and boot screens out of sync, and installing them elsewhere breaks on a different GPU, init system or bootloader."
 architectureHighlights:
   - "Wallpaper-driven theming pipeline: a queued theme-apply worker (latest pick wins) generates fixed status colors and a contrast-solved code palette, then matugen recolors ~20 live apps in about a second; a debounced system pass themes SDDM, Plymouth and GRUB through root-owned sync scripts with narrowly scoped sudoers rules."

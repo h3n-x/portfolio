@@ -18,6 +18,7 @@ githubUrl: "https://github.com/h3n-x/repo-secret-auditor"
 featured: true
 order: 2
 category: "Backend & Security"
+areas: ["security", "backend"]
 problemSolved: "Accidental credential leakage (API keys, private tokens, certificates) and stale dependencies in Git repositories are leading attack vectors. Teams frequently lack lightweight, self-hosted audit runners that integrate into CI/CD pipelines without incurring costly enterprise SaaS overhead."
 architectureHighlights:
   - "Gitleaks-compatible TOML rule engine combined with Shannon entropy filtering and heuristic keyword checks to eliminate false positives."

@@ -12,9 +12,9 @@ import {
   Lock,
   Globe,
   ExternalLink,
-  Sparkles,
   X,
   ArrowUpRight,
+  ChevronDown,
   Palette,
   Music,
   Download
@@ -28,9 +28,22 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-// Load projects from content collection matching current language and sort by order
+// Load projects from content collection matching current language: featured first, then by order
 const projects = (await getCollection('projects', ({ id }) => id.startsWith(`${lang}/`)))
-  .sort((a, b) => a.data.order - b.data.order);
+  .sort((a, b) => Number(b.data.featured) - Number(a.data.featured) || a.data.order - b.data.order);
+
+// Filters: "all" shows the featured projects and a button for the rest; an area shows all of its projects.
+const areaFilters = [
+  { id: 'all', label: t('projects.filterAll') },
+  { id: 'security', label: t('projects.filterSecurity') },
+  { id: 'linux', label: t('projects.filterLinux') },
+  { id: 'backend', label: t('projects.filterBackend') },
+  { id: 'web', label: t('projects.filterWeb') },
+].map((f) => ({
+  ...f,
+  count: f.id === 'all' ? projects.length : projects.filter((p) => p.data.areas.includes(f.id as never)).length,
+})).filter((f) => f.count > 0);
+const featuredCount = projects.filter((p) => p.data.featured).length;
 
 // Icon of each project's category badge (card and modal); any other project gets ShieldCheck.
 const categoryIcons: Record<string, typeof ShieldCheck> = {
@@ -60,19 +73,24 @@ const categoryIcons: Record<string, typeof ShieldCheck> = {
     </p>
   </div>
 
-  <!-- 2026 Interactive Click Incitement Banner -->
-  <div class="flex items-center gap-3 p-3.5 rounded-xl bg-(--bg-card-subtle)/70 border border-(--border-subtle) text-xs text-(--text-secondary) shadow-2xs">
-    <span class="p-1.5 rounded-lg bg-(--accent-forest-bg) text-(--accent-forest) shrink-0">
-      <Sparkles class="w-4 h-4" />
-    </span>
-    <span class="leading-relaxed">
-      {t('projects.clickHint')}
-    </span>
+  <!-- Area filters (shown by the script; without JS every project is visible) -->
+  <div class="project-filters flex flex-wrap items-center gap-2 -mt-2" role="group" aria-label={t('projects.filterLabel')} hidden>
+    {areaFilters.map((filter) => (
+      <button
+        type="button"
+        data-filter={filter.id}
+        aria-pressed={filter.id === 'all' ? 'true' : 'false'}
+        aria-controls="projects-grid"
+        class="project-filter interactive-target text-xs font-semibold px-3 py-1.5 rounded-full border border-(--border-subtle) bg-(--bg-surface) text-(--text-secondary) hover:border-(--border-strong) hover:text-(--text-primary) transition-colors cursor-pointer flex items-center gap-1.5"
+      >
+        <span>{filter.label}</span>
+        <span class="project-filter-count text-[11px] font-mono px-1.5 rounded-full bg-(--bg-elevated) text-(--text-muted)">{filter.count}</span>
+      </button>
+    ))}
   </div>
 
-
-  <!-- 2026 Modern Project Grid (Streamlined & Clickable) -->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <!-- Project grid -->
+  <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
     {projects.map((project) => {
       const projectAnchor = project.slug.split('/').pop() || project.slug;
       const CategoryIcon = categoryIcons[projectAnchor] ?? ShieldCheck;
@@ -80,6 +98,8 @@ const categoryIcons: Record<string, typeof ShieldCheck> = {
       return (
         <article
           id={projectAnchor}
+          data-areas={project.data.areas.join(' ')}
+          data-featured={project.data.featured ? 'true' : 'false'}
           class="project-card ghibli-card p-5 sm:p-6 flex flex-col justify-between gap-5 bg-(--bg-surface) rounded-2xl border border-(--border-subtle) hover:border-(--border-strong) transition-all duration-300 group cursor-pointer scroll-mt-24 shadow-xs hover:shadow-md"
           data-modal-target={`modal-${projectAnchor}`}
           role="button"
@@ -180,6 +200,25 @@ const categoryIcons: Record<string, typeof ShieldCheck> = {
       );
     })}
   </div>
+
+  <!-- Expands the "all" view beyond the featured projects -->
+  {projects.length > featuredCount && (
+    <div class="flex justify-center -mt-2">
+      <button
+        type="button"
+        class="projects-toggle interactive-target text-xs font-semibold px-4 py-2 rounded-xl border border-(--border-default) bg-(--bg-surface) text-(--text-secondary) hover:text-(--text-primary) hover:border-(--accent-forest) transition-colors cursor-pointer flex items-center gap-1.5"
+        aria-controls="projects-grid"
+        aria-expanded="false"
+        data-label-more={t('projects.showAll').replace('{n}', String(projects.length))}
+        data-label-less={t('projects.showLess')}
+        hidden
+      >
+        <span class="projects-toggle-label">{t('projects.showAll').replace('{n}', String(projects.length))}</span>
+        <ChevronDown class="projects-toggle-icon w-3.5 h-3.5 transition-transform" aria-hidden="true" />
+      </button>
+    </div>
+  )}
+  <p class="projects-status sr-only" aria-live="polite" data-template={t('projects.showing')}></p>
 
   <!-- Interactive Case Study Modals (Pop-ups for Each Project) -->
   {projects.map((project) => {
@@ -341,7 +380,86 @@ const categoryIcons: Record<string, typeof ShieldCheck> = {
   })}
 </section>
 
+<style>
+  .project-card.is-entering {
+    animation: project-enter 220ms ease-out;
+  }
+  .project-filter[aria-pressed='true'] {
+    background: var(--accent-forest-bg);
+    color: var(--accent-forest);
+    border-color: var(--accent-forest);
+  }
+  .projects-toggle[aria-expanded='true'] .projects-toggle-icon {
+    transform: rotate(180deg);
+  }
+  @keyframes project-enter {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .project-card.is-entering { animation: none; }
+  }
+</style>
+
 <script>
+  // Filters and "show all": without JS every card stays visible and the controls stay hidden.
+  function setupProjectFilters() {
+    const section = document.getElementById('proyectos');
+    if (!section || section.dataset.filtersReady) return;
+    section.dataset.filtersReady = 'true';
+
+    const cards = [...section.querySelectorAll<HTMLElement>('.project-card')];
+    const chips = [...section.querySelectorAll<HTMLButtonElement>('.project-filter')];
+    const toggle = section.querySelector<HTMLButtonElement>('.projects-toggle');
+    const status = section.querySelector<HTMLElement>('.projects-status');
+    let filter = 'all';
+    let expanded = false;
+
+    function apply(animate: boolean) {
+      let shown = 0;
+      cards.forEach((card) => {
+        const inArea = filter === 'all' || (card.dataset.areas ?? '').split(' ').includes(filter);
+        const visible = inArea && (filter !== 'all' || expanded || card.dataset.featured === 'true');
+        if (visible) shown++;
+        if (visible && card.hidden && animate) {
+          card.classList.remove('is-entering');
+          void card.offsetWidth;
+          card.classList.add('is-entering');
+        }
+        card.hidden = !visible;
+      });
+      chips.forEach((chip) => chip.setAttribute('aria-pressed', String(chip.dataset.filter === filter)));
+      if (toggle) {
+        toggle.hidden = filter !== 'all';
+        toggle.setAttribute('aria-expanded', String(expanded));
+        const label = toggle.querySelector('.projects-toggle-label');
+        if (label) label.textContent = (expanded ? toggle.dataset.labelLess : toggle.dataset.labelMore) ?? '';
+      }
+      if (status && animate) {
+        status.textContent = (status.dataset.template ?? '')
+          .replace('{shown}', String(shown))
+          .replace('{total}', String(cards.length));
+      }
+    }
+
+    chips.forEach((chip) => chip.addEventListener('click', () => {
+      filter = chip.dataset.filter ?? 'all';
+      apply(true);
+    }));
+    toggle?.addEventListener('click', () => {
+      expanded = !expanded;
+      apply(true);
+      if (!expanded) toggle.scrollIntoView({ block: 'nearest' });
+    });
+
+    // A link to a project that starts hidden (#yt-cli) opens the full list
+    const target = location.hash.slice(1);
+    if (target && cards.some((card) => card.id === target && card.dataset.featured !== 'true')) expanded = true;
+
+    section.querySelector<HTMLElement>('.project-filters')?.removeAttribute('hidden');
+    apply(false);
+  }
+
   function setupProjectModals() {
     let lastActiveElement: HTMLElement | null = null;
 
@@ -448,5 +566,7 @@ const categoryIcons: Record<string, typeof ShieldCheck> = {
 
   // Run on initial page load and after Astro View Transitions swap
   setupProjectModals();
+  setupProjectFilters();
   document.addEventListener('astro:page-load', setupProjectModals);
+  document.addEventListener('astro:page-load', setupProjectFilters);
 </script>
