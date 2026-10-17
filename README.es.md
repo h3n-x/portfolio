@@ -17,7 +17,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Lighthouse-100_SEO_%C2%B7_100_A11y-a6e3a1?style=for-the-badge&logo=lighthouse&logoColor=d9e0ee&labelColor=363a4f" alt="Lighthouse"/>
+  <img src="https://img.shields.io/badge/Lighthouse-100_A11y_%C2%B7_100_SEO_%C2%B7_99%2B_Perf-a6e3a1?style=for-the-badge&logo=lighthouse&logoColor=d9e0ee&labelColor=363a4f" alt="Lighthouse"/>
   <img src="https://img.shields.io/badge/deploy-Netlify-89dceb?style=for-the-badge&logo=netlify&logoColor=d9e0ee&labelColor=363a4f" alt="deploy"/>
   <img src="https://img.shields.io/badge/license-MIT-a6e3a1?style=for-the-badge&labelColor=363a4f" alt="license"/>
 </p>
@@ -123,11 +123,12 @@ npm run preview                          # vista previa del build de producción
 
 ## 📊 Lighthouse
 
-| Rendimiento | Accesibilidad | Buenas prácticas | SEO |
-|:---:|:---:|:---:|:---:|
-| **97** | **100** | **100** | **100** |
+| Dispositivo | Rendimiento | Accesibilidad | Buenas prácticas | SEO | FCP | LCP | TBT | CLS |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Escritorio** | **100** | **100** | **100** | **100** | 0,4 s | 0,4 s | 0 ms | 0 |
+| **Móvil** | **99–100** | **100** | **100** | **100** | 1,3–1,4 s | 1,3–1,4 s | 70–120 ms | 0 |
 
-Core Web Vitals: LCP 1,6 s · CLS 0,000 · TBT 0 ms.
+Medido en [h3n-x.me](https://h3n-x.me) con Lighthouse 12 (2026-10-17), tanto `/es/` como `/en/`; en móvil, Lighthouse simula una red 4G lenta y una CPU limitada. La única fuente (Plus Jakarta Sans, variable) se sirve desde el propio sitio y se precarga, así que nada externo bloquea el primer pintado.
 
 &nbsp;
 

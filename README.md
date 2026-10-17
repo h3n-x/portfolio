@@ -17,7 +17,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Lighthouse-100_SEO_%C2%B7_100_A11y-a6e3a1?style=for-the-badge&logo=lighthouse&logoColor=d9e0ee&labelColor=363a4f" alt="Lighthouse"/>
+  <img src="https://img.shields.io/badge/Lighthouse-100_A11y_%C2%B7_100_SEO_%C2%B7_99%2B_Perf-a6e3a1?style=for-the-badge&logo=lighthouse&logoColor=d9e0ee&labelColor=363a4f" alt="Lighthouse"/>
   <img src="https://img.shields.io/badge/deploy-Netlify-89dceb?style=for-the-badge&logo=netlify&logoColor=d9e0ee&labelColor=363a4f" alt="deploy"/>
   <img src="https://img.shields.io/badge/license-MIT-a6e3a1?style=for-the-badge&labelColor=363a4f" alt="license"/>
 </p>
@@ -123,11 +123,12 @@ npm run preview                          # preview the production build
 
 ## 📊 Lighthouse
 
-| Performance | Accessibility | Best practices | SEO |
-|:---:|:---:|:---:|:---:|
-| **97** | **100** | **100** | **100** |
+| Device | Performance | Accessibility | Best practices | SEO | FCP | LCP | TBT | CLS |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Desktop** | **100** | **100** | **100** | **100** | 0.4 s | 0.4 s | 0 ms | 0 |
+| **Mobile** | **99–100** | **100** | **100** | **100** | 1.3–1.4 s | 1.3–1.4 s | 70–120 ms | 0 |
 
-Core Web Vitals: LCP 1.6 s · CLS 0.000 · TBT 0 ms.
+Measured on [h3n-x.me](https://h3n-x.me) with Lighthouse 12 (2026-10-17), both `/es/` and `/en/`; mobile uses Lighthouse's simulated slow 4G and CPU throttling. The only font (Plus Jakarta Sans, variable) is served from the site and preloaded, so nothing outside the site blocks the first paint.
 
 &nbsp;
 
