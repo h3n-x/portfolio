@@ -11,4 +11,4 @@ User-agent: Bingbot
 Allow: /
 
 # Sitemap oficial del portfolio
-Sitemap: https://h3n-x.netlify.app/sitemap-index.xml
+Sitemap: https://h3n-x.me/sitemap-index.xml

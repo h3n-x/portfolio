@@ -23,7 +23,7 @@
 </p>
 
 <p align="center">
-  <a href="https://h3n-x.netlify.app">Sitio en vivo</a>
+  <a href="https://h3n-x.me">Sitio en vivo</a>
   ·
   <a href="#-proyectos-documentados">Proyectos</a>
   ·
@@ -88,9 +88,9 @@ portfolio/
 ├── public/
 │   ├── favicon.svg
 │   ├── robots.txt            # reglas para crawlers y enlace al sitemap
-│   └── docs/cv-henry-pacheco.pdf
+│   ├── docs/                 # CV en inglés y español (cv-henry-pacheco-{en,es}.pdf)
+│   └── images/projects/      # tarjetas de los proyectos (card-<slug>.svg)
 └── src/
-    ├── assets/               # imágenes optimizadas al compilar
     ├── content/              # content collections tipadas con Zod
     │   ├── projects/         # casos de estudio en ES y EN
     │   └── experience/       # línea de tiempo profesional
@@ -135,7 +135,7 @@ Core Web Vitals: LCP 1,6 s · CLS 0,000 · TBT 0 ms.
 
 - **Correo:** [h3n.eth@gmail.com](mailto:h3n.eth@gmail.com)
 - **GitHub:** [@h3n-x](https://github.com/h3n-x)
-- **Sitio en vivo:** [h3n-x.netlify.app](https://h3n-x.netlify.app)
+- **Sitio en vivo:** [h3n-x.me](https://h3n-x.me)
 
 &nbsp;
 

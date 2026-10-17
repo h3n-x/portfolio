@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://h3n-x.netlify.app',
+  site: 'https://h3n-x.me',
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'en'],

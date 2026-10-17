@@ -14,7 +14,7 @@ interface Props {
 
 const { title, description, lang } = Astro.props;
 const t = useTranslations(lang);
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://h3n-x.netlify.app');
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://h3n-x.me');
 ---
 
 <!doctype html>
@@ -109,7 +109,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://h3n-x.ne
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content="Henry Pacheco (H3n) Portfolio" />
     <meta property="og:locale" content={lang === 'es' ? 'es_CO' : 'en_US'} />
-    <meta property="og:image" content="https://h3n-x.netlify.app/og-image.svg" />
+    <meta property="og:image" content="https://h3n-x.me/og-image.svg" />
     <meta property="og:image:type" content="image/svg+xml" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -118,12 +118,12 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://h3n-x.ne
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://h3n-x.netlify.app/og-image.svg" />
+    <meta name="twitter:image" content="https://h3n-x.me/og-image.svg" />
 
     <!-- Alternate Language Links for SEO -->
-    <link rel="alternate" hreflang="es" href="https://h3n-x.netlify.app/es/" />
-    <link rel="alternate" hreflang="en" href="https://h3n-x.netlify.app/en/" />
-    <link rel="alternate" hreflang="x-default" href="https://h3n-x.netlify.app/es/" />
+    <link rel="alternate" hreflang="es" href="https://h3n-x.me/es/" />
+    <link rel="alternate" hreflang="en" href="https://h3n-x.me/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://h3n-x.me/es/" />
 
     <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
