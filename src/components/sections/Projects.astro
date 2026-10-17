@@ -102,10 +102,6 @@ const categoryIcons: Record<string, typeof ShieldCheck> = {
           data-featured={project.data.featured ? 'true' : 'false'}
           class="project-card ghibli-card p-5 sm:p-6 flex flex-col justify-between gap-5 bg-(--bg-surface) rounded-2xl border border-(--border-subtle) hover:border-(--border-strong) transition-all duration-300 group cursor-pointer scroll-mt-24 shadow-xs hover:shadow-md"
           data-modal-target={`modal-${projectAnchor}`}
-          role="button"
-          tabindex="0"
-          aria-haspopup="dialog"
-          aria-label={`${lang === 'es' ? 'Abrir caso de estudio de' : 'Open case study for'} ${project.data.title}`}
         >
           <!-- Top Row: Category & Status Badges -->
           <div class="flex items-center justify-between gap-2 flex-wrap">
@@ -167,9 +163,10 @@ const categoryIcons: Record<string, typeof ShieldCheck> = {
             <button
               type="button"
               data-modal-target={`modal-${projectAnchor}`}
+              aria-haspopup="dialog"
               class="interactive-target text-xs font-semibold text-(--accent-forest) hover:text-(--text-primary) flex items-center gap-1 group-hover:translate-x-0.5 transition-all"
             >
-              <span>{t('projects.inspectCta')}</span>
+              <span>{t('projects.inspectCta')}<span class="sr-only">: {project.data.title}</span></span>
               <ArrowUpRight class="w-3.5 h-3.5" />
             </button>
 
@@ -502,15 +499,6 @@ const categoryIcons: Record<string, typeof ShieldCheck> = {
         openModal(targetId, trigger);
       });
 
-      // Also support Enter/Space on role="button" articles
-      if (trigger.getAttribute('role') === 'button') {
-        trigger.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            openModal(targetId, trigger);
-          }
-        });
-      }
     });
 
     // Handle dialog events

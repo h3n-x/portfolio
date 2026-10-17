@@ -63,6 +63,7 @@ const t = useTranslations(lang);
       target="_blank"
       rel="noopener noreferrer"
       download={`cv-henry-pacheco-${lang}.pdf`}
+      data-astro-prefetch="false"
       class="interactive-target px-4 py-2.5 rounded-xl font-medium text-sm bg-(--bg-surface) text-(--text-secondary) border border-(--border-default) hover:text-(--text-primary) hover:border-(--accent-primary) transition-all duration-200 flex items-center gap-2 shadow-xs"
       aria-label={`${t('hero.ctaCV')} (${t('hero.ctaCVHint')})`}
       data-umami-event="download-cv"
