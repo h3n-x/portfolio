@@ -10,6 +10,7 @@ export const ui = {
   es: {
     'accessibility.skipToContent': 'Saltar al contenido principal',
     'nav.home': 'Inicio',
+    'nav.label': 'Navegación principal',
     'nav.about': 'Sobre Mí',
     'nav.projects': 'Proyectos',
     'nav.experience': 'Experiencia',
@@ -109,6 +110,7 @@ export const ui = {
   en: {
     'accessibility.skipToContent': 'Skip to main content',
     'nav.home': 'Home',
+    'nav.label': 'Main navigation',
     'nav.about': 'About',
     'nav.projects': 'Projects',
     'nav.experience': 'Experience',

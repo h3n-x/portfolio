@@ -17,6 +17,7 @@ const navItems = [
   { href: '#proyectos', label: t('nav.projects') },
   { href: '#experiencia', label: t('nav.experience') },
   { href: '#habilidades', label: t('nav.skills') },
+  { href: '#formacion', label: t('nav.education') },
   { href: '#contacto', label: t('nav.contact') },
 ];
 ---
@@ -42,7 +43,7 @@ const navItems = [
     </a>
 
     <!-- Desktop Navigation -->
-    <nav class="hidden md:flex items-center gap-1" aria-label="Navegación principal">
+    <nav class="hidden md:flex items-center gap-1" aria-label={t('nav.label')}>
       {navItems.map((item) => (
         <a
           href={item.href}
