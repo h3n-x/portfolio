@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import type { SupportedLang } from '../../../i18n/ui';
+import ProjectCaseStudy from '../../../components/sections/ProjectCaseStudy.astro';
+
+// Each case study as a bare HTML fragment (no layout): the projects section fetches it
+// into its dialog on first open, so the home page doesn't carry all eight.
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => {
+    const [lang, slug] = project.slug.split('/');
+    return { params: { lang, slug }, props: { project, lang } };
+  });
+}
+
+const { project, lang } = Astro.props as { project: Awaited<ReturnType<typeof getCollection<'projects'>>>[number]; lang: SupportedLang };
+---
+
+<ProjectCaseStudy project={project} lang={lang} />

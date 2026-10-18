@@ -17,7 +17,8 @@ export default defineConfig({
     prefetchAll: true,
     defaultStrategy: 'viewport',
   },
-  integrations: [sitemap()],
+  // Los fragmentos de casos de estudio no son paginas: fuera del sitemap
+  integrations: [sitemap({ filter: (page) => !page.includes('/case-studies/') })],
   vite: {
     plugins: [tailwindcss()],
   },

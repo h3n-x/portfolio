@@ -1,0 +1,164 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { SupportedLang } from '../../i18n/ui';
+import { useTranslations } from '../../i18n/utils';
+import { ShieldAlert, Layers, BookOpen, ExternalLink, X } from '@lucide/astro';
+import GithubIcon from '../icons/GithubIcon.astro';
+import { categoryIconFor } from './projectIcons';
+
+// Content of a project's case-study dialog. Served as a fragment from
+// /<lang>/case-studies/<slug>/ and loaded into the dialog when it is first opened.
+interface Props {
+  project: CollectionEntry<'projects'>;
+  lang: SupportedLang;
+}
+
+const { project, lang } = Astro.props;
+const t = useTranslations(lang);
+const projectAnchor = project.slug.split('/').pop() || project.slug;
+const CategoryIcon = categoryIconFor(projectAnchor);
+---
+
+<div class="flex flex-col w-full h-full max-h-[90vh] overflow-hidden">
+<!-- Modal Top Sticky Bar -->
+<header class="sticky top-0 z-20 px-6 py-4 bg-(--bg-surface)/95 backdrop-blur-sm border-b border-(--border-subtle) flex items-center justify-between gap-4">
+  <div class="flex items-center gap-2.5 flex-wrap">
+    <span class="text-xs px-2.5 py-0.5 rounded-full bg-(--accent-sky-bg) text-(--accent-sky) font-medium border border-(--border-subtle) flex items-center gap-1.5">
+      <CategoryIcon class="w-3.5 h-3.5" aria-hidden="true" />
+      <span>{project.data.category}</span>
+    </span>
+    <span class="text-xs px-2.5 py-0.5 rounded-full bg-(--accent-forest-bg) text-(--accent-forest) font-mono font-semibold border border-(--border-subtle)">
+      {project.data.status}
+    </span>
+  </div>
+
+  <div class="flex items-center gap-2">
+    <button
+      type="button"
+      class="modal-close-btn interactive-target p-2 rounded-xl text-(--text-muted) hover:text-(--text-primary) hover:bg-(--bg-elevated) transition-colors flex items-center gap-1.5 cursor-pointer border border-(--border-subtle)"
+      aria-label={t('projects.modalClose')}
+    >
+      <span class="text-xs font-mono text-(--text-muted) px-1.5 py-0.5 rounded bg-(--bg-elevated) hidden sm:inline">ESC</span>
+      <X class="w-4 h-4" />
+    </button>
+  </div>
+</header>
+
+<!-- Modal Scrollable Content -->
+<div class="overflow-y-auto px-6 py-6 sm:px-8 sm:py-8 flex flex-col gap-6">
+  <!-- Title & Tagline -->
+  <div class="flex flex-col gap-2">
+    <h3 id={`modal-title-${projectAnchor}`} class="text-2xl sm:text-3xl font-extrabold text-(--text-primary)">
+      {project.data.title}
+    </h3>
+    <p class="text-base text-(--text-secondary) font-medium leading-relaxed">
+      {project.data.tagline}
+    </p>
+  </div>
+
+  <!-- Project Demonstration Visual -->
+  <div class="shrink-0 rounded-xl overflow-hidden border border-(--border-subtle) bg-(--bg-elevated) shadow-xs">
+    <img
+      src={`/images/projects/card-${projectAnchor}.svg`}
+      alt={t('projects.imageAlt').replace('{title}', project.data.title)}
+      width="1200"
+      height="675"
+      class="w-full h-auto block object-cover object-top"
+      loading="lazy"
+    />
+  </div>
+
+  <!-- 3-Pillar Technical Deep Dive -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+    <!-- 1. Problem Statement -->
+    <div class="flex flex-col gap-3 p-5 rounded-xl bg-(--bg-card-subtle)/70 border border-(--border-subtle)">
+      <div class="flex items-center gap-2 text-(--accent-primary) font-bold text-sm">
+        <ShieldAlert class="w-4 h-4 shrink-0" aria-hidden="true" />
+        <h4>{t('projects.problemTitle')}</h4>
+      </div>
+      <p class="text-xs sm:text-sm text-(--text-muted) leading-relaxed">
+        {project.data.problemSolved}
+      </p>
+    </div>
+
+    <!-- 2. Architecture Decisions -->
+    <div class="flex flex-col gap-3 p-5 rounded-xl bg-(--bg-card-subtle)/70 border border-(--border-subtle)">
+      <div class="flex items-center gap-2 text-(--accent-forest) font-bold text-sm">
+        <Layers class="w-4 h-4 shrink-0" aria-hidden="true" />
+        <h4>{t('projects.architectureTitle')}</h4>
+      </div>
+      <ul class="flex flex-col gap-2 text-xs text-(--text-muted) leading-relaxed" role="list">
+        {project.data.architectureHighlights.map((item) => (
+          <li class="flex items-start gap-1.5">
+            <span class="text-(--accent-forest) font-bold shrink-0">•</span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- 3. Technical Learnings -->
+    <div class="flex flex-col gap-3 p-5 rounded-xl bg-(--bg-card-subtle)/70 border border-(--border-subtle)">
+      <div class="flex items-center gap-2 text-(--accent-sky) font-bold text-sm">
+        <BookOpen class="w-4 h-4 shrink-0" aria-hidden="true" />
+        <h4>{t('projects.learningsTitle')}</h4>
+      </div>
+      <ul class="flex flex-col gap-2 text-xs text-(--text-muted) leading-relaxed" role="list">
+        {project.data.keyLearnings.map((item) => (
+          <li class="flex items-start gap-1.5">
+            <span class="text-(--accent-sky) font-bold shrink-0">•</span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <!-- Full Tech Stack Tags -->
+  <div class="flex flex-col gap-2 pt-2 border-t border-(--border-subtle)">
+    <span class="text-xs font-semibold text-(--text-muted)">
+      {t('projects.techLabel')}:
+    </span>
+    <div class="flex flex-wrap items-center gap-2">
+      {project.data.technologies.map((tech) => (
+        <span class="px-2.5 py-1 rounded-md text-xs font-medium bg-(--bg-elevated) text-(--text-secondary) border border-(--border-subtle)">
+          {tech}
+        </span>
+      ))}
+    </div>
+  </div>
+</div>
+
+<!-- Modal Bottom Actions Bar -->
+<footer class="sticky bottom-0 z-20 px-6 py-4 bg-(--bg-surface)/95 backdrop-blur-sm border-t border-(--border-subtle) flex items-center justify-between gap-3">
+  <button
+    type="button"
+    class="modal-close-btn interactive-target px-4 py-2 rounded-xl text-xs font-semibold bg-(--bg-elevated) text-(--text-secondary) hover:text-(--text-primary) border border-(--border-default) transition-colors cursor-pointer"
+  >
+    {t('projects.modalClose')}
+  </button>
+
+  <div class="flex items-center gap-2">
+    {project.data.demoUrl && (
+      <a
+        href={project.data.demoUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="interactive-target px-4 py-2 rounded-xl text-xs font-semibold bg-(--accent-forest-bg) text-(--accent-forest) border border-(--border-subtle) hover:border-(--accent-forest) transition-all flex items-center gap-1.5 shadow-xs"
+      >
+        <ExternalLink class="w-3.5 h-3.5" />
+        <span>{t('projects.viewDemo')}</span>
+      </a>
+    )}
+    <a
+      href={project.data.githubUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="interactive-target px-4 py-2 rounded-xl text-xs font-semibold bg-(--bg-elevated) text-(--text-primary) border border-(--border-default) hover:border-(--accent-primary) hover:text-(--accent-primary) transition-all flex items-center gap-2 shadow-xs"
+    >
+      <GithubIcon class="w-3.5 h-3.5" />
+      <span>{t('projects.viewCode')}</span>
+    </a>
+  </div>
+</footer>
+</div>

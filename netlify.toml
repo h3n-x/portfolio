@@ -33,6 +33,12 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cloud.umami.is; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; connect-src 'self' https://cloud.umami.is https://api-gateway.umami.dev https://gateway.umami.is https://*.umami.is;"
 
+# Fragmentos de casos de estudio (se cargan en el dialogo de cada proyecto): no se indexan
+[[headers]]
+  for = "/*/case-studies/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
 # Caché inmutable para assets generados por Astro (con hash de contenido)
 [[headers]]
   for = "/fonts/*"
