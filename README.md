@@ -17,7 +17,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Lighthouse-100_A11y_%C2%B7_100_SEO_%C2%B7_99%2B_Perf-a6e3a1?style=for-the-badge&logo=lighthouse&logoColor=d9e0ee&labelColor=363a4f" alt="Lighthouse"/>
+  <img src="https://img.shields.io/badge/Lighthouse-100_A11y_%C2%B7_100_SEO_%C2%B7_100_desktop-a6e3a1?style=for-the-badge&logo=lighthouse&logoColor=d9e0ee&labelColor=363a4f" alt="Lighthouse"/>
   <img src="https://img.shields.io/badge/deploy-Netlify-89dceb?style=for-the-badge&logo=netlify&logoColor=d9e0ee&labelColor=363a4f" alt="deploy"/>
   <img src="https://img.shields.io/badge/license-MIT-a6e3a1?style=for-the-badge&labelColor=363a4f" alt="license"/>
 </p>
@@ -89,6 +89,7 @@ portfolio/
 │   ├── favicon.svg
 │   ├── robots.txt            # crawler rules and sitemap link
 │   ├── docs/                 # resume in English and Spanish (cv-henry-pacheco-{en,es}.pdf)
+│   ├── fonts/                # Plus Jakarta Sans (self-hosted, OFL)
 │   └── images/projects/      # project cards (card-<slug>.svg)
 └── src/
     ├── content/              # Zod-typed content collections
@@ -100,7 +101,8 @@ portfolio/
     │   ├── icons/            # accessible custom SVG icons
     │   └── sections/         # Hero, About, Projects, Experience, Skills, Education, Contact
     ├── layouts/BaseLayout.astro   # HTML5, SEO, Open Graph and View Transitions
-    ├── pages/                # 404, language detection, /es/ and /en/
+    ├── pages/                # 404, language detection, /es/, /en/ and the case-study fragments
+    │                         # loaded on demand (/<lang>/case-studies/<slug>/)
     └── styles/global.css     # Ghibli design tokens, reset and accessibility
 ```
 
@@ -123,12 +125,14 @@ npm run preview                          # preview the production build
 
 ## 📊 Lighthouse
 
-| Device | Performance | Accessibility | Best practices | SEO | FCP | LCP | TBT | CLS |
-|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| **Desktop** | **100** | **100** | **100** | **100** | 0.4 s | 0.4 s | 0 ms | 0 |
-| **Mobile** | **99–100** | **100** | **100** | **100** | 1.3–1.4 s | 1.3–1.4 s | 70–120 ms | 0 |
+| Device | Performance | Accessibility | Best practices | SEO | Agentic browsing | FCP | LCP | TBT | CLS |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Desktop** | **100** | **100** | **100** | **100** | **100** | 0.4 s | 0.4–0.5 s | 0–12 ms | 0 |
+| **Mobile** | **85–96** | **100** | **100** | **100** | **100** | 1.1 s | 2.1–2.3 s | 70–430 ms | 0 |
 
-Measured on [h3n-x.me](https://h3n-x.me) with Lighthouse 12 (2026-10-17), both `/es/` and `/en/`; mobile uses Lighthouse's simulated slow 4G and CPU throttling. The only font (Plus Jakarta Sans, variable) is served from the site and preloaded, so nothing outside the site blocks the first paint.
+Measured on [h3n-x.me](https://h3n-x.me) with Lighthouse 13.5 and Chromium 154 (2026-10-18), default settings, `/es/` and `/en/`, several runs each. Mobile uses Lighthouse's simulated slow 4G and 4× CPU slowdown, so its Performance score depends on how busy the machine running the test is: 94–98 on an idle machine, 85–89 on a loaded one. With real DevTools throttling it stays at 93–97.
+
+Why it's fast: the only font (Plus Jakarta Sans, variable) is served from the site and preloaded; the eight case studies are static fragments loaded into their dialog on demand, so the home page is 17 KB of compressed HTML; zero layout shift.
 
 &nbsp;
 

@@ -17,7 +17,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Lighthouse-100_A11y_%C2%B7_100_SEO_%C2%B7_99%2B_Perf-a6e3a1?style=for-the-badge&logo=lighthouse&logoColor=d9e0ee&labelColor=363a4f" alt="Lighthouse"/>
+  <img src="https://img.shields.io/badge/Lighthouse-100_A11y_%C2%B7_100_SEO_%C2%B7_100_desktop-a6e3a1?style=for-the-badge&logo=lighthouse&logoColor=d9e0ee&labelColor=363a4f" alt="Lighthouse"/>
   <img src="https://img.shields.io/badge/deploy-Netlify-89dceb?style=for-the-badge&logo=netlify&logoColor=d9e0ee&labelColor=363a4f" alt="deploy"/>
   <img src="https://img.shields.io/badge/license-MIT-a6e3a1?style=for-the-badge&labelColor=363a4f" alt="license"/>
 </p>
@@ -89,6 +89,7 @@ portfolio/
 │   ├── favicon.svg
 │   ├── robots.txt            # reglas para crawlers y enlace al sitemap
 │   ├── docs/                 # CV en inglés y español (cv-henry-pacheco-{en,es}.pdf)
+│   ├── fonts/                # Plus Jakarta Sans (servida desde el sitio, OFL)
 │   └── images/projects/      # tarjetas de los proyectos (card-<slug>.svg)
 └── src/
     ├── content/              # content collections tipadas con Zod
@@ -100,7 +101,8 @@ portfolio/
     │   ├── icons/            # iconos SVG propios accesibles
     │   └── sections/         # Hero, About, Projects, Experience, Skills, Education, Contact
     ├── layouts/BaseLayout.astro   # HTML5, SEO, Open Graph y View Transitions
-    ├── pages/                # 404, detección de idioma, /es/ y /en/
+    ├── pages/                # 404, detección de idioma, /es/, /en/ y los fragmentos de casos de
+    │                         # estudio que se cargan al abrirlos (/<lang>/case-studies/<slug>/)
     └── styles/global.css     # tokens de diseño Ghibli, reset y accesibilidad
 ```
 
@@ -123,12 +125,14 @@ npm run preview                          # vista previa del build de producción
 
 ## 📊 Lighthouse
 
-| Dispositivo | Rendimiento | Accesibilidad | Buenas prácticas | SEO | FCP | LCP | TBT | CLS |
-|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| **Escritorio** | **100** | **100** | **100** | **100** | 0,4 s | 0,4 s | 0 ms | 0 |
-| **Móvil** | **99–100** | **100** | **100** | **100** | 1,3–1,4 s | 1,3–1,4 s | 70–120 ms | 0 |
+| Dispositivo | Rendimiento | Accesibilidad | Buenas prácticas | SEO | Navegación agéntica | FCP | LCP | TBT | CLS |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Escritorio** | **100** | **100** | **100** | **100** | **100** | 0,4 s | 0,4–0,5 s | 0–12 ms | 0 |
+| **Móvil** | **85–96** | **100** | **100** | **100** | **100** | 1,1 s | 2,1–2,3 s | 70–430 ms | 0 |
 
-Medido en [h3n-x.me](https://h3n-x.me) con Lighthouse 12 (2026-10-17), tanto `/es/` como `/en/`; en móvil, Lighthouse simula una red 4G lenta y una CPU limitada. La única fuente (Plus Jakarta Sans, variable) se sirve desde el propio sitio y se precarga, así que nada externo bloquea el primer pintado.
+Medido en [h3n-x.me](https://h3n-x.me) con Lighthouse 13.5 y Chromium 154 (2026-10-18), configuración por defecto, `/es/` y `/en/`, varias pasadas de cada una. En móvil, Lighthouse simula una red 4G lenta y una CPU 4× más lenta, así que la nota de rendimiento depende de lo ocupada que esté la máquina que ejecuta la prueba: 94–98 con la máquina libre, 85–89 con carga. Con limitación real de DevTools se mantiene en 93–97.
+
+Por qué es rápido: la única fuente (Plus Jakarta Sans, variable) se sirve desde el propio sitio y se precarga; los ocho casos de estudio son fragmentos estáticos que se cargan en su diálogo al abrirlos, así que la portada pesa 17 KB de HTML comprimido; cero desplazamiento de diseño.
 
 &nbsp;
 
