@@ -65,8 +65,11 @@ async function run() {
     await send('Page.navigate', { url: `${BASE_URL}/es/` });
     await new Promise(r => setTimeout(r, 1000));
 
-    // Verify all 5 project cards and modals exist
-    const projectSlugs = ['archforge', 'repo-secret-auditor', 'dockerward', 'chat-anonimo', 'secuscan-api'];
+    // Verify all project cards and their (empty) dialogs exist
+    const projectSlugs = [
+      'archforge', 'repo-secret-auditor', 'dockerward', 'hyprland-dotfiles',
+      'chat-anonimo', 'secuscan-api', 'yt-cli', 'downloader-sh',
+    ];
     
     for (const slug of projectSlugs) {
       const cardExists = await evaluate(`!!document.querySelector('#${slug}')`);
@@ -81,6 +84,11 @@ async function run() {
       console.log(`  ✓ Found card & modal for ${slug} (correctly hidden initially)`);
     }
 
+    // Case studies are loaded on demand: no dialog carries its content on page load
+    const preloaded = await evaluate(`document.querySelectorAll('dialog.project-modal[data-loaded], dialog.project-modal h4').length`);
+    if (preloaded !== 0) throw new Error(`Case-study content present before opening (${preloaded} nodes)`);
+    console.log('  ✓ No case study is embedded in the page before it is opened');
+
     // Test SecuScan API modal interactive open and close
     console.log('\n[2] Testing SecuScan API modal interaction...');
     await evaluate(`document.querySelector('#secuscan-api').click()`);
@@ -92,6 +100,20 @@ async function run() {
     if (!isOpen || overflow !== 'hidden') {
       throw new Error(`SecuScan modal failed to open cleanly. open=${isOpen}, overflow=${overflow}`);
     }
+
+    // Its content arrives from /es/case-studies/secuscan-api/
+    let loaded = false;
+    for (let i = 0; i < 20 && !loaded; i++) {
+      await new Promise(r => setTimeout(r, 100));
+      loaded = await evaluate(`!!document.querySelector('#modal-secuscan-api[data-loaded] h3')`);
+    }
+    if (!loaded) throw new Error('SecuScan case study did not load into its dialog');
+    const pillars = await evaluate(`document.querySelectorAll('#modal-secuscan-api h4').length`);
+    const imageHeight = await evaluate(`Math.round(document.querySelector('#modal-secuscan-api img').parentElement.getBoundingClientRect().height)`);
+    if (pillars !== 3 || imageHeight < 100) {
+      throw new Error(`SecuScan case study incomplete: pillars=${pillars}, image wrapper height=${imageHeight}px`);
+    }
+    console.log(`  ✓ Case study loaded on demand (3 sections, image ${imageHeight}px tall)`);
 
     // Test Escape key
     console.log('\n[2b] Testing Escape key closes modal...');
@@ -147,7 +169,7 @@ async function run() {
         throw new Error(`English card or modal missing for ${slug}`);
       }
     }
-    console.log('  ✓ All 5 English project cards and modals verified');
+    console.log(`  ✓ All ${projectSlugs.length} English project cards and modals verified`);
 
     // Test SecuScan API modal on /en/
     await evaluate(`document.querySelector('#secuscan-api').click()`);
@@ -167,7 +189,7 @@ async function run() {
     console.log('  ✓ All LinkedIn links correctly point to https://www.linkedin.com/in/h3n-x');
 
     // Verify Defense-in-depth banner subtitle
-    const hasOldSubtitle = await evaluate(`document.body.innerHTML.includes('HENRY PACHECO (H3N)') || document.body.innerHTML.includes('H3N-X.NETLIFY.APP')`);
+    const hasOldSubtitle = await evaluate(`document.body.innerHTML.includes('HENRY PACHECO (H3N)') || document.documentElement.outerHTML.toLowerCase().includes('h3n-x.netlify.app')`);
     if (hasOldSubtitle) {
       throw new Error(`Found old author or netlify URL in page content!`);
     }
